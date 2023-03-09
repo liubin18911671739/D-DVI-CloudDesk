@@ -145,7 +145,7 @@
                 "login": "Войти"
             },
             "title": "Войти",
-            "isard-logo-alt": "Логотип IsardVDI это голова серны.",
+            "isard-logo-alt": "Логотип  это голова серны.",
             "powered-by": "Питается от {isardvdi}",
             "errors": {
                 "500": "Ошибка сервера",
