@@ -51,8 +51,6 @@ ALLINONE_PARTS="
 	authentication
 	vpn
 	guac
-	storage
-	hypervisor
 	backupninja
 "
 HYPERVISOR_KEY="hypervisor"

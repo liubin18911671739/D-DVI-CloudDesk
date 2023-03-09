@@ -2527,7 +2527,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk IOps",
+          "title": "磁盘 IOPS",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -2668,7 +2668,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "I/O Usage Read / Write",
+          "title": "I/O 使用读/写",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2775,7 +2775,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "I/O Utilization",
+          "title": "I/O 利用率",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2818,7 +2818,7 @@
           "refId": "A"
         }
       ],
-      "title": "CPU / Memory / Net / Disk",
+      "title": "CPU / 内存 / 网络 / 磁盘",
       "type": "row"
     },
     {
@@ -2929,7 +2929,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Active / Inactive",
+          "title": "内存活动/非活动",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3062,7 +3062,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Commited",
+          "title": "内存提交",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3214,7 +3214,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Active / Inactive Detail",
+          "title": "内存活动/非活动详细信息",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3351,7 +3351,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Writeback and Dirty",
+          "title": "内存回写和脏数据",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3512,7 +3512,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Shared and Mapped",
+          "title": "内存共享和映射",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3639,7 +3639,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Slab",
+          "title": "内存板",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3778,7 +3778,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Vmalloc",
+          "title": "内存 Vmalloc",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -3890,7 +3890,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Bounce",
+          "title": "内存 Bounce",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4019,7 +4019,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Anonymous",
+          "title": "内存 Anonymous",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4144,7 +4144,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Kernel / CPU",
+          "title": "内存 Kernel / CPU",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4280,7 +4280,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory HugePages Counter",
+          "title": "内存 HugePages Counter",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4405,7 +4405,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory HugePages Size",
+          "title": "内存 HugePages Size",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4546,7 +4546,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory DirectMap",
+          "title": "内存直接映射",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4670,7 +4670,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Unevictable and MLocked",
+          "title": "内存不可清除和 MLocked",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4783,7 +4783,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory NFS",
+          "title": "内存 NFS",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4823,7 +4823,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memory Meminfo",
+      "title": "内存 Meminfo",
       "type": "row"
     },
     {
@@ -4926,7 +4926,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Pages In / Out",
+          "title": "内存页 In / Out",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5041,7 +5041,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Pages Swap In / Out",
+          "title": "内存页 Swap In / Out",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5190,7 +5190,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory Page Faults",
+          "title": "内存页 Faults",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5355,7 +5355,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memory Vmstat",
+      "title": "内存 Vmstat",
       "type": "row"
     },
     {
@@ -5468,7 +5468,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Time Syncronized Drift",
+          "title": "时间同步漂移",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5560,7 +5560,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Time PLL Adjust",
+          "title": "时间 PLL 调整",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5669,7 +5669,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Time Syncronized Status",
+          "title": "时间同步状态",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5773,7 +5773,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Time Misc",
+          "title": "时间杂项",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5812,7 +5812,7 @@
           "refId": "A"
         }
       ],
-      "title": "System Timesync",
+      "title": "系统时间同步",
       "type": "row"
     },
     {
@@ -5902,7 +5902,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Processes Status",
+          "title": "进程状态",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5996,7 +5996,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Processes State",
+          "title": "进程状态",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6090,7 +6090,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Processes  Forks",
+          "title": "进程分叉",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6227,7 +6227,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Processes Memory",
+          "title": "进程内存",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6339,7 +6339,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "PIDs Number and Limit",
+          "title": "PID 数量和限制",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6452,7 +6452,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Process schedule stats Running / Waiting",
+          "title": "进程调度统计运行/等待",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6565,7 +6565,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Threads Number and Limit",
+          "title": "线程数和限制",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6607,7 +6607,7 @@
           "refId": "A"
         }
       ],
-      "title": "System Processes",
+      "title": "系统进程",
       "type": "row"
     },
     {
@@ -6698,7 +6698,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Context Switches / Interrupts",
+          "title": "上下文切换/中断",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6813,7 +6813,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "System Load",
+          "title": "系统负载",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -6917,7 +6917,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Interrupts Detail",
+          "title": "中断详情",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7009,7 +7009,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Schedule timeslices executed by each cpu",
+          "title": "调度每个cpu执行的时间片",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7101,7 +7101,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Entropy",
+          "title": "熵",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7195,7 +7195,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "CPU time spent in user and system contexts",
+          "title": "在用户和系统上下文中花费的 CPU 时间",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7305,7 +7305,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "File Descriptors",
+          "title": "文件描述符",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7347,7 +7347,7 @@
           "refId": "A"
         }
       ],
-      "title": "System Misc",
+      "title": "系统杂项",
       "type": "row"
     },
     {
@@ -7500,7 +7500,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Hardware temperature monitor",
+          "title": "硬件温度监控",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7621,7 +7621,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Throttle cooling device",
+          "title": "节流冷却装置",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7721,7 +7721,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Power supply",
+          "title": "电源",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -7762,7 +7762,7 @@
           "refId": "A"
         }
       ],
-      "title": "Hardware Misc",
+      "title": "硬件杂项",
       "type": "row"
     },
     {
@@ -7847,7 +7847,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Systemd Sockets",
+          "title": "系统套接字",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -8018,7 +8018,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Systemd Units State",
+          "title": "系统单位状态",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -8261,7 +8261,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk IOps Completed",
+          "title": "磁盘 IOPS 已完成",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -8460,7 +8460,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk R/W Data",
+          "title": "磁盘读写数据",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -8663,7 +8663,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk Average Wait Time",
+          "title": "磁盘平均等待时间",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -8848,7 +8848,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Average Queue Size",
+          "title": "平均队列大小",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -9048,7 +9048,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk R/W Merged",
+          "title": "磁盘读写合并",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -9245,7 +9245,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Time Spent Doing I/Os",
+          "title": "花在 I/O 上的时间",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -9431,7 +9431,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Instantaneous Queue Size",
+          "title": "瞬时队列大小",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -9647,7 +9647,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Disk IOps Discards completed / merged",
+          "title": "完成/合并的磁盘 IOps 丢弃",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -9688,7 +9688,7 @@
           "refId": "A"
         }
       ],
-      "title": "Storage Disk",
+      "title": "存储盘",
       "type": "row"
     },
     {
@@ -9805,7 +9805,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Filesystem space available",
+          "title": "可用的文件系统空间",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -9909,7 +9909,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "File Nodes Free",
+          "title": "文件节点免费",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10023,7 +10023,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "File Descriptor",
+          "title": "文件描述符",
           "tooltip": {
             "shared": false,
             "sort": 0,
@@ -10125,7 +10125,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "File Nodes Size",
+          "title": "文件节点大小",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10243,7 +10243,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Filesystem in ReadOnly / Error",
+          "title": "只读文件系统/错误",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10286,7 +10286,7 @@
           "refId": "A"
         }
       ],
-      "title": "Storage Filesystem",
+      "title": "存储文件系统",
       "type": "row"
     },
     {
@@ -10389,7 +10389,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic by Packets",
+          "title": "数据包网络流量",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10501,7 +10501,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Errors",
+          "title": "网络流量错误",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10613,7 +10613,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Drop",
+          "title": "网络流量下降",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10725,7 +10725,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Compressed",
+          "title": "网络流量压缩",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10825,7 +10825,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Multicast",
+          "title": "网络流量多播",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -10937,7 +10937,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Fifo",
+          "title": "网络流量先进先出",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11039,7 +11039,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Frame",
+          "title": "网络流量帧",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11136,7 +11136,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Carrier",
+          "title": "网络流量载体",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11236,7 +11236,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Traffic Colls",
+          "title": "网络流量调用",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11345,7 +11345,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "NF Contrack",
+          "title": "NF合同",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11438,7 +11438,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "ARP Entries",
+          "title": "ARP 条目",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11621,7 +11621,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Speed",
+          "title": "速度",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11713,7 +11713,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Queue Length",
+          "title": "队列长度",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11830,7 +11830,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Softnet Packets",
+          "title": "软网封包",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -11928,7 +11928,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Softnet Out of Quota",
+          "title": "软网超出配额",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12036,7 +12036,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Network Operational Status",
+          "title": "网络运行状态",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12075,7 +12075,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network Traffic",
+      "title": "网络流量",
       "type": "row"
     },
     {
@@ -12217,7 +12217,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Sockstat TCP",
+          "title": "套接字TCP",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12345,7 +12345,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Sockstat UDP",
+          "title": "套接字UDP",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12460,7 +12460,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Sockstat FRAG / RAW",
+          "title": "Sockstat 碎片/原始",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12588,7 +12588,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Sockstat Memory Size",
+          "title": "Sockstat 内存大小",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12690,7 +12690,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Sockstat Used",
+          "title": "使用的 Sockstat",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12730,7 +12730,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network Sockstat",
+      "title": "网络套接字",
       "type": "row"
     },
     {
@@ -12841,7 +12841,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Netstat IP In / Out Octets",
+          "title": "Netstat IP 输入/输出八位字节",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -12947,7 +12947,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Netstat IP Forwarding",
+          "title": "Netstat IP 转发",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13071,7 +13071,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "ICMP In / Out",
+          "title": "ICMP 输入/输出",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13179,7 +13179,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "ICMP Errors",
+          "title": "ICMP 错误",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13304,7 +13304,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "UDP In / Out",
+          "title": "UDP 输入/输出",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13456,7 +13456,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "UDP Errors",
+          "title": "UDP 错误",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13584,7 +13584,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "TCP In / Out",
+          "title": "TCP 输入/输出",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13747,7 +13747,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "TCP Errors",
+          "title": "TCP 错误",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -13872,7 +13872,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "TCP Connections",
+          "title": "TCP连接",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -14129,7 +14129,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "TCP Direct Transition",
+          "title": "TCP 直接转换",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -14169,7 +14169,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network Netstat",
+      "title": "网络统计",
       "type": "row"
     },
     {
@@ -14251,7 +14251,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Node Exporter Scrape Time",
+          "title": "节点导出器抓取时间",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -14364,7 +14364,7 @@
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Node Exporter Scrape",
+          "title": "节点出口Scrape",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -14405,7 +14405,7 @@
           "refId": "A"
         }
       ],
-      "title": "Node Exporter",
+      "title": "节点导出器",
       "type": "row"
     }
   ],
@@ -14497,7 +14497,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "Info Domains Full",
+  "title": "信息域已满",
   "uid": "rYdddlPWk",
   "version": 1,
   "weekStart": ""
