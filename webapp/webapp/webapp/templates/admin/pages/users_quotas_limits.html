@@ -1,0 +1,277 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="x_panel">
+        <div class="page-title">
+           <div class="title_left">
+              <h3><i class="fa fa-minus-circle"></i>配额/限制 <small>用户限制</small></h3>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-user"></i> 用户 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="users" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>用户名称</th>
+              <th>角色</th>
+              <th>分类</th>
+              <th>组</th>
+              <th>模板</th>
+              <th>桌面</th>
+              <th>域 大小 (GB)</th>
+              <th>媒介 大小  (GB)</th>
+              <th>全部 大小 (GB)</th>
+              <th>Id</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>用户名称</th>
+              <th>角色</th>
+              <th>分类</th>
+              <th>组</th>
+              <th>模板</th>
+              <th>桌面</th>
+              <th>域 大小 (GB)</th>
+              <th>媒介 大小 (GB)</th>
+              <th>全部 大小 (GB)</th>
+              <th>Id</th>
+            </tr>
+            <tr>
+              <th colspan="17" style="text-align:right" class="users-total-size"></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-leaf"></i> 分类 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="categories" class="table">
+          <thead>
+            <tr>
+              <th rowspan="2"></th>
+              <th rowspan="2">名称</th>
+              <th rowspan="2">说明</th>
+              <th colspan="1">用户</th>
+
+              <th colspan="5">存储 (GB)</th>
+              <th colspan="2">桌面</th>
+              <th colspan="2">并发</th>
+              <th colspan="2">VCPU</th>
+              <th colspan="2">内存</th>
+              <th colspan="2">模板</th>
+              <th colspan="2">ISO</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>限制</th>
+
+              <th>域</th>
+              <th>媒介</th>
+              <th>全部使用</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>说明</th>
+              <th>限制</th>
+
+              <th>域</th>
+              <th>媒介</th>
+              <th>全部使用的</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>ID</th>
+            </tr>
+            <tr>
+              <th colspan="21" style="text-align:right" class="categories-total-size"></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-group"></i> 组 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="groups" class="table">
+          <thead>
+            <tr>
+              <th rowspan="2"></th>
+              <th rowspan="2">名称</th>
+              <th rowspan="2">分类</th>
+              <th rowspan="2">说明</th>
+              <th colspan="1">用户</th>
+
+              <th colspan="5">存储 (GB)</th>
+              <th colspan="2">桌面</th>
+              <th colspan="2">并发</th>
+              <th colspan="2">虚拟CPU</th>
+              <th colspan="2">内存</th>
+              <th colspan="2">模板</th>
+              <th colspan="2">ISO镜像</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>限制</th>
+
+              <th>域</th>
+              <th>媒介</th>
+              <th>全部使用的</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>分类</th>
+              <th>说明</th>
+              <th>限制</th>
+
+              <th>域</th>
+              <th>媒介</th>
+              <th>全部使用的</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>配额</th>
+              <th>限制</th>
+              <th>ID</th>
+            </tr>
+            <tr>
+              <th colspan="22" style="text-align:right" class="groups-total-size"></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include '/admin/pages/users_modals_quotas_limits.html' %}
+{% include '/admin/pages/users_detail_quotas_limits.html' %}
+{% include '/admin/pages/categories_detail_quotas_limits.html' %}
+{% include '/admin/pages/groups_detail_quotas_limits.html' %}
+{% endblock %}
+
+{% block pagescript %}
+<script src="/isard-admin/static/js/restful.js"></script>
+<script src="/isard-admin/static/admin/js/users_quotas_limits.js"></script>
+<script src="/isard-admin/static/admin/js/categories_quotas_limits.js"></script>
+<script src="/isard-admin/static/admin/js/groups_quotas_limits.js"></script>
+<script src="/isard-admin/static/admin/js/external_apps.js"></script>
+<script src="/isard-admin/static/admin/js/roles.js"></script>
+<script src="/isard-admin/static/js/snippets/quota.js"></script>
+{% endblock %}

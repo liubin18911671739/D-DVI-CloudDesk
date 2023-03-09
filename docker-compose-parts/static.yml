@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  isard-static:
+    container_name: isard-static
+    image: ${DOCKER_IMAGE_PREFIX}static:${DOCKER_IMAGE_TAG-latest}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.20
+    volumes:
+      - /opt/isard/frontend/custom:/usr/share/nginx/html/custom:ro
+      - /opt/isard/assets/img/desktops:/usr/share/nginx/html/assets/img/desktops:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro

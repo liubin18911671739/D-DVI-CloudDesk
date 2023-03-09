@@ -1,0 +1,1390 @@
+<style>
+    .no-update {
+        background: #e3e4e4
+    }
+</style>
+<div class="modal fade" id="modalAddUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-user"> </i> 用户
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddUserForm" class="form-horizontal form-label-left">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" name="name" class="form-control col-md-7 col-xs-12"
+                                        data-parsley-length="[1, 40]" placeholder="Full name" required="required"
+                                        type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">用户名 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="id" class="form-control col-md-7 col-xs-12" maxlength="40"
+                                        pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ.a-zA-Z0-9]+$" data-parsley-length="[1, 20]"
+                                        name="id" placeholder="Login username" data-parsley-trigger="change" required
+                                        type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">电子邮件
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="email" class="form-control col-md-7 col-xs-12"
+                                        data-validate-length-range="4,40" name="email" placeholder="Email" type="email"
+                                        data-parsley-trigger="change">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="password-add-user" class="control-label col-md-3 col-sm-3 col-xs-1">密码
+                                    <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="password-add-user" type="password" name="password-add-user"
+                                        data-validate-length="6,8" class="form-control col-md-7 col-xs-12"
+                                        required="required">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="password2-add-user" class="control-label col-md-3 col-sm-3 col-xs-12">重复密码 <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="password2-add-user" type="password" name="password2-add-user"
+                                        data-validate-linked="password-add-user" class="form-control col-md-7 col-xs-12"
+                                        required="required">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role">角色: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="add-role" name="role" class="form-control role"
+                                        required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">分类: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="add-category" name="category" class="form-control category" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">分组: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="add-group" name="group" class="form-control group" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">第二组:
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="secondary_groups" name="secondary_groups[]" class="tags-select roundbox"
+                                        multiple="multiple" style="width: 100%;">
+                                    </select>
+                                </div>
+                                <p class="fa fa-info-circle" style="color:rgb(60, 127, 186); margin-left: 215px; margin-top: 10px;"> It will influence both shared items and deployments creation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">创建用户</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-user"></i> 编辑用户
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalEditUserForm" class="form-horizontal form-label-left">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <input id="id" name="id" hidden>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" name="name" class="form-control col-md-7 col-xs-12"
+                                        data-parsley-length="[1, 40]" placeholder="Full name" required="required"
+                                        type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="uid">用户名 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input disabled id="uid" class="form-control col-md-7 col-xs-12" maxlength="40"
+                                        pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ.a-zA-Z0-9]+$" data-parsley-length="[1, 40]"
+                                        name="uid" placeholder="Login username" data-parsley-trigger="change" required
+                                        type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">电子用户
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="email" class="form-control col-md-7 col-xs-12"
+                                        data-validate-length-range="4,40" name="email" placeholder="Email" type="email"
+                                        data-parsley-trigger="change">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role">角色: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="role" name="role" class="form-control role"
+                                        required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">类型: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="category" name="category" class="form-control category" disabled
+                                        required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">组: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="group" name="group" class="form-control group" disabled required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">第二组:
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="secondary_groups" name="secondary_groups[]" class="tags-select roundbox"
+                                        multiple="multiple" style="width: 100%;">
+                                    </select>
+                                </div>
+                                <p class="fa fa-info-circle" style="color:rgb(60, 127, 186); margin-left: 215px; margin-top: 10px;"> It will influence both shared items and deployments creation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">更新用户</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalPasswdUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-lock"></i> 修改用户密码
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalPasswdUserForm" class="form-horizontal form-label-left">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <input id="id" hidden />
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">用户
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" name="name" class="form-control col-md-7 col-xs-12"
+                                        data-parsley-length="[1, 40]" placeholder="Full name" type="text" disabled>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">用户名称
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="username" class="form-control col-md-7 col-xs-12" maxlength="40"
+                                        pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ.a-zA-Z0-9]+$" data-parsley-length="[1, 40]"
+                                        name="username" placeholder="Login username" data-parsley-trigger="change"
+                                        type="text" disabled>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="password-reset" class="control-label col-md-3">新密码</label><span
+                                    class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="password-reset" type="password" name="password-reset"
+                                        data-validate-length="6,8" class="form-control col-md-7 col-xs-12"
+                                        required="required">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="password2-reset" class="control-label col-md-3 col-sm-3 col-xs-12">重复输入密码</label><span class="required">*</span>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="password2-reset" type="password" name="password2-reset"
+                                        data-validate-linked="password-reset" class="form-control col-md-7 col-xs-12"
+                                        required="required">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">更新用户密码</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAddBulkUsers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-users"> </i> 批量创建用户
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddBulkUsersForm" class="form-horizontal form-label-left">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">倒入 CSV <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="file" id="csv" name="csv" enctype="multipart/form-data" />
+                                    <br>
+                                    <small>CSV 文件应包含以下列：
+                                        <ul>
+                                            <li>用户名/姓名/邮箱/密码/组/类别/角色</li>
+                                            <li><b>分类</b> 和 <b>分组</b> 是它们的<i>名称</i></li>
+                                            <li><b>角色</b> 必须是 <i>管理员, 超级用户</i> 或 <i>用户</i></li>
+                                        </ul>
+                                    </small>
+                                    <button id="btn-download-bulkusers" type="button" class="btn btn-success"
+                                        data-dismiss="modal">下载示例 csv 格式</button>
+                                </div>
+                            </div>
+                            <div class="x_content">
+                                <div id="csv_error" style="display:none" class="alert alert-danger alert-dismissible "
+                                    role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">×</span>
+                                    </button>
+                                    <div id="csv_error_html"></div>
+                                </div>
+                            </div>
+                            <div id="csv_correct" class="x_content" style="display:none">
+                                <div class="x_title">
+                                    <h4><i class="fa fa-check" style="color:lightgreen"></i> 导入的数据已验证
+                                    </h4>
+                                    <br>
+                                    <h4><i> （灰色列未针对现有用户更新）</i></h4>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <table id="csv_preview" class="cell-border hover stripe">
+                                    <thead>
+                                        <tr>
+                                            <th>存在</th>
+                                            <th>用户名</th>
+                                            <th>名称</th>
+                                            <th>邮箱</th>
+                                            <th>名称</th>
+                                            <th>组</th>
+                                            <th>类型</th>
+                                            <th>角色</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <div class="x_title">
+                                    <h4></i> 所有经过验证的用户的额外参数</h4>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">第二组: </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="bulk_secondary_groups" name="secondary_groups[]"
+                                            class="tags-select roundbox" multiple="multiple" style="width: 100%;">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+                <li><button id="send" type="button" class="btn btn-success">创建用户</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <div class="item form-group" style="display: block">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="bulk-allow-update">
+                           更新创建用户
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox" style="display: block">
+                                <label>
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="bulk-allow-update" name="bulk-allow-update"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="modalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-remove fa-1x"> </i> <i class="fa fa-user"> </i> 删除用户
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalDeleteUserForm" class="form-horizontal form-label-left">
+                    <input id="id" hidden />
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <h4 style="color: red"><i class="fa fa-warning"> </i>所有这些项目将被删除！</h4>
+                            <div class="item form-group">
+                                <table id="table_modal_delete" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>类型</th>
+                                            <th>拥有者</th>
+                                            <th>名称</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-danger">删除用户</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDeleteCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-delete fa-1x"> </i> <i class="fa fa-user"> </i> 删除分类
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalDeleteCategoryForm" class="form-horizontal form-label-left">
+                    <input id="id" hidden />
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <h4 style="color: red"><i class="fa fa-warning"> </i> 所有选项将被删除!</h4>
+                            <div class="item form-group">
+                                <table id="table_modal_category_delete" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>类型</th>
+                                            <th>用户</th>
+                                            <th>名称</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-danger">删除分类</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDeleteGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-delete fa-1x"> </i> <i class="fa fa-user"> </i> 删除组
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalDeleteGroupForm" class="form-horizontal form-label-left">
+                    <input id="id" hidden />
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <h4 style="color: red"><i class="fa fa-warning"> </i> 所有这些项目都将被删除!</h4>
+                            <div class="item form-group">
+                                <table id="table_modal_group_delete" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>类型</th>
+                                            <th>所有者</th>
+                                            <th>名称</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-danger">删除组</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAddCategory" tabindex="-1" role="dialog" aria-labelledby="modalAddCategory"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus"></i><i class="fa fa-leaf"></i>添加分类
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddCategoryForm" class="form-horizontal">
+                    <div class="row">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 分类名称和说明
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span></label>
+                                <input id="name" class="roundbox" maxlength="40"
+                                    pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9@]+$" data-parsley-length="[1, 40]"
+                                    name="name" placeholder="New category name" data-parsley-trigger="change" required
+                                    type="text" style="width:100%" onkeyup='customURLChange(this.value);''>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label class="control-label" for="description">说明</label>
+                                <input id="description" class="roundbox" name="description"
+                                    placeholder="Category description" type="text" style="width:100%">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                {% include '/snippets/category_modal_domain.html' %}
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label class="control-label" for="name">
+                                            自定义 URL 名称登录
+                                        </label>
+                                        <p>
+                                            <span id="span-custom-url"></span>
+                                        <input
+                                            style="width:45%"
+                                            id="custom-url"
+                                            name="custom_url_name"
+                                            type="text"
+                                            class="roundbox"
+                                            pattern="^[a-zA-Z0-9-_]+$"
+                                            data-parsley-trigger="change"
+                                            data-parsley-pattern-message="The field can only contain numbers, letters, '_' or '-'"
+                                            placeholder="Custom URL name to login directly"
+                                            size="31"
+                                        />
+                                       </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="frontend_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">前端下拉展示</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="frontend-show">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="frontend" name="frontend" class="flat"
+                                            style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="desktops_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">自动桌面创建</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="auto-desktops-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="auto-desktops-enabled" name="auto-desktops-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="auto-desktops-data" style="display:none">
+                            <label class="control-label" for="auto-desktops">在用户登录时创建的桌面列表
+                            </label>
+                            <select id="auto-desktops" name="auto-desktops[]" class="tags-select roundbox"
+                                multiple="multiple" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="ephimeral_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">临时桌面</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="ephimeral-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="ephimeral-enabled" name="ephimeral-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="ephimeral-data" style="display:none">
+                            <div class="col-md-9 col-xs-12">
+                                <label for="ephimeral-minutes">分钟</label>
+                                <input id="ephimeral-minutes" name="ephimeral-minutes"></input>
+                            </div>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ephimeral-action">这个时间执行: <span class="required">*</span></label>
+                            <select id="ephimeral-action" name="ephimeral-action" class="form-control">
+                                <option value="Stopping">停止</option>
+                                <option value="StoppingAndDeleting">删除</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </li>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button id="send" type="button" class="btn btn-success">创建分类</button>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditCategory" tabindex="-1" role="dialog" aria-labelledby="modalEditCategory"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-leaf"> </i> 编辑分类
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalEditCategoryForm" class="form-inline form-label-left">
+                    <input hidden id="id" name="id" />
+                    <div class="row">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 分类名称和说明
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span>
+                                </label>
+                                <input id="name" class="roundbox" maxlength="40"
+                                    pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9@]+$" data-parsley-length="[1, 40]"
+                                    name="name" placeholder="New category name" data-parsley-trigger="change" required
+                                    type="text" style="width:100%">
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label class="control-label" for="description">说明</label>
+                                <input id="description" class="roundbox" name="description"
+                                    placeholder="Category description" type="text" style="width:100%">
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                {% include '/snippets/category_modal_domain.html' %}
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label class="control-label" for="name">
+                                            自定义 URL 名称登录
+                                        </label>
+                                        <p>
+                                            <span id="span-custom-url"></span>
+                                            <input
+                                                style="width:35%"
+                                                id="custom-url"
+                                                name="custom_url_name"
+                                                type="text"
+                                                class="roundbox"
+                                                data-parsley-pattern="^[a-zA-Z0-9-_]+$"
+                                                data-parsley-trigger="change"
+                                                data-parsley-pattern-message="The field can only contain numbers, letters, '_' or '-'"
+                                                placeholder="Custom URL name to login directly"
+                                                size="31"
+                                            />
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="frontend_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">前端下拉展示</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="frontend">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="frontend" name="frontend" class="flat"
+                                            style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="desktops_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">自动创建桌面</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="auto-desktops-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="auto-desktops-enabled" name="auto-desktops-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="auto-desktops-data" style="display:none">
+                            <label class="control-label" for="auto-desktops">在用户登录时创建的桌面列表
+                            </label>
+                            <select id="auto-desktops" name="auto-desktops[]" class="tags-select roundbox"
+                                multiple="multiple" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="ephimeral_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">临时桌面</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="ephimeral-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="ephimeral-enabled" name="ephimeral-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="ephimeral-data" style="display:none">
+                            <div class="col-md-9 col-xs-12">
+                                <label for="ephimeral-minutes">分钟</label>
+                                <input id="ephimeral-minutes" name="ephimeral-minutes"></input>
+                            </div>
+
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ephimeral-action">在时间执行: <span class="required">*</span></label>
+                            <select id="ephimeral-action" name="ephimeral-action" class="form-control">
+                                <option value="Stopping">停止</option>
+                                <option value="StoppingAndDeleting">删除</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </li>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button id="send" type="button" class="btn btn-success">更新类别</button>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAddGroup" tabindex="-1" role="dialog" aria-labelledby="modalAddGroup"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus fa-1x"></i><i class="fa fa-group"></i> 添加组
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddGroupForm" class="form-inline form-label-left">
+                    <div class="row">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 群组名称和描述</h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span>
+                                </label>
+                                <input id="name" class="roundbox" maxlength="15"
+                                    pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[1, 40]"
+                                    name="name" placeholder="New group name" data-parsley-trigger="change" required
+                                    type="text">
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label class="control-label" for="description">说明
+                                </label>
+                                <input id="description" class="roundbox" name="description"
+                                    placeholder="Group description" type="text" style="width:100%">
+                            </div>
+                            {% if current_user.role == 'manager' %}
+                            <div class="col-md-8 col-sm-8 col-xs-12" style="margin-top: 10px;">
+                                <label class="control-label" for="parent_category">父类
+                                </label>
+                                <select id="parent_category" class="roundbox" name="parent_category" type="text"
+                                    style="width:100%" value="{{ current_user.category }}" disabled>
+                                </select>
+                            </div>
+                            {% else %}
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;">
+                                <label class="control-label" for="parent_category">父类<span class="required">*</span>
+                                </label>
+                                <select id="parent_category" name="parent_category" class="form-control category"
+                                    style="width:100%" required>
+                                </select>
+                            </div>
+                            {% endif %}
+                            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 10px;">
+                                <label class="control-label" for="group">关联组</label>
+                                <p class="fa fa-info-circle" style="color:rgb(60, 127, 186)"> 它将影响共享项目.</p>
+                                <div>
+                                    <select id="linked_groups" name="linked_groups[]" class="tags-select roundbox"
+                                        multiple="multiple" style="width: 100%;">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="desktops_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">自动桌面创建</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="auto-desktops-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="auto-desktops-enabled" name="auto-desktops-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="auto-desktops-data" style="display:none">
+                            <label class="control-label" for="auto-desktops">在用户登录时创建的桌面列表
+                            </label>
+                            <select id="auto-desktops" name="auto-desktops[]" class="tags-select roundbox"
+                                multiple="multiple" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="x_panel" id="ephimeral_panel">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <p style="font-size: 18px;margin-bottom:0px;">临时桌面</p>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="ephimeral-enabled">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="ephimeral-enabled" name="ephimeral-enabled"
+                                            class="flat" style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row" id="ephimeral-data" style="display:none">
+                            <div class="col-md-9 col-xs-12">
+                                <label for="ephimeral-minutes">分钟</label>
+                                <input id="ephimeral-minutes" name="ephimeral-minutes"></input>
+                            </div>
+
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ephimeral-action">在这时执行: <span class="required">*</span></label>
+                            <select id="ephimeral-action" name="ephimeral-action" class="form-control">
+                                <option value="Stopping">停止</option>
+                                <option value="StoppingAndDeleting">删除</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </li>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button id="send" type="button" class="btn btn-success">创建组</button>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="modalEditGroup" tabindex="-1" role="dialog" aria-labelledby="modalEditGroup" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-group"> </i> 关闭组
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalEditGroupForm" class="form-inline form-label-left">
+                    <input hidden id="id" name="id" />
+                    <div class="row">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4><i class="fa fa-info-circle" aria-hidden="true"></i>群组名称和描述
+                                </h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span>
+                                </label>
+                                <input id="name" class="roundbox" maxlength="40"
+                                    pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9@]+$" data-parsley-length="[1, 40]"
+                                    name="name" placeholder="New group name" data-parsley-trigger="change" required
+                                    type="text" style="width:100%">
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <label class="control-label" for="description">说明</label>
+                                <input id="description" class="roundbox" name="description"
+                                    placeholder="Group description" type="text" style="width:100%">
+                            </div>
+                        </div>
+                        <div class="x_panel">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label" for="group">关联组</label>
+                                <p class="fa fa-info-circle" style="color:rgb(60, 127, 186)"> 它将影响共享项目.</p>
+                                <div>
+                                    <select id="linked_groups" name="linked_groups[]" class="tags-select roundbox"
+                                        multiple="multiple" style="width: 100%;">
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="x_panel" id="desktops_panel">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <p style="font-size: 18px;margin-bottom:0px;">自动桌面创建</p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <label class="control-label" for="auto-desktops-enabled">
+                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                            <input type="checkbox" id="auto-desktops-enabled" name="auto-desktops-enabled"
+                                                class="flat" style="position: absolute; opacity: 0;">
+                                            <ins class="iCheck-helper"
+                                                style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                            </ins>
+                                        </div>
+                                        启用
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row" id="auto-desktops-data" style="display:none">
+                                <label class="control-label" for="auto-desktops">在用户登录时创建的桌面列表
+                                </label>
+                                <select id="auto-desktops" name="auto-desktops[]" class="tags-select roundbox"
+                                    multiple="multiple" style="width: 100%;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="x_panel" id="ephimeral_panel">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <p style="font-size: 18px;margin-bottom:0px;">临时桌面</p>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <label class="control-label" for="ephimeral-enabled">
+                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                            <input type="checkbox" id="ephimeral-enabled" name="ephimeral-enabled"
+                                                class="flat" style="position: absolute; opacity: 0;">
+                                            <ins class="iCheck-helper"
+                                                style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                            </ins>
+                                        </div>
+                                        启用
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row" id="ephimeral-data" style="display:none">
+                                <div class="col-md-9 col-xs-12">
+                                    <label for="ephimeral-minutes">分钟</label>
+                                    <input id="ephimeral-minutes" name="ephimeral-minutes"></input>
+                                </div>
+    
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ephimeral-action">这时执行: <span class="required">*</span></label>
+                                <select id="ephimeral-action" name="ephimeral-action" class="form-control">
+                                    <option value="Stopping">停止</option>
+                                    <option value="StoppingAndDeleting">删除</option>
+                                </select>
+                            </div>
+                        </div>                
+                    </div>
+                </div>    
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    </li>
+                    </li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button id="send" type="button" class="btn btn-success">更新组</button>
+                    </li>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="modalEnrollment" tabindex="-1" role="dialog" aria-labelledby="modalEnrollment"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus fa-1x"></i><i class="fa fa-key"></i>注册密钥
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalEnrollmentForm" class="form-inline">
+                    <input hidden id="id" name="id" />
+                    <div class="row text-center">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>管理员</label>
+                            <div class="checkbox">
+                                <label class="">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="manager-check" name="manager-check" class="flat"
+                                            style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>超级用户</label>
+                            <div class="checkbox">
+                                <label class="">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="advanced-check" name="advanced-check" class="flat"
+                                            style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>用户</label>
+                            <div class="checkbox">
+                                <label class="">
+                                    <div class="icheckbox_flat-green" style="position: relative;">
+                                        <input type="checkbox" id="user-check" name="user-check" class="flat"
+                                            style="position: absolute; opacity: 0;">
+                                        <ins class="iCheck-helper"
+                                            style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                        </ins>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <input id="manager-key" class="form-control roundbox" name="manager-key"
+                                placeholder="Manager enrollment key" disabled />
+                            <button class="btn btn-info btn-copy-manager" style="margin-top:5px;" type="button"
+                                data-placement="top"><i class="fa fa-clipboard m-right-xs"></i>Copy to
+                                粘贴板</button>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <input id="advanced-key" class="form-control roundbox" name="advanced-key"
+                                placeholder="Advanced enrollment key" disabled />
+                            <button class="btn btn-info btn-copy-advanced" style="margin-top:5px;" type="button"
+                                data-placement="top"><i class="fa fa-clipboard m-right-xs"></i>Copy to
+                                粘贴板</button>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <input id="user-key" class="form-control roundbox" name="user-key"
+                                placeholder="User enrollment key" disabled />
+                            <button class="btn btn-info btn-copy-user" style="margin-top:5px;" type="button"
+                                data-placement="top"><i class="fa fa-clipboard m-right-xs"></i>复制到粘贴板</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAddSecret" tabindex="-1" role="dialog" aria-labelledby="modalAddSecret"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i>
+                    <i class="fa fa-external-link"> </i>
+                    添加新的外部应用程序
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddSecretForm" class="form-horizontal form-label-left">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <!-- Name -->
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">名称: <span
+                                        class="required"></span>*</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name" class="form-control col-md-7 col-xs-12" maxlength="40"
+                                        pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ.a-zA-Z0-9]+$" data-parsley-length="[4, 60]"
+                                        name="name" placeholder="Secret name" data-parsley-trigger="change" required
+                                        type="text">
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">说明:
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea id="textarea" name="description" class="form-control col-md-7 col-xs-12"
+                                        placeholder="Description"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Domain -->
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domain">域: <span
+                                        class="required"></span>*</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="domain" class="form-control col-md-7 col-xs-12" maxlength="255"
+                                        pattern="[-_.a-zA-Z0-9\*]+$" data-parsley-length="[1, 100]" name="domain"
+                                        placeholder="Domain name" required="required" type="text">
+                                </div>
+                            </div>
+
+                            <!-- Role -->
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role">角色: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="add-role" name="role" class="form-control role" required></select>
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">分类: <span
+                                        class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="add-category" name="category" class="form-control category"
+                                        required></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">创建密码</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

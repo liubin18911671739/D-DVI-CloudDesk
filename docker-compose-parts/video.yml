@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  isard-video:
+    container_name: isard-video
+    image: ${DOCKER_IMAGE_PREFIX}video:${DOCKER_IMAGE_TAG-latest}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.22
+    ports:
+      - published: ${VIEWER_SPICE:-80}
+        target: 80
+      - published: ${VIEWER_BROWSER:-443}
+        target: 443
+      # - published: ${VIDEO_STATS_PORT}
+      #   target: 8888
+    volumes:
+      - /opt/isard/certs/letsencrypt:/etc/letsencrypt:rw
+      - /opt/isard/certs/default:/certs:rw
+      - /opt/isard-local/environment:/usr/local/etc/environment
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      ENV: /usr/local/etc/environment
+    env_file:
+      - .env

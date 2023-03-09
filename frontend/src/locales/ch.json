@@ -1,0 +1,1039 @@
+{
+    "validations": {
+        "required": "{property} 是必需的。",
+        "sameAs": " {property} 字段必须与  {property2} 相同.",
+        "minLengthValue": "{property} 字段有 {model} 个字符, 但它的最小长度必须为 {min}.",
+        "maxLengthValue": "The {property} 字段有 {model} 个字符, 但它的最大长度必须为 {max}",
+        "inputFormat": "有效字符为字母、数字、逗号、点、-、_",
+        "url": "The {property} 字段必须为URL "
+    },
+    "forms": {
+        "allowed": {
+            "title": "允许",
+            "groups": "组:",
+            "users": "用户:",
+            "placeholder": "至少输入两个字母去搜索.",
+            "modal": {
+                "title": "允许更新",
+                "buttons": {
+                    "update": "更新"
+                }
+            },
+            "empty": "选中且为空将共享给所有人."
+        },
+        "password": {
+            "modal": {
+                "title": "更改密码",
+                "password": {
+                    "label": "密码",
+                    "placeholder": "密码"
+                },
+                "confirmation-password": {
+                    "label": "确认密码",
+                    "placeholder": "确认密码"
+                },
+                "buttons": {
+                    "update": "更新"
+                }
+            }
+        },
+        "registration": {
+            "code": "注册码"
+        },
+        "new-desktop": {
+            "title": "创建新桌面:",
+            "section-title-template": "选择一个模板:",
+            "section-title-advanced": "高级选项",
+            "desktop-template": "模板",
+            "filter": "搜索",
+            "filter-placeholder": "搜索",
+            "template-table-column-headers": {
+                "selected": "选中",
+                "image": "镜像",
+                "name": "名称",
+                "description": "描述",
+                "category": "类别",
+                "group": "组",
+                "user": "用户"
+            }
+        },
+        "new-template": {
+            "title": "创建新模板",
+            "name": "名称",
+            "description": "说明",
+            "enabled": "启用",
+            "disabled": "禁用"
+        },
+        "new-deployment": {
+            "title": "创建新部署:",
+            "name": "部署名称",
+            "visible": "对用户可见",
+            "not-visible": "对用户不可见",
+            "section-title-template": "选择一个模板:",
+            "desktop": {
+                "title": "部署使用的桌面:",
+                "name": "桌面名称",
+                "description": "桌面描述",
+                "template": "模板"
+            },
+            "filter": "搜索",
+            "filter-placeholder": "搜索",
+            "template-table-column-headers": {
+                "selected": "Selected",
+                "image": "Image",
+                "name": "Name",
+                "description": "Description",
+                "category": "Category",
+                "group": "Group",
+                "user": "User"
+            },
+            "error": {
+                "groups": "必须至少选择一组",
+                "users": "必须至少选择一位用户",
+                "groups-users": "个必须至少选择一用户或一个组"
+            }
+        },
+        "new-media": {
+            "title": "创建新媒介:",
+            "url": "网址",
+            "type": "类别",
+            "name": "媒介名",
+            "description": "说明",
+            "select-type": "选择一个选项"
+        },
+        "edit": {
+            "title": "编辑 '{name}'"
+        },
+        "domain": {
+            "info": {
+                "title": "桌面名称",
+                "name": "名称",
+                "description": "说明"
+            },
+            "viewers": {
+                "title": "查看器",
+                "fullscreen-disabled": "禁用全屏",
+                "fullscreen-enabled": "启用全屏",
+                "guest": {
+                    "title": "RDP 登录",
+                    "warning": "访客密码将保存在文本中!!",
+                    "username": "用户名",
+                    "password": "密码"
+                }
+            },
+            "hardware": {
+                "warning": "警告: 虚拟机硬件将别修改:",
+                "title": "硬盘",
+                "vcpus": "vCPUS",
+                "memory": "内存 (GB)",
+                "videos": "显卡",
+                "boot": "启动",
+                "disk-bus": "磁盘类型",
+                "interfaces": "网络",
+                "disk-size": "磁盘大小 (GB)"
+            },
+            "bookables": {
+                "title": "预约",
+                "vgpus": "GPU"
+            },
+            "media": {
+                "title": "媒介",
+                "isos": "ISO镜像",
+                "floppies": "软盘"
+            },
+            "image": {
+                "title": "磁盘"
+            }
+        },
+        "direct-link": {
+            "modal": {
+                "title": "直接访问",
+                "enable": "启用直接访问"
+            }
+        },
+        "filter-placeholder": "搜索",
+        "clear": "清除",
+        "cancel": "取消",
+        "submit": "提交",
+        "create": "创建",
+        "show-pages": "显示"
+    },
+    "components": {
+        "select-search": {
+            "empty": "没有可选项"
+        },
+        "navbar": {
+            "desktops": "桌面",
+            "help": "帮助",
+            "vpn": {
+                "download": "VPN",
+                "downloaded": {
+                    "title": "已经下载",
+                    "description": "VPN配置文件已下载成功"
+                },
+                "downloadvpn-error": {
+                    "title": "错误",
+                    "description": "由于错误，我们无法下载 VPN 配置文件"
+                }
+            },
+            "admin": "管理后台",
+            "deployments": "部署",
+            "templates": "模板",
+            "bookings": {
+                "text": "预订",
+                "summary": "总结",
+                "planning": "计划"
+            },
+            "logout": "退出",
+            "profile": "资料",
+            "media": "媒介",
+            "viewers": "查看器",
+            "storage": "存储"
+        },
+        "statusbar": {
+            "desktops-started": "运行的桌面",
+            "checkbox-text": "仅运行的桌面",
+            "checkbox-text-short": "运行的",
+            "new-desktop": "新桌面",
+            "new-deployment": "新部署",
+            "new-media": "新媒介",
+            "upload-file": "上传文件",
+            "cancel": "取消",
+            "select": "选择",
+            "deployment": {
+                "back": "返回部署",
+                "buttons": {
+                    "start": {
+                        "title": "开始所有部署桌面"
+                    },
+                    "stop": {
+                        "title": "停止所有部署桌面"
+                    },
+                    "videowall": {
+                        "title": "返回监控墙"
+                    },
+                    "make-visible": {
+                        "title": "使之可见"
+                    },
+                    "make-not-visible": {
+                        "title": "使之不可见"
+                    },
+                    "recreate": {
+                        "title": "重新部署"
+                    },
+                    "download-direct-viewer": {
+                        "title": "下载访问文件"
+                    },
+                    "delete": {
+                        "title": "删除部署"
+                    }
+                }
+            },
+            "videowall": {
+                "back": "返回部署"
+            }
+        },
+        "desktop-cards": {
+            "actions": {
+                "delete": "删除",
+                "template": "成为模板",
+                "booking": "预订",
+                "edit": "编辑",
+                "direct-link": "直接访问"
+            },
+            "table-header": {
+                "name": "名称",
+                "state": "状态",
+                "description": "描述",
+                "desktop-size": "大小",
+                "action": "动作",
+                "viewers": "查看器"
+            },
+            "notification-bar": {
+                "next-booking": "下一个预订",
+                "no-next-booking": "未预订桌面!",
+                "shutdown": "在 {date} 自动关机",
+                "booking-ends": "预订结束于 "
+            },
+            "no-info-default": "没有可用的描述",
+            "open-with": "通过打开",
+            "filter-label": "搜索"
+        },
+        "deployment-desktop-list": {
+            "actions": {
+                "delete": "删除"
+            },
+            "table-header": {
+                "user": "用户",
+                "state": "状态",
+                "group": "组",
+                "action": "操作",
+                "viewers": "查看器",
+                "last": "最后访问"
+            },
+            "open-with": "通过打开",
+            "filter-label": "搜索"
+        },
+        "help": {
+            "close-guide": "关闭说明",
+            "local-client": "使用本地客户端（推荐）",
+            "best-performance": "这是性能最佳的选项",
+            "install": "安装",
+            "other-windows-versions": "其他 Windows 版本",
+            "once-installed": "安装后，单击“本地客户端”按钮，将下载虚拟桌面文件",
+            "use-browser": "使用浏览器",
+            "no-install": "无需安装任何外部程序，{worse-performance}。 您只需单击该按钮，它就会在新选项卡中打开虚拟桌面",
+            "worse-performance": "但性能更差",
+            "spice-client-required": "需要外部应用程序。",
+            "text": {
+                "macos": "macOS 是一个不受支持的平台。 您需要使用浏览器选项",
+                "ios": "在操作系统iOS上，您需要安装以下应用程序:",
+                "windows": "在操作系统 Windows 上，您需要下载并安装以下可执行文件之一:",
+                "android": "在Android操作系统上，您需要安装以下应用程序：",
+                "linux": "在Linux操作系统上，需要运行以下命令："
+            }
+        },
+        "not-found": {
+            "title": "找不到请求的地址",
+            "home": "返回"
+        },
+        "title": {
+            "logo-alt": "Logo"
+        },
+        "rdp-modal": {
+            "message": {
+                "connecting": "连接到服务器…",
+                "disconnected": "您已断开连接",
+                "unstable": "网络连接服务器出现不稳定",
+                "error": "连接错误"
+            },
+            "title": {
+                "connecting": "连接",
+                "disconnected": "断开连接",
+                "unstable": "不稳定",
+                "error": "客户端错误"
+            },
+            "button-refresh": "刷新"
+    },
+    "bookings": {
+        "item": {
+            "event-titles": {
+                "available": "可用",
+                "unavailable": "不可用",
+                "overridable": "覆盖"
+            },
+            "enough-units": "充足单元",
+            "units": "单元",
+            "split-labels": {
+                "availability": "可以",
+                "bookings": "预订"
+            },
+            "status-bar": {
+                "buttons": {
+                    "add-booking": "添加预订"
+                },
+                "forbid-time": "需要添加预订时间",
+                "max-time": "最大预订时间",
+                "max-items": "最大预订"
+            },
+            "modal": {
+                "title": "标题",
+                "start-date": "开始日期",
+                "start-time": "开始时间",
+                "end-date": "结束日期",
+                "end-time": "结束时间",
+                "profile": "简介",
+                "select-profile": "请选择一个配置文件",
+                "create": {
+                    "modal-title": "添加预订",
+                    "button": "添加预订"
+                },
+                "edit": {
+                    "modal-title": "编辑预订",
+                    "button": "保存修改"
+                },
+                "view": {
+                    "modal-title": "查看预订"
+                },
+                "delete": {
+                    "button": "删除"
+                }
+            },
+            "new-planning" : {
+                "bookable-type": "预定类型",
+                "bookable-item": "项目名称"
+            }
+        },
+        "errors": {
+            "forbid": "您需要更多提前时间才能创建预订",
+            "maximum-time": "您无法创建这么长时间的预留",
+            "end-before-start": "预订结束时间不能早于开始时间",
+            "minimum-time": "预订必须持续至少5分钟",
+            "past-booking": "过去无法创建预订"
+        },
+        "summary": {
+            "title": "全部预订"
+        }
+    },
+    "profile": {
+        "change-password": "修改密码",
+        "info": {
+            "name": "姓名",
+            "email": "电子邮箱",
+            "authentication": "认证方式",
+            "role": "角色",
+            "category": "分类",
+            "group": "用户组"
+        },
+        "language": "语言",
+        "quota": {
+            "title": " {restriction}",
+            "restrictions": {
+                "user_quota": "用户配额",
+                "group_quota": "用户组配额",
+                "category_quota": "分类配额"
+            },
+            "desktops": "已创建桌面 / 全部桌面",
+            "media": "已创建媒介 / 全部媒介",
+            "memory": "已使用内存 / 全部内存(GB)",
+            "running": "运行桌面 / 全部桌面",
+            "templates": "已创建模板 / 全部模板",
+            "vcpus": "已使用vcpus / 全部vcpus",
+            "total-disk-size": "已使用磁盘容量 / 全部磁盘容量",
+            "total-media-size": "已使用媒介容量 / 全部媒介容量",
+            "total-size": "已使用容量 / 全部容量 (GB)"
+            }
+    },
+    "start-now-modal": {
+        "title": "现在开始",
+        "profile": "配置",
+        "select-profile": "选择将要使用的配置文件",
+        "end-date": "结束时间",
+        "select-end-date": "选择直到何时使用",
+        "button": "开始桌面"
+},
+"cant-start-now-modal": {
+        "title": {
+            "available-profile": "此桌面 ({profile}) 的显卡型号当前不可用",
+            "no-available-profile": "目前没有其他卡型号可用"
+        },
+        "change-desktop-gpu": {
+            "text": "现在可以更换为可用的显卡型号并启动它（它可能会影响桌面性能)",
+            "button": "改变并开始"
+        },
+        "go-to-bookings": {
+            "text": "使用当前显卡型号预订桌面，检查其平面化",
+            "button": "预订桌面"
+        }
+    }
+},
+"views": {
+    "cancel": "取消",
+    "error": {
+        "codes": {
+            "401": {
+                "title": "会话已过期.",
+                "subtitle": "为了使用虚拟桌面，需要重新访问系统.",
+                "home": "Login again "
+            },
+            "403": {
+                "title": "禁止.",
+                "subtitle": "您没有足够的权限访问该内容.",
+                "home": "要找到替代方案，您可以去"
+            }
+        },
+        "here": "这里."
+    },
+    "login": {
+        "title": "登录",
+        "form": {
+            "select-category": "请选择一个选项",
+            "usr": "用户名",
+            "pwd": "密码",
+            "login": "登录"
+        },
+        "errors": {
+            "401": "不正确的用户名或密码",
+            "500": "服务器错误",
+            "generic": "产生一个错误"
+        },
+        "other-logins": "",
+        "powered-by": "",
+        "isard-logo-alt": ""
+    },
+    "maintenance": {
+        "title": "服务在维护中",
+        "the-service": "该服务将在几分钟后再次可用",
+        "sorry": "带来不便敬请谅解",
+        "go-login": "去登录"
+    },
+    "not-found": {
+        "title": "出了些问题.",
+        "subtitle": "您要查找的内容似乎已不在此处.",
+        "home": "您可以去要找到替代品",
+        "here": "这里."
+    },
+    "register": {
+        "title": "注册",
+        "code": "注册码",
+        "register": "注册",
+        "errors": {
+            "404": "找不到代码",
+            "401": "会话过期",
+            "500": "服务器错误"
+        }
+    },
+    "select-template": {
+        "template": "模板",
+        "loading": "加载模板",
+        "no-templates": {
+            "title": "该用户没有模板",
+            "subtitle": "如果您认为这是一个错误，请联系管理员"
+        },
+        "no-desktops": {
+            "title": "该用户没有桌面",
+            "subtitle": "如果您认为这是一个错误，请联系管理员"
+        },
+        "no-desktops-filtered": {
+            "title": "当前过滤器没有可显示的桌面",
+            "subtitle": "您可以使用右上角的按钮创建一个新桌面"
+        },
+        "no-templates-filtered": {
+            "title": "当前过滤器没有可显示的模板"
+        },
+        "which-template": "您要使用哪个桌面?",
+        "persistent": "持久桌面",
+        "persistent-compact": "持久",
+        "volatile": "临时桌面",
+        "volatile-compact": "临时",
+        "viewers": "查看器",
+        "viewer": "{name} 查看器",
+        "viewer-name": {
+            "file-spice": "SPICE",
+            "browser-vnc": "Web浏览器",
+            "file-rdpvpn": "RDP VPN",
+            "browser-rdp": "RDP 浏览器",
+            "file-rdpgw": "RDP"
+        },
+        "remove": "删除",
+        "notification": {
+            "loading": {
+                "title": "加载",
+                "description": "等待服务器响应"
+            },
+            "downloaded": {
+                "title": "已下载",
+                "description": "桌面已经下载成功"
+            }
+        },
+        "error": {
+            "create-error": {
+                "title": "错误",
+                "description": "由于错误，我们无法创建虚拟桌面"
+            },
+            "create-quota": {
+                "title": "错误",
+                "description": "你有太多的桌面"
+            },
+            "create-timeout": {
+                "title": "超时",
+                "description": "正在创建桌面，这可能需要几分钟"
+            },
+            "start-error": {
+                "title": "错误",
+                "description": "由于错误，我们无法启动虚拟桌面"
+            },
+            "start-quota": {
+                "title": "错误",
+                "description": "您同时使用太多桌面"
+            },
+            "start-timeout": {
+                "title": "超时",
+                "description": "桌面开始，这可能需要几分钟"
+            },
+            "open-error": {
+                "title": "错误",
+                "description": "由于错误，我们无法打开虚拟桌面"
+            },
+            "stop-error": {
+                "title": "错误",
+                "description": "由于错误，我们无法停止虚拟桌面"
+            },
+            "stop-timeout": {
+                "title": "超时",
+                "description": "桌面正在停止，这可能需要几分钟时间"
+            },
+            "delete-error": {
+                "title": "错误",
+                "description": "由于错误，我们无法删除虚拟桌面"
+            }
+        },
+        "status": {
+            "notCreated": {
+                "text": "没有创建",
+                "action": "Create"
+            },
+            "creating": {
+                "text": "创建",
+                "action": "Creating"
+            },
+            "failed": {
+                "text": "失败",
+                "action": "Restart"
+            },
+            "started": {
+                "text": "运行",
+                "action": "Stop"
+            },
+            "starting": {
+                "text": "启动",
+                "action": "Starting"
+            },
+            "stopped": {
+                "text": "停止",
+                "action": "Start"
+            },
+            "stopping": {
+                "text": "停止",
+                "action": "Stopping"
+            },
+            "waitingip": {
+                "text": "停止",
+                "action": "Stop"
+            },
+            "readyCreation": {
+                "text": "准备创建"
+            },
+            "working": {
+                "text": "停止",
+                "action": "working"
+            },
+            "shutting-down": {
+                "text": "停止",
+                "action": "Force stop"
+            },
+            "downloading": {
+                "text": "下载"
+            },
+            "forcedeleting": {
+                "text": "删除",
+                "action": "Deleting"
+            },
+            "paused": {
+                "text": "停止",
+                "action": "Stop"
+            }
+        }
+    },
+    "deployments": {
+        "no-deployments": {
+            "title": "此用户没有部署",
+            "subtitle": "如果您认为这是一个错误，请联系管理员"
+        },
+        "table-header": {
+            "name": "名称",
+            "visible": "可见",
+            "started-desktops": "开始全部桌面",
+            "actions": "操作",
+            "template": "模板",
+            "desktop-name": "桌面名",
+            "description": "说明"
+        }
+    },
+    "deployment": {
+        "no-started-desktops": {
+            "title": "此部署中没有启动的桌面"
+        },
+        "desktop": {
+            "not-available": "桌面不可用"
+        },
+        "visibility-warning": "此部署中的桌面是 {visibility}.",
+        "visibility": {
+            "visible": "可见",
+            "not-visible": "不可用"
+        },
+        "modal": {
+            "title": { 
+                "make-visible": "创建部署 '{name}' 可见",
+                "make-invisible": "创建部署 '{name}' 不可见"
+            },
+            "option": {
+                "dont-stop-desktops": "使此部署对用户不可见，并允许使用桌面，直到桌面停止为止",
+                "stop-desktops": "使此部署对用户不可见并停止所有桌面",
+                "make-visible": "使此部署可见，以便部署的用户有权访问桌面"
+            },
+            "confirmation": {
+                "stop": "停止桌面",
+                "dont-stop": "不停止桌面",
+                "make-visible": "可见"
+            }
+        }
+    },
+    "direct-viewer": {
+        "title": "桌面查看器访问:",
+        "file": {
+            "title": "通过应用程序访问",
+            "subtitle": "需要安装特定的软件 (更好性能)"
+        },
+        "browser": {
+            "title": "",
+            "subtitleAccess through this browser": "不需要任何安装"
+        },
+        "button": {
+            "browser": "Browser",
+            "browser-rdp": "RDP Browser"
+        },
+        "waitingip": "等待桌面启动",
+        "description": {
+            "vnc": "通过此浏览器访问",
+            "rdp": "通过此浏览器访问桌面（需要Windows桌面用户和密码）",
+            "spice": "通过此浏览器访问桌面（需要Windows桌面用户名和密码）。通过一个必须使用远程查看器程序打开的文件访问桌面。",
+            "rdpgw": "Windows包括所需的软件来使用"
+        },
+        "help": {
+            "spice": {
+                "spice-help": "SPICE安装说明",
+                "close-guide": "关闭说明",
+                "local-client": "使用本地客户端（推荐）",
+                "best-performance": "它是性能最好的选择",
+                "install": "安装",
+                "other-windows-versions": "其他Windows版本",
+                "once-installed": "安装后，点击“SPICE”按钮，将下载虚拟桌面文件。",
+                "spice-client-required": "但是需要外部应用程序.",
+                "text": {
+                    "macos": "macOS不支持此功能，你需要使用浏览器选项。",
+                    "ios": "在操作系统iOS上，你需要安装以下应用程序：",
+                    "windows": "在操作系统Windows上，您需要下载并安装以下可执行文件之一:",
+                    "android": "在安卓操作系统上，您需要安装以下应用程序:",
+                    "linux": "在操作系统Linux上，你需要运行以下命令。"
+                }
+            },
+            "rdp": {
+                "rdp-help": "RDP 安装说明",
+                "local-client": "使用 RDP 客户端（推荐）",
+                "close-guide": "使用 RDP 客户端（推荐）",
+                "included": "Windows 包括其使用所需的软件,",
+                "require-update": "但是对于Windows 7和Windows 8版本可能需要更新，建议使用最新的可用版本。 ",
+                "here": "这点.",
+                "once-installed": "安装后，单击“RDP”按钮，将下载虚拟桌面文件。"
+            }
+        }
+    },
+    "templates": {
+        "tabs": {
+            "templates": "模板",
+            "templates-compact": "模板",
+            "shared-templates": "共享模板",
+            "shared-templates-compact": "共享"
+        },
+        "no-templates": {
+            "title": "当前用户没有模板",
+            "subtitle": ""
+        },
+        "no-shared-templates": {
+            "title": "当前用户没有共享模板",
+            "subtitle": ""
+        },
+        "table-header": {
+            "name": "名称",
+            "description": "说明",
+            "actions": "动作",
+            "template-size": "大小"
+        },
+        "buttons": {
+            "allowed": {
+                "title": "授权"
+            },
+            "enable": {
+                "title": "启用"
+            },
+            "disable": {
+                "title": "禁用"
+            },
+            "edit": {
+                "title": "编辑"
+            }
+        }
+    },
+    "media": {
+        "tabs": {
+            "media": "媒介",
+            "media-compact": "媒介",
+            "shared-media": "共享媒介",
+            "shared-media-compact": "共享"
+        },
+        "no-media": {
+            "title": "当前用户没有媒介",
+            "subtitle": ""
+        },
+        "no-shared-media": {
+            "title": "当前用户没有共享媒介",
+            "subtitle": ""
+        },
+        "table-header": {
+            "name": "名称",
+            "description": "描述",
+            "category": "分类",
+            "group": "用户组",
+            "user": "用户",
+            "status": "状态",
+            "progress-size": "进度/大小",
+            "actions": "动作"
+        },
+        "buttons": {
+            "allowed": {
+                "title": "允许修改``"
+            },
+            "delete": {
+                "title": "删除媒介"
+            },
+            "new-desktop": {
+                "title": "创建新桌面"
+            },
+            "download": {
+                "title": "下载媒介"
+            },
+            "stop-download": {
+                "title": "停止下载"
+            }
+        },
+        "status": {
+            "downloading": "下载中",
+            "download-failed": "下载出错",
+            "downloaded": "下载完",
+            "deleting": "删除中"
+        },
+        "delete-media": {
+            "title": "删除媒介",
+            "warning": "此媒体将从以下桌面中删除。 如果它们正在运行，所有这些都将停止",
+            "table-header": {
+                "name": "名称",
+                "user": "用户",
+                "kind": "类型"
+            }
+        }
+    },
+    "storage": {
+        "no-storage": {
+            "title": "该用户没有磁盘",
+            "subtitle": "如果您认为这是一个错误，请联系管理员"
+        },
+        "table-header" : {
+            "domains": "桌面/模板",
+            "quantity-domains": "№ 桌面/模板",
+            "actual-size": "大小",
+            "percentage": "% 配额",
+            "last": "最后一次访问"
+        }
+    }
+},
+"messages": {
+    "title": {
+        "delete": "删除"
+    },
+    "confirmation": {
+        "delete-desktop": "'{name}' 将要删除，是否继续?",
+        "create-nonpersistent": "这是一条警告信息，表示当前的桌面是临时的，当停止它时，所有数据将被删除。是否需要创建一个桌面？",
+        "visible-deployment": "'{name}'将对用户可见，是否继续？",
+        "recreate-deployment": "'{name}' 已删除的桌面将被重新创建，是否继续？",
+        "delete-deployment": "'{name}' 将要删除，是否继续",
+        "delete-deployment-desktop": "'{name}' 桌面将要删除，是否继续?",
+        "start-deployment-desktops": "'{name}' 可以继续启动桌面程序，下一步怎么做？",
+        "stop-deployment-desktops": "'{name}' 桌面将被停止，继续吗？",
+        "enable-template": "'{name}'  将对这些用户可用, 是否继续?",
+        "disable-template": "'{name}' 将对这些用户不可用, 是否继续?",
+        "delete-event": "'{name}' 预约将要删除，是否继续?",
+        "direct-viewer-reset": "直接查看者的文件将被下载。重置查看者URL吗？",
+        "delete-media": "'{name}' 媒介将要删除，是否继续?",
+        "edit-domain": "'{name}' 硬件将受到限制，其数据将被更改，要继续吗?",
+        "new-deployment": "{quantity} 桌面将要被创建，每个用户一个，是否继续?",
+        "go-to-profile": "查看配额",
+        "go-to-bookings": "预定桌面",
+        "change-desktop-gpu": "修改桌面配置文件"
+    },
+    "ok": "可以",
+    "yes": "是",
+    "no": "否",
+    "cancel": "取消",
+    "info": {
+        "deleting-desktop": "删除桌面",
+        "opening-desktop": "打开桌面",
+        "creating-desktop": "创建桌面",
+        "file-downloaded": "文件已下载",
+        "creating-deployment": "创建部署",
+        "recreating-deployment": "重新创建部署",
+        "deleting-deployment": "删除部署",
+        "making-visible-deployment": "部署可见",
+        "making-invisible-deployment": "部署不可见",
+        "starting-desktops": "开始部署桌面",
+        "stopping-desktops": "停止部署桌面",
+        "creating-template": "创建模板",
+        "new-template-stop": "要创建一个模板，桌面必须停止",
+        "enable-template": "使模板可见",
+        "disable-template": "使模板不可见",
+        "creating-event": "创建事件",
+        "editing-event": "编辑活动",
+        "deleting-event": "删除活动",
+        "no-availability-event": "在所选范围内没有可用性",
+        "not-created-event": "不能创建事件",
+        "missing-data": "缺少数据",
+        "creating-media": "创建媒体",
+        "image-uploaded": "图像上传成功",
+        "editing": "编辑",
+        "edit-desktop-stop": "要编辑桌面，必须将其停止",
+        "deleting-media": "删除媒体",
+        "downloading-media": "下载媒体",
+        "stopping-download": "停止下载",
+        "counting-desktops": "计算将要创建多少桌面",
+        "new-template-server": "不能从服务器创建模板",
+        "edit-desktop-server": "不能编辑桌面服务器",
+        "delete-desktop-stop": "无法删除桌面，需要先停止桌面",
+        "wireguard-network-added": "添加了 wireguard 网络，因为它需要使用 RDP 查看器",
+        "wireguard-viewers-removed": "由于需要 wireguard 网络，因此删除了 RDP 查看器",
+        "wireguard-network-required": "无法选择 RDP 查看器，因为需要 wireguard 网络。 与管理员联系以使用 wireguard 网络"
+    },
+    "loading": "加载"
+},
+    "errors": {
+        "desktop_new_user_quota_exceeded": "你已经超过了你的桌面创建配额。要创建新的桌面，必须先删除一个桌面。",
+        "desktop_new_group_limit_exceeded": "群组桌面的创建限制已超出。",
+        "desktop_new_category_limit_exceeded": "类别桌面的创建数量已超过限制",
+        "desktop_start_user_quota_exceeded": "你已经超出了启动桌面的配额。你必须停止一个桌面才能启动另一个桌面。",
+        "desktop_start_group_limit_exceeded": "已超出组启动桌面限制",
+        "desktop_start_category_limit_exceeded": "已超出类别启动桌面限制",
+        "desktop_start_vcpu_quota_exceeded": "您已超出 vCPU 配额。您必须停止一个桌面以启动另一个桌面或编辑此桌面并减少其 CPU。",
+        "desktop_start_group_vcpu_limit_exceeded": "已超出组 vCPU 限制",
+        "desktop_start_category_vcpu_limit_exceeded": "已超出类别 vCPU 限制",
+        "desktop_start_memory_quota_exceeded": "你已经超出了你的内存配额。你必须停止一个桌面才能启动另一个桌面或编辑这个桌面并减少它的内存。",
+        "desktop_start_group_memory_limit_exceeded": "已超出组内存限制",
+        "desktop_start_category_memory_limit_exceeded": "已超出类别内存限制",
+        "desktop_start_incorrect_body_data": "桌面启动不正确的正文数据",
+        "desktop_incorrect_body_data": "桌面添加不正确的正文数据",
+        "user_new_category_cuota_exceeded": "已超出此类别的用户创建限制",
+        "user_new_group_cuota_exceeded": "超出了该组的用户创建限制",
+        "template_new_user_quota_exceeded": "你已经超过了你的模板配额。你必须禁用或删除一个模板才能创建或启用一个新模板。",
+        "template_new_group_limit_exceeded": "已超过群组模板创建限制",
+        "template_new_category_limit_exceeded": "已超出类别模板创建限制",
+        "media_new_user_quota_exceeded": "你已经超出了你的媒体创建配额。你必须删除一个媒体才能创建一个新的。",
+        "media_new_group_limit_exceeded": "已超过组媒体创建限制",
+        "media_new_category_limit_exceeded": "已超过类别媒体创建限制",
+        "media_url_not_found": "找不到给定的 url",
+        "media_url_not_valid": "给定的 url 无效",
+        "group_total_size_limit_exceeded": "已超出组媒体存储大小限制",
+        "category_total_size_limit_exceeded": "已超出类别媒体存储大小限制",
+        "total_size_quota_exceeded": "您已经超出了您的存储大小配额。您必须删除桌面、模板或媒体以释放磁盘空间。",
+        "quota_general_exception": "发生与用户配额相关的错误",
+        "desktop_new_template_forbidden": "创建桌面时出现权限错误",
+        "new_desktop_name_exists": "此用户已存在同名桌面",
+        "new_template_name_exists": "此用户已存在同名模板",
+        "username_exists": "已存在具有相同用户名的用户",
+        "login_failed": "登录失败",
+        "forbidden": "发生与资源权限相关的错误",
+        "not_found": "未找到",
+        "category_generic_exception": "检索类别时发生错误",
+        "register_generic_exception": "注册过程中发生错误",
+        "update_generic_exception": "更新时发生错误",
+        "desktop_action_failed": "在桌面上完成操作时出错",
+        "template_new_not_created": "创建模板时出错",
+        "get_generic_exception": "检索数据时发生错误",
+        "user_new_generic_exception": "创建用户时发生错误",
+        "user_delete_generic_exception": "删除用户时出错",
+        "templates_get_error": "检索模板时发生错误",
+        "desktops_get_error": "检索桌面时发生错误",
+        "viewer_not_started": "查看器未启动",
+        "desktop_start_timeout": "启动桌面超时",
+        "desktop_stop_timeout": "停止桌面超时",
+        "bad_request": "请求参数不正确",
+        "bad_request_title": "请求错误",
+        "undefined_error": "发生错误",
+        "generic_error": "发生错误",
+        "booking_new_event_start_error": "开始时间无效",
+        "booking_new_event_end_error": "结束时间无效",
+        "booking_new_event_overlap_error": "活动重叠",
+        "booking_does_not_fit_date": "预订不适合要求的日期",
+        "booking_desktop_delete_stop": "要删除此预订，必须停止桌面",
+        "booking_deployment_delete_stop": "要删除此预订，必须停止部署桌面",
+        "booking_max_items_exceeded": "您已经超过了用户最大预订量",
+        "unable_to_update": "无法更新数据库。",
+        "unable_to_insert": "无法插入数据库。",
+        "conflict": "冲突",
+        "conflict_title": "冲突",
+        "missing_required_data": "缺少必要的字段",
+        "not_enough_rights_media": "没有足够的权限访问此媒体",
+        "not_enough_rights_desktop": "没有足够的权限访问此桌面",
+        "incorrect_viewer_body_data": "Desktop viewer incorrect body data",
+        "unable_to_get_viewer_started": "无法启动桌面获取查看器",
+        "unable_to_get_viewer_inexistent": "无法为不存在的桌面获取查看器",
+        "desktop_same_id": "此ID的桌面已存在。",
+        "unable_to_parse_media": "无法解析媒体信息",
+        "unable_to_parse_string": "无法解析字符串",
+        "unable_to_start_desktop_from": "桌面无法从其当前状态启动/停止。",
+        "unable_to_stop_desktop_from": "桌面无法从其当前状态停止",
+        "unable_to_change_desktop_status": "无法更改桌面状态",
+        "unable_to_change_hypervisor_status": "无法更改超级管理程序状态",
+        "unable_to_get_domain_jumperurl": " 域不存在无法获取domain jumperurl。",
+        "unable_to_reset_domain_jumperurl": "域不存在无法重置domain jumperurl。",
+        "unable_to_get_deployment_desktops": "无法获取部署桌面。",
+        "unable_to_gen_enrollment_code": "无法生成注册码",
+        "template_already_exists": "模板 ID 已经存在：",
+        "new_template_bad_body_data": "新模板坏体数据",
+        "table_not_allowed": "表不允许更改所有者",
+        "viewer_protocol_not_implemented": "查看器协议未实现",
+        "get_vnc_viewer_data_error": "获取 VNC 查看器数据内部错误",
+        "desktop_transition_initial_status_incorrect": "桌面转换初始状态不正确",
+        "hypervisor_transition_initial_status_incorrect": "管理程序转换初始状态不正确",
+        "no_reservables": "项目没有可预订",
+        "unknown_extension": "跳过上传的文件，因为扩展名未知",
+        "vpn_missing_itemid": "VPN 缺少 itemid",
+        "no_wireguard_keys": "webapp 配置中还没有 wireguard 密钥。几秒钟后重试...",
+        "unable_to_process_vpnfile": "无法处理 VPN 文件",
+        "desktop_is_not_visible": "桌面现在对该用户不可见。",
+        "invalid_start_date": "无效的开始日期",
+        "invalid_end_date": "无效结束日期",
+        "deployment_desktop_new_group_limit_exceeded": "组'{group}'的桌面创建限制已经超过标准。",
+        "deployment_desktop_new_category_limit_exceeded": "分类'{category}'的桌面创建限制已经超过标准。",
+        "deployment_delete_stop": "为了删除部署，必须停止其桌面。",
+        "desktop_not_booked": "这个桌面需要进行预定才能启动。",
+        "desktop_not_booked_until": "直接到下一次预定前，无法启动桌面: {start}",
+        "incorrect_new_plan_body_data": "不正确的新计划主体数据",
+        "duplicated_name": "重复的名字",
+        "user_disabled": "用户被禁用",
+        "only_works_rdp": "'Only GPU' 模式仅适用于 RDP 查看器",
+        "current_plan_doesnt_match": "桌面配置文件没有可用的 GPU",
+        "needs_deployment_booking": "桌面现在无法启动，请联系部署所有者进行预订",
+        "not_enough_advanced_time": "没有足够的提前时间来启动桌面"
+    },
+    "router": {
+        "titles": {
+            "desktops": "桌面",
+            "new_desktop": "新桌面",
+            "images": "镜像",
+            "booking": "预订",
+            "planning": "计划",
+            "templates": "模板",
+            "new_template": "新模板",
+            "deployments": "部署",
+            "deployment_videowall": "部署视频墙",
+            "new_deployment": "新部署",
+            "deployment": "部署",
+            "profile": "简介",
+            "media": "媒体",
+            "new_media": "新媒体",
+            "login": "登录",
+            "register": "注册",
+            "error": "错误",
+            "not_found": "未发现",
+            "maintenance": "维护",
+            "direct_viewer": "直接查看",
+            "edit-domain": "编辑域",
+            "storage": "存储"
+        }
+    },
+    "message-modal": {
+        "title": "重要信息",
+        "messages": {
+            "desktop-time-limit": "'{name}' 桌面将在 {date} 停止.",
+            "searching-resources": "我们正在寻找桌面资源。 几分钟后开始，请稍候."    
+         }
+    }
+}

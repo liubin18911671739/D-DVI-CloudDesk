@@ -1,0 +1,48 @@
+id:
+  required: true
+  type: string
+  empty: false
+name:
+  type: string
+description:
+  type: string
+hardware:
+  schema: hardware
+guest_properties:
+  type: dict
+  schema: guest_properties
+server:
+  type: boolean
+forced_hyp:
+  type:
+    - boolean
+    - list
+  required: false
+favourite_hyp:
+  type:
+    - boolean
+    - list
+  required: false
+image:
+  type: dict
+  required: false
+  schema:
+    type:
+      type: string
+      required: true
+      allowed:
+        - user
+        - stock
+    id:
+      type: string
+      required: false
+    file:
+      type: dict
+      required: false
+      schema:
+        data:
+          type: string
+          required: true
+        filename:
+          type: string
+          required: true

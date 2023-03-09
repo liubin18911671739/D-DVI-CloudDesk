@@ -1,0 +1,125 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+{% block css %}
+    <!-- Dropzone.js -->
+    <link href="/isard-admin/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="/isard-admin/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+       <div class="x_panel">
+        <div class="page-title">
+            <div class="title_left">
+               <h3><i class="fa fa-gears"></i> 服务器配置 
+             </div>
+         </div> 
+          <div class="clearfix"></div>
+       </div>
+    </div>
+  </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3><i class="fa fa-lock"></i> 计划任务 <small></small></h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="btn-scheduler" data-panel="scheduler"><span style="color: #5499c7; "><i class="fa fa-pencil"></i> 添加一个任务</span></a>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="clearfix"></div>
+
+                    <div class="x_content">
+                        <table id="table-scheduler" class="table">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>类别</th>
+                                    <th>下次运行</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3><i class="fa fa-wrench"></i> 维护模式</h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <span id="maintenance_wrapper" style="display: none">
+                     <input id="maintenance_checkbox" type="checkbox">
+                  </span>
+                  <i id="maintenance_spinner" class="fa fa-spinner fa-lg fa-spin"></i>
+                  <label for="maintenance_checkbox">
+                     启用维护模式
+                  </label>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h3><i class="fa fa-briefcase"></i> 数据库备份 <small></small></h3>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="btn-backup" data-panel="backup"><span style="color: #5499c7; "><i class="fa fa-life-saver"></i> 备份</span></a>
+                        <li><a class="btn-backups-upload" data-panel="backup"><span style="color: darkgreen; "><i class="fa fa-upload"></i> 上传</span></a>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="alert alert-warning" style="color: black" role="alert">
+                    将来会删除此部分。 建议下载并保存您的数据
+                  </div>
+                <div class="x_content">
+                    <table id="table-backups" class="table">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>状态</th>
+                                <th>版本</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+<div class="clearfix"></div>
+</div>
+
+{% include '/admin/pages/config_modals.html' %}
+{% endblock %}
+{% block pagescript %}
+    <!-- Dropzone.js -->
+    <script src="/isard-admin/vendors/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="/isard-admin/static/js/restful.js""></script>
+    <script src="/isard-admin/static/admin/js/config.js"></script>
+    <script src="/isard-admin/static/js/snippets/form_items.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="/isard-admin/vendors/moment/min/moment.min.js"></script>
+    <script src="/isard-admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+{% endblock %}

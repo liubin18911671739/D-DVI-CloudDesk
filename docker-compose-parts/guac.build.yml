@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  isard-guac:
+    build:
+      context: ${BUILD_ROOT_PATH}/guac
+      dockerfile: build/package/Dockerfile
+
+  isard-rdpgw:
+    container_name: isard-rdpgw
+    image: ${DOCKER_IMAGE_PREFIX}rdpgw:${DOCKER_IMAGE_TAG-latest}
+    build:
+      context: ${BUILD_ROOT_PATH}
+      dockerfile: rdpgw/build/package/Dockerfile
+    networks:
+      - isard-network

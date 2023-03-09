@@ -1,0 +1,81 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+{% block css %}
+    <!-- Dropzone.js -->
+    <link href="/isard-admin/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="x_panel">
+    <div class="x_title">
+      <h3><i class="fa fa-circle-o"></i> 媒体文件 <small>上传和管理ISO</small></h3>
+      <ul class="nav navbar-right panel_toolbox">
+        <li><a class="btn-new"><span style="color: #5499c7; "><i class="fa fa-link"></i>上传URL</span></a>
+        <!-- <li><a class="btn-new-local"><span style="color: #5499c7; "><i class="fa fa-plus"></i><i class="fa fa-hdd-o"></i>  Upload from local</span></a></li>-->
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <table id="media" class="table" width="100%">
+          <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>名称</th>
+            <th>状态</th>
+            <th>所有者</th>
+            <th>类型</th>
+            <th>分组</th>
+            <th>进度/大小</th>
+            <th>域</th>
+            <th>操作</th>
+            <th>Id</th>
+          </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
+    </div>
+
+    {% if current_user.role == 'admin' %}
+    <div class="row">
+      <div class="x_panel">
+        <div class="x_title">
+          <h3><i class="fa fa-times"></i> 物理媒体文件 <small>从磁盘扫描的未知系统文件</small></h3>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="btn-phy-update" data-panel="storage_physical"><span style="color: #5499c7; "><i class="fa fa-spinner"></i> 从远程读取</span></a>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <table id="media_physical" class="table" width="100%">
+              <thead>
+              <tr>
+                <th>路径</th>
+                <th>类型</th>
+                <th>大小</th>
+                <th>虚拟服务器</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+        </div>
+    
+      </div>
+    </div>
+    {% endif %}
+
+    {% include 'admin/pages/media_modals.html' %}
+    {% include '/snippets/alloweds_form.html' %}
+    {% include '/admin/pages/media_detail.html' %}
+  </div>
+</div>
+
+{% endblock %}
+{% block pagescript %}
+    <script src="/isard-admin/static/js/restful.js"></script>
+    <!-- Dropzone.js -->
+    <script src="/isard-admin/vendors/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="/isard-admin/static/admin/js/media.js"></script>
+{% endblock %}

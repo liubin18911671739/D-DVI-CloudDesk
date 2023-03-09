@@ -1,0 +1,83 @@
+id:
+  required: true
+  type: string
+  empty: false
+  default_setter: genuuid
+name:
+  required: true
+  empty: false
+  type: string
+description: 
+  required: false
+  type: string
+parent_category: 
+  required: true
+  empty: false
+  type: string
+linked_groups:
+  type: list
+  default: []
+uid:
+  required: true
+  empty: false
+  type: string
+  default_setter: genuuid
+external_app_id:
+  required: false
+  type: string
+  nullable: true
+  default: null
+external_gid:
+  required: false
+  type: string
+  nullable: true
+  default: null
+enrollment:
+  type: dict
+  default:
+    schema:
+  schema:
+    manager:
+      type:
+        - string 
+        - boolean
+      default: false
+    advanced:
+      type:
+        - string 
+        - boolean
+      default: false
+    user:
+      type:
+        - string 
+        - boolean
+      default: false
+limits:
+  type: 
+    - dict
+    - boolean
+  default: false
+  schema: limits
+quota:
+  type: 
+    - dict
+    - boolean
+  default: false
+  schema: quotas
+auto:
+  type:
+    - dict
+    - boolean
+  default: false
+  schema:
+    desktops:
+      required: true
+      type: list
+      minlength: 1
+ephimeral:
+  type: dict
+  schema:
+    action:
+      type: string
+    minutes:
+      type: integer  

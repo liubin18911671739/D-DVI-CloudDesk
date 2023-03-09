@@ -1,0 +1,92 @@
+<div style="display:none">
+  <div class="row template-detail-domain">
+		<div class="col-md-1 col-sm-1 col-xs-12">
+      <div class="row">
+        <div class="col-md-12 col-md-12 col-xs-12" id="actions-d.id" data-pk="d.id" data-name="d.name">
+          {% if(current_user.role!='user') %}
+            <div class="row">
+              <button class="btn btn-success btn-xs pull-right btn-jumperurl" type="button"  data-placement="top" ><i class="fa fa-eye m-right-xs"></i>查看器</button>
+            </div>
+            <div class="row">
+              <button class="btn btn-success btn-xs pull-right btn-template" type="button"  data-placement="top" ><i class="fa fa-cubes m-right-xs"></i>成为模板</button>
+            </div>
+            {% if(current_user.role=='admin') %}
+              <div class="row">
+                <button class="btn btn-success btn-xs pull-right btn-forcedhyp" type="button"  data-placement="top" ><i class="fa fa-rocket m-right-xs"></i>强制虚拟服务器</button>
+              </div>
+            {% endif %}
+            <div class="row">
+              <button class="btn btn-success btn-xs pull-right btn-favouritehyp" type="button"  data-placement="top" ><i class="fa fa-star m-right-xs"></i>偏好虚拟服务器</button>
+            </div>
+            <!-- Needed for admin -->
+            <div class="row">
+              <button class="btn btn-danger btn-xs pull-right btn-delete-template" type="button"  data-placement="top" ><i class="fa fa-remove m-right-xs"></i>删除</button>
+            </div>
+          {% endif %}
+          <div class="row">
+            <button class="btn btn-info btn-xs pull-right btn-edit" type="button"  data-placement="top" ><i class="fa fa-pencil m-right-xs"></i>编辑</button>
+          </div>
+          <div class="row">
+            <button class="btn btn-danger btn-xs pull-right btn-delete" type="button"  data-placement="top" ><i class="fa fa-remove m-right-xs"></i>删除</button>
+          </div>
+          {% if(current_user.role in ['admin', 'manager']) %}
+            <hr>
+            <div class="row">
+              <button class="btn btn-success btn-xs pull-right btn-server" type="button"  data-placement="top" ><i class="fa fa-plug m-right-xs"></i>服务器</button>
+            </div>
+            <div class="row">
+              <button class="btn btn-info btn-xs pull-right btn-xml" type="button"  data-placement="top" ><i class="fa fa-file-code-o m-right-xs"></i>XML</button>
+            </div>
+          {% endif %} 
+        </div>
+			</div>
+		</div>
+    <div class="col-md-11 col-sm-11 col-xs-12">
+      <div class="x_panel" style="background-color: #F7F7F7">
+        <div class="row">
+          <div class="col-md-12 col-md-12 col-xs-12">
+            <div class="x_content">
+              <div class="x_panel">
+                <h3>状态细节信息: <small id="status-detail-d.id"></small></h3> 
+              </div>
+            </div>
+          </div>
+        </div>
+				<div class="row">
+					<div class="col-md-4 col-md-4 col-xs-12">
+					  <div class="x_content">
+							{% include '/snippets/domain_hardware.html' %}
+            </div>
+					</div>
+          <div class="col-md-8 col-md-8 col-xs-12">
+            {% if(current_user.role=='admin') %}
+              <div class="row">
+                <div class="col-md-12 col-md-12 col-xs-12">
+                  <div class="x_content">
+                    <div class="x_panel">
+                      <div class="x_title">
+                        <h3>模板树<small></small></h3>
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        {% include '/snippets/template_tree.html' %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+            <div class="row">
+              <div class="col-md-12 col-md-12 col-xs-12">
+                <div id="hotplug-d.id" class="x_content">
+                  {% include '/snippets/domain_hotplugged.html'  %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+</div>

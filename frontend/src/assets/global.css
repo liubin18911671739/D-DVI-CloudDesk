@@ -1,0 +1,10 @@
+html, body {
+  height: 100%;
+  padding-bottom: 0.5rem;
+  background-color: #f2f3f3 !important;
+}
+
+.white-img {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}

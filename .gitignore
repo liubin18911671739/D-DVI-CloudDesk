@@ -1,0 +1,84 @@
+isardvdi*.cfg
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Python compiled
+*.pyc
+
+# javascript bower
+webapp/bower_components
+node_modules/
+webapp/node_modules/
+
+#rethink data
+rethinkdb_data/
+
+# log
+*.log
+logs/*
+
+#pycharm
+.idea/
+webapp/.idea/
+engine/.idea/
+.vscode
+
+#pytest
+.pytest_cache
+__pycache__
+
+#ipython
+.ipython
+
+#backups
+backups/*
+
+#uploads
+uploads/*
+
+#docker run scripts
+run_docker_engine.py
+run_docker_webapp.py
+
+#Generated certs
+install/viewer-certs/*.pem
+install/viewer-certs/*.csr
+test/
+install/viewer-certs/host_name
+
+#Conf files
+#isard.conf
+
+#Csv files
+csv/
+
+#Wizard disable
+install/.wizard
+
+known_hosts
+
+#grafana/
+certs/
+database/
+
+.env
+tetris/.env
+
+/docker-compose*.yml
+
+#debug
+/debug.yml
+/engine/engine/debug.py
+
+#development
+engine/engine/supervisord.pid
+docker/hypervisor/src/vlans/api_client.py
+frontend/yarn.lock
+
+# Generated code
+pkg/gen

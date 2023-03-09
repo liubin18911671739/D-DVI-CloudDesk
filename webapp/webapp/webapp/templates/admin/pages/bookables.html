@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+       <div class="x_panel">
+          <div class="page-title">
+             <div class="title_left">
+                <h3><i class="fa fa-gears"></i>预订资源 <small>需要预订资源</small></h3>
+             </div>
+             <div class="clearfix"></div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+       <div class="x_panel">
+          <div class="x_title">
+             <h3><i class="fa fa-video-camera"></i> vGPU 配置 <small>虚拟图形处理单元</small></h3>
+             <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+             <p class="text-muted font-13 m-b-30"></p>
+             <div id="tableDiv"></div>
+             <table id="reservables_vgpus" class="table">
+                <thead>
+                   <tr>
+                      <th></th>
+                      <th>名称</th>
+                      <th>描述</th>
+                      <th>优先级决策</th>
+                      <th>品牌</th>
+                      <th>型号</th>
+                      <th>配置</th>
+                      <th>单元</th>
+                      <th>全部单元</th>
+                      <th></th>
+                   </tr>
+                </thead>
+                <tbody>
+                </tbody>
+             </table>
+          </div>
+       </div>
+    </div>
+ 
+ </div>
+
+{% include '/snippets/alloweds_form.html' %}
+{% include '/admin/pages/bookables_modals.html' %}
+{% include '/admin/pages/bookables_detail.html' %}
+
+{% endblock %}
+{% block pagescript %}
+   <script src="/isard-admin/static/js/restful.js"></script>
+   <script src="/isard-admin/static/admin/js/bookables.js"></script>
+{% endblock %}

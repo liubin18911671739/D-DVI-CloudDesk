@@ -1,0 +1,1015 @@
+{
+    "components": {
+        "select-search": {
+            "empty": "No hi han opcions disponibles"
+        },
+        "navbar": {
+            "desktops": "Escriptoris",
+            "help": "Ajuda",
+            "vpn": {
+                "download": "VPN",
+                "downloaded": {
+                    "title": "Descarregat",
+                    "description": "L'arxiu de configuració de la VPN s'ha descarregat correctament"
+                },
+                "downloadvpn-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut descarregar l'arxiu de configuració de la VPN degut a un error"
+                }
+            },
+            "admin": "Administració",
+            "deployments": "Desplegaments",
+            "templates": "Plantilles",
+            "bookings": {
+                "text": "Reserves",
+                "summary": "Resum",
+                "planning": "Planificació"
+            },
+            "logout": "Tancar la sessió",
+            "profile": "Perfil",
+            "media": "Mitjans",
+            "viewers": "Visors",
+            "storage": "Emmagatzematge"
+        },
+        "statusbar": {
+            "desktops-started": "Escriptoris arrencats",
+            "checkbox-text": "Només arrencats",
+            "checkbox-text-short": "Arrencats",
+            "new-desktop": "Escriptori nou",
+            "new-deployment": "Nou desplegament",
+            "new-media": "Nou mitjà",
+            "upload-file": "Pujar Fitxer",
+            "cancel": "Cancel·lar",
+            "select": "Seleccionar",
+            "deployment": {
+                "back": "Tornar a desplegaments",
+                "buttons": {
+                    "start": {
+                        "title": "Iniciar tots els escriptoris del desplegament"
+                    },
+                    "stop": {
+                        "title": "Parar tots els escriptoris del desplegament"
+                    },
+                    "videowall": {
+                        "title": "Anar a videowall"
+                    },
+                    "make-visible": {
+                        "title": "Fer visible"
+                    },
+                    "make-not-visible": {
+                        "title": "Fer invisible"
+                    },
+                    "recreate": {
+                        "title": "Recrear desplegament"
+                    },
+                    "download-direct-viewer": {
+                        "title": "Descarregar fitxer de visors directes"
+                    },
+                    "delete": {
+                        "title": "Esborrar desplegament"
+                    }
+                }
+            },
+            "videowall": {
+                "back": "Tornar a desplegaments"
+            }
+        },
+        "desktop-cards": {
+            "table-header": {
+                "name": "Nom",
+                "state": "Estat",
+                "description": "Descripció",
+                "desktop-size": "Mida",
+                "action": "Acció",
+                "viewers": "Visors"
+            },
+            "notification-bar": {
+                "next-booking": "Propera reserva",
+                "no-next-booking": "L'escriptori no està reservat!",
+                "shutdown": "Aturada automàtica a les {date}",
+                "booking-ends": "La reserva s'acaba a les "
+            },
+            "no-info-default": "No hi ha cap descripció disponible",
+            "open-with": "Accedeix amb",
+            "actions": {
+                "delete": "Esborrar",
+                "template": "Convertir en plantilla",
+                "booking": "Reservar",
+                "edit": "Editar",
+                "direct-link": "Enllaç directe"
+            },
+            "filter-label": "Filtre"
+        },
+        "deployment-desktop-list": {
+            "actions": {
+                "delete": "Esborrar"
+            },
+            "table-header": {
+                "user": "Usuari",
+                "state": "Estat",
+                "group": "Grup",
+                "action": "Acció",
+                "viewers": "Visors",
+                "last": "Últim accés"
+            },
+            "open-with": "Obrir amb",
+            "filter-label": "Filtre"
+        },
+        "help": {
+            "close-guide": "Tancar la guia",
+            "local-client": "Fer servir el client local (recomanat)",
+            "best-performance": "És l'opció amb el millor rendiment",
+            "install": "Instal·lar",
+            "other-windows-versions": "altres versions de Windows",
+            "once-installed": "Un cop instal·lat, has de fer clic al botó de «client local», i es descarregarà el fitxer de l'escriptori virtual",
+            "use-browser": "Utilitzar el navegador",
+            "no-install": "No és necessari instal·lar cap aplicatiu extern, {worse-performance}. Simplement has de fer clic al botó i s'obrirà l'escriptori virtual en una pestanya nova",
+            "worse-performance": "però el rendiment serà pitjor",
+            "spice-client-required": "És necessari instal·lar un aplicatiu extern.",
+            "text": {
+                "macos": "macOS és una plataforma sense suport, cal fer servir el navegador",
+                "ios": "En el sistema operatiu iOS cal instal·lar l'aplicatiu següent:",
+                "windows": "En el sistema operatiu Windows cal descarregar i executar un dels següents instal·ladors:",
+                "android": "En el sistema operatiu Android cal instal·lar l'aplicatiu següent:",
+                "linux": "En el sistema operatiu Linux cal executar les ordres següents:"
+            }
+        },
+        "not-found": {
+            "title": "No hem trobat l'adreça sol·licitada",
+            "home": "Tornar a l'inici"
+        },
+        "title": {
+            "logo-alt": "Logotip"
+        },
+        "rdp-modal": {
+            "message": {
+                "connecting": "Connectant amb el servidor...",
+                "disconnected": "S'ha perdut la connexió",
+                "unstable": "La connexió amb el servidor és inestable",
+                "error": "Error de connexió",
+                "cookie-error": "No s'ha trobat la galeta necessaria per realitzar la connexió",
+                "cookie-expired": "La galeta necessaria per realitzar la connexió ha expirat"
+            },
+            "title": {
+                "connecting": "Connectant",
+                "disconnected": "Desconnectat",
+                "unstable": "Inestable",
+                "error": "Error"
+            },
+            "button-refresh": "Recarregar"
+        },
+        "bookings": {
+            "item": {
+                "event-titles": {
+                    "available": "Disponible",
+                    "unavailable": "No disponible",
+                    "overridable": "Sobreescrivible"
+                },
+                "enough-units": "Suficients unitats",
+                "units": "unitats",
+                "split-labels": {
+                    "availability": "Disponibilitat",
+                    "bookings": "Reserves"
+                },
+                "status-bar": {
+                    "buttons": {
+                        "add-booking": "Afegir reserva"
+                    },
+                    "forbid-time": "Antel·lació requerida",
+                    "max-time": "Temps màxim de reserva",
+                    "max-items": "Màxim de reserves"
+                },
+                "modal": {
+                    "title": "Títol",
+                    "start-date": "Data d'inici",
+                    "start-time": "Hora d'inici",
+                    "end-date": "Data de finalització",
+                    "end-time": "Hora de finalització",
+                    "profile": "Perfil",
+                    "select-profile": "Si us plau, seleccioni un perfil",
+                    "create": {
+                        "modal-title": "Afegir reserva",
+                        "button": "Afegir reserva"
+                    },
+                    "edit": {
+                        "modal-title": "Editar reserva",
+                        "button": "Desar canvis"
+                    },
+                    "view": {
+                        "modal-title": "Veure reserva"
+                    },
+                    "delete": {
+                        "button": "Eliminar"
+                    }
+                },
+                "new-planning" : {
+                    "bookable-type": "Tipo de reservable",
+                    "bookable-item": "Nombre del reservable"
+                }
+            },
+            "errors": {
+                "forbid": "Necessites més antel·lació per tal de crear aquesta reserva",
+                "maximum-time": "No pots crear una reserva de tanta durada",
+                "end-before-start": "La reserva no pot terminar abans de la seva data d'inici",
+                "minimum-time": "La reserva ha de durar com a mínim 5 minuts",
+                "past-booking": "No es pot crear una reserva al passat"
+            },
+            "summary": {
+                "title": "Totes les teves reserves"
+            }
+        },
+        "profile": {
+            "change-password": "Canviar contrasenya",
+            "info": {
+                "name": "Nom",
+                "email": "Email",
+                "authentication": "Autenticació",
+                "role": "Rol",
+                "category": "Categoria",
+                "group": "Grup"
+            },
+            "language": "Idioma",
+            "quota": {
+                "title": "Restricció aplicada: {restriction}",
+                "restrictions": {
+                    "user_quota": "Quota d'usuari",
+                    "group_quota": "Quota de grup",
+                    "category_quota": "Quota de categoria"
+                },
+                "desktops": "Escriptoris creats / Total d'escriptoris",
+                "media": "Mitjans creats / Total de mitjans",
+                "memory": "Memòria utilitzada / Total de memòria (GB)",
+                "running": "Escriptoris arrencats / Total d'escriptoris arrencats",
+                "templates": "Plantilles creades / Total de plantilles",
+                "vcpus": "Vcpus utilitzades / Total de vcpus",
+                "total-disk-size": "Mida de disc utilitzat / Total de mida de disc (GB)",
+                "total-media-size": "Mida de mitjans utilitzats / Total de mida dels mitjans (GB)",
+                "total-size": "Mida utilitzada / Mida total (GB)"
+            }
+        },
+        "start-now-modal": {
+            "title": "Iniciar ara",
+            "profile": "Perfil",
+            "select-profile": "Selecciona el perfil que es farà servir",
+            "end-date": "Data de finalització",
+            "select-end-date": "Selecciona fins a quan es farà servir",
+            "button": "Iniciar escriptori"
+        },
+        "cant-start-now-modal": {
+            "title": {
+                "available-profile": "El model de targeta gràfica d'aquest escriptori ({profile}) no està disponible en aquest moment",
+                "no-available-profile": "No hi ha cap altre model de targeta gràfica disponible en aquest moment"
+            },
+            "change-desktop-gpu": {
+                "text": "Podeu canviar a un model de targeta gràfica disponible ara i iniciar-lo (pot afectar al rendiment de l'escriptori)",
+                "button": "Canviar i iniciar"
+            },
+            "go-to-bookings": {
+                "text": "Reservar l'escriptori amb el model de la targeta gràfica actual consultant la seva planificació",
+                "button": "Reservar escriptori"
+            }
+        }
+    },
+    "views": {
+        "cancel": "Cancel·lar",
+        "error": {
+            "codes": {
+                "403": {
+                    "title": "Accés denegat.",
+                    "subtitle": "No disposes de permisos suficients per accedir al contingut sol·licitat.",
+                    "home": "Per a trobar alternatives pots anar "
+                },
+                "500": {
+                    "title": "Error inesperat.",
+                    "subtitle": "No s'ha pogut accedir al contingut sol·licitat.",
+                    "home": "Per a trobar alternatives pots anar "
+                }
+            },
+            "here": "aquí."
+        },
+        "login": {
+            "title": "Iniciar Sessió",
+            "form": {
+                "select-category": "Si us plau, selecciona una opció",
+                "usr": "Nom d'usuari",
+                "pwd": "Contrasenya",
+                "login": "Iniciar sessió"
+            },
+            "other-logins": "O iniciar sessió amb",
+            "powered-by": "Funciona amb {isardvdi}",
+            "isard-logo-alt": "El logotip de IsardVDI és el cap d'un isard.",
+            "errors": {
+                "500": "Error del servidor",
+                "401": "Usuari o contrasenya incorrecta",
+                "generic": "S'ha produït un error"
+            }
+        },
+        "maintenance": {
+            "title": "Actualment, el servei d'Isard es troba en manteniment",
+            "the-service": "El servei tornarà a estar disponible en una estona",
+            "sorry": "Disculpeu les molèsties",
+            "go-login": "Anar al login"
+        },
+        "not-found": {
+            "title": "Quelcom ha anat malament.",
+            "subtitle": "El contingut que buscaves sembla no estar aquí.",
+            "home": "Per trobar-hi alternatives pots anar ",
+            "here": "aquí."
+        },
+        "register": {
+            "title": "Registre",
+            "code": "Codi de registre",
+            "register": "Registrar-se",
+            "errors": {
+                "404": "Codi no trobat",
+                "401": "Sessió expirada",
+                "500": "Error en el servidor"
+            }
+        },
+        "select-template": {
+            "template": "Plantilla",
+            "loading": "Carregant plantilles",
+            "no-templates": {
+                "title": "No hi ha cap plantilla per a aquest usuari",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "no-desktops": {
+                "title": "No hi ha cap escriptori per a aquest usuari",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "no-desktops-filtered": {
+                "title": "No hi ha escriptoris per mostrar amb els filtres actuals",
+                "subtitle": "Podeu crear un escriptori nou amb el botó superior dret"
+            },
+            "no-templates-filtered": {
+                "title": "No hi ha plantilles per mostrar amb els filtres actuals"
+            },
+            "which-template": "Quin escriptori vols fer servir?",
+            "persistent": "Escriptoris persistents",
+            "persistent-compact": "Persistents",
+            "volatile": "Escriptoris temporals",
+            "volatile-compact": "Temporals",
+            "viewers": "Visors",
+            "viewer": "Visor {name}",
+            "viewer-name": {
+                "file-spice": "SPICE",
+                "browser-vnc": "al navegador",
+                "file-rdpvpn": "RDP VPN",
+                "browser-rdp": "RDP al navegador",
+                "file-rdpgw": "RDP"
+            },
+            "remove": "Esborrar",
+            "notification": {
+                "loading": {
+                    "title": "Carregant",
+                    "description": "Esperant resposta del servidor"
+                },
+                "downloaded": {
+                    "title": "Descarregat",
+                    "description": "L'escriptori ha estat descarregat correctament"
+                }
+            },
+            "error": {
+                "create-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut crear l'escriptori virtual degut a un error"
+                },
+                "create-quota": {
+                    "title": "Error",
+                    "description": "Disposes de massa escriptoris"
+                },
+                "create-timeout": {
+                    "title": "Temps excedit",
+                    "description": "L'escriptori s'està creant, pot trigar uns quants minuts"
+                },
+                "start-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut inicar l'escriptori virtual degut a un error"
+                },
+                "start-quota": {
+                    "title": "Error",
+                    "description": "Estàs fent servir massa escriptoris al mateix temps"
+                },
+                "start-timeout": {
+                    "title": "Temps excedit",
+                    "description": "L'escriptori s'està iniciant, pot trigar uns quants minuts"
+                },
+                "open-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut obrir l'escriptori virtual degut a un error"
+                },
+                "stop-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut parar l'escriptori virtual degut a un error"
+                },
+                "stop-timeout": {
+                    "title": "Temps excedit",
+                    "description": "L'escriptori s'està parant, pot trigar uns quants minuts"
+                },
+                "delete-error": {
+                    "title": "Error",
+                    "description": "No s'ha pogut esborrar l'escriptori virtual degut a un error"
+                }
+            },
+            "status": {
+                "notCreated": {
+                    "action": "Crear"
+                },
+                "creating": {
+                    "text": "Creant",
+                    "action": "Creant"
+                },
+                "failed": {
+                    "text": "Fallat",
+                    "action": "Reiniciar"
+                },
+                "started": {
+                    "text": "Iniciat",
+                    "action": "Atura"
+                },
+                "starting": {
+                    "text": "Iniciant",
+                    "action": "Iniciant"
+                },
+                "stopped": {
+                    "text": "Aturat",
+                    "action": "Iniciar"
+                },
+                "stopping": {
+                    "text": "Aturant",
+                    "action": "Aturant"
+                },
+                "waitingip": {
+                    "text": "Esperant IP",
+                    "action": "Atura"
+                },
+                "readyCreation": {
+                    "text": "Llest per a crear"
+                },
+                "working": {
+                    "text": "Esperant",
+                    "action": "treballant"
+                },
+                "shutting-down": {
+                    "text": "Apagant",
+                    "action": "Forçar parada"
+                },
+                "downloading": {
+                    "text": "Descarregant"
+                },
+                "forcedeleting": {
+                    "text": "Esborrant",
+                    "action": "Esborrant"
+                },
+                "paused": {
+                    "text": "Pausat",
+                    "action": "Aturar"
+                }
+            }
+        },
+        "deployments": {
+            "no-deployments": {
+                "title": "No hi ha cap desplegament de l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "table-header": {
+                "name": "Nom",
+                "visible": "Visible",
+                "started-desktops": "Escriptoris arrencats / Total",
+                "actions": "Accions",
+                "template": "Plantilla",
+                "desktop-name": "Nom de l'escriptori",
+                "description": "Descripció"
+            }
+        },
+        "deployment": {
+            "no-started-desktops": {
+                "title": "Aquest desplegmanet no té cap escriptori iniciat"
+            },
+            "desktop": {
+                "not-available": "Escriptori no disponible"
+            },
+            "visibility-warning": "Els escriptoris d'aquest desplegament són {visibility}.",
+            "visibility": {
+                "visible": "Visibles",
+                "not-visible": "No visibles"
+            },
+            "modal": {
+                "title": { 
+                    "make-visible": "Fer visible el desplegament '{name}'",
+                    "make-invisible": "Fer invisible el desplegament '{name}'"
+                },
+                "option": {
+                    "dont-stop-desktops": "Fer invisible aquest desplegament pels usuaris i permetre l'ús dels escriptoris fins que s'aturin",
+                    "stop-desktops": "Fer invisible aquest deplegament pels usuaris i aturar tots els escriptoris",
+                    "make-visible": "Fer visible aquest desplegament perquè els usuaris tinguin accés als escriptoris"
+                },
+                "confirmation": {
+                    "stop": "Aturar escriptoris",
+                    "dont-stop": "No aturar escriptoris",
+                    "make-visible": "Fer visible"
+                    }
+                }
+            
+        },
+        "direct-viewer": {
+            "title": "Accés a visors de l'escriptori:",
+            "file": {
+                "title": "Accedir amb aplicació",
+                "subtitle": "Es necessari tenir instal·lat programmari específic (més fluïdesa)"
+            },
+            "browser": {
+                "title": "Accedir des d'aquest navegador",
+                "subtitle": "No requereix cap instal·lació a l'ordinador"
+            },
+            "button": {
+                "browser": "Navegador",
+                "browser-rdp": "RDP al navegador"
+            },
+            "waitingIP": "Esperant a que s'arranqui l'escriptori",
+            "description": {
+                "vnc": "Accedir a l'escriptori directament des d'aquest navegador",
+                "rdp": "Accedir a l'escriptori directament des d'aquest navegador (requereix usuari i contrasenya del windows de l'escriptori)",
+                "spice": "Descarrega un fitxer que ha d'obrir-se amb el programa remote-viewer",
+                "rdpgw": "Windows incorpora l'aplicació necessaria pel seu ús"
+            },
+            "help": {
+                "spice": {
+                    "spice-help": "Instruccions d'instal·lació de SPICE",
+                    "close-guide": "Tancar la guia",
+                    "local-client": "Utilitzar el client local (recomanat)",
+                    "best-performance": "És la versió amb el millor rendiment",
+                    "install": "Instal·lar",
+                    "other-windows-versions": "altres versions de Windows",
+                    "once-installed": "Un cop instal·lat, s'ha de clicar al botó de «SPICE», i es descarregarà el fitxer per a fer servir l'escriptori virtual.",
+                    "spice-client-required": "però requereix instal·lar un aplicatiu extern.",
+                    "text": {
+                        "macos": "macOS és una plataforma sense suport, cal fer servir el navegador",
+                        "ios": "En el sistema operatiu iOS cal instal·lar l'aplicatiu següent:",
+                        "windows": "En el sistema operatiu Windows cal descarregar i executar un dels següents instal·ladors:",
+                        "android": "En el sistema operatiu Android cal instal·lar l'aplicatiu següent:",
+                        "linux": "En el sistema operatiu Linux cal executar les ordres següents:"
+                    }
+                },
+                "rdp": {
+                    "rdp-help": "Instruccions d'instal·lació de RDP",
+                    "local-client": "Utilitzar el client RDP (recomanat)",
+                    "close-guide": "Tancar la guia",
+                    "included": "Windows incorpora l'aplicació necessaria pel seu ús,",
+                    "require-update": "però és possible que requereixi una actualització (sobretot a les versions windows 7 i windows 8). Recomanem que instal·lis l'última versió disponible ",
+                    "here": "aqui.",
+                    "once-installed": "Un cop instal·lat, s'ha de clicar al botó de «RDP», i es descarregarà el fitxer per a fer servir l'escriptori virtual."
+                }
+            },
+            "waitingip": "Esperant que s'arrenqui l'escriptori"
+        },
+        "templates": {
+            "tabs": {
+                "templates": "Les teves plantilles",
+                "templates-compact": "Teves",
+                "shared-templates": "Plantilles compartides amb tu",
+                "shared-templates-compact": "Compartit"
+            },
+            "no-templates": {
+                "title": "No hi ha cap plantilla de l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "no-shared-templates": {
+                "title": "No hi ha cap platilla compartida amb l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "table-header": {
+                "name": "Nom",
+                "description": "Descripció",
+                "actions": "Accions",
+                "template-size": "Mida"
+            },
+            "buttons": {
+                "allowed": {
+                    "title": "Canviar permisos"
+                },
+                "enable": {
+                    "title": "Habilitar"
+                },
+                "disable": {
+                    "title": "Deshabilitar"
+                },
+                "edit": {
+                    "title": "Editar"
+                }
+            }
+        },
+        "media": {
+            "tabs": {
+                "media": "Els teus mitjans",
+                "media-compact": "Teus",
+                "shared-media": "Mitjans compartits amb tu",
+                "shared-media-compact": "Compartits"
+            },
+            "no-media": {
+                "title": "No hi ha cap mitjà de l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "no-shared-media": {
+                "title": "No hi ha cap mitjà compartit amb l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta a l'administrador"
+            },
+            "table-header": {
+                "name": "Nom",
+                "description": "Descripció",
+                "category": "Categoria",
+                "group": "Grup",
+                "user": "Usuari",
+                "status": "Estat",
+                "progress-size": "Progrés / Mida",
+                "actions": "Accions"
+            },
+            "buttons": {
+                "allowed": {
+                    "title": "Canviar permisos"
+                },
+                "delete": {
+                    "title": "Delete media"
+                },
+                "new-desktop": {
+                    "title": "Crear nou escriptori"
+                },
+                "download": {
+                    "title": "Descarregar mitjà"
+                },
+                "stop-download": {
+                    "title": "Parar descàrrega"
+                }
+            },
+            "status": {
+                "downloading": "Descarregant",
+                "download-failed": "Descàrrega fallida",
+                "downloaded": "Descarregat",
+                "deleting": "Esborrant"
+            },
+            "delete-media": {
+                "title": "Esborrar mitjà",
+                "warning": "Aquest mitjà s'esborrarà dels següents escriptoris. En cas d'estar iniciats es pararan.",
+                "table-header": {
+                    "name": "Nom",
+                    "user": "Usuari",
+                    "kind": "Tipus"
+                }
+            }
+        },
+        "storage": {
+            "no-storage": {
+                "title": "No hi ha cap disc de l'usuari actual",
+                "subtitle": "Si creus que es tracta d'un error, contacta amb l'administrador"
+            },
+            "table-header": {
+                "domains": "Escriptoris/plantilles",
+                "quantity-domains": "Nº escriptoris/plantilles",
+                "actual-size": "Mida",
+                "percentage": "% Quota",
+                "last": "Últim accés"
+            }
+        }
+    },
+    "validations": {
+        "required": "El camp {property} és requerit.",
+        "sameAs": "El camp {property} ha de tenir el mateix valor que {property2}.",
+        "minLengthValue": "El camp {property} té {model} caràcters, però ha de tenir com a mínim una llargada de {min}.",
+        "maxLengthValue": "El camp {property} te {model} caràcters, però ha de tenir una com a màxim una llargada de {max}.",
+        "inputFormat": "Els caràcters vàlids són lletres, digits, coma, punt, - i _",
+        "url": "El camp {property} ha de ser una adreça web."
+    },
+    "forms": {
+        "allowed": {
+            "title": "Permisos",
+            "groups": "Grups:",
+            "users": "Usuaris:",
+            "placeholder": "Escriu almenys 2 caràcters per cercar.",
+            "modal": {
+                "title": "Actualitzar permisos",
+                "buttons": {
+                    "update": "Actualitzar"
+                }
+            },
+            "empty": "Marcat i buit ho compartirà amb tothom."
+        },
+        "password": {
+            "modal": {
+                "title": "Canviar la contrasenya",
+                "password": {
+                    "label": "Contrasenya",
+                    "placeholder": "Contrasenya"
+                },
+                "confirmation-password": {
+                    "label": "Confirmació de la contrasenya",
+                    "placeholder": "Confirma la contrasenya"
+                },
+                "buttons": {
+                    "update": "Actualitzar"
+                }
+            }
+        },
+        "registration": {
+            "code": "Codi de registre"
+        },
+        "new-desktop": {
+            "title": "Crear un nou escriptori:",
+            "section-title-template": "Seleccionar una plantilla:",
+            "section-title-advanced": "Opcions avançades",
+            "desktop-template": "Plantilla",
+            "filter": "Filtrar",
+            "filter-placeholder": "Escriu per cercar",
+            "template-table-column-headers": {
+                "selected": "Seleccionat",
+                "image": "Imatge",
+                "name": "Nom",
+                "description": "Descripció",
+                "category": "Categoria",
+                "group": "Grup",
+                "user": "Usuari"
+            }
+        },
+        "new-template": {
+            "title": "Crear nova plantilla",
+            "name": "Nom",
+            "description": "Descripció",
+            "enabled": "Habilitada",
+            "disabled": "Inhabilitada"
+        },
+        "new-deployment": {
+            "title": "Crear nou desplegament:",
+            "name": "Nom del desplegament",
+            "visible": "Visible pels usuaris",
+            "not-visible": "No visible pels usuaris",
+            "section-title-template": "Seleccionar una plantilla:",
+            "desktop": {
+                "title": "Dades del nou escriptori:",
+                "name": "Nom de l'escriptori",
+                "description": "Descripció de l'escriptori",
+                "template": "Plantilla"
+            },
+            "filter": "Filtre",
+            "filter-placeholder": "Escriu per cercar",
+            "template-table-column-headers": {
+                "selected": "Seleccionat",
+                "image": "Imatge",
+                "name": "Nom",
+                "description": "Descripció",
+                "category": "Categoria",
+                "group": "Grup",
+                "user": "Usuari"
+            },
+            "error": {
+                "groups": "S'ha d'escollir com a mínim un grup",
+                "users": "S'ha d'escollir com a mínim un usuari",
+                "groups-users": "S'ha d'escollir com a mínim un usuari o un grup"
+            }
+        },
+        "new-media": {
+            "title": "Crear un nou mitjà:",
+            "url": "Adreça web",
+            "type": "Tipus",
+            "name": "Nom del mitjà",
+            "description": "Descripció",
+            "select-type": "Si us plau, selecciona una opció"
+        },
+        "edit": {
+            "title": "Editar '{name}'"
+        },
+        "domain": {
+            "info": {
+                "title": "Informació",
+                "name": "Nom",
+                "description": "Descripció"
+            },
+            "viewers": {
+                "title": "Visors",
+                "fullscreen-disabled": "Pantalla completa desactivada",
+                "fullscreen-enabled": "Pantalla completa activada",
+                "guest": {
+                    "title": "Login RDP",
+                    "warning": "ATENCIÓN: La contrasenya es guardarà com a text pla!!",
+                    "username": "Usuari",
+                    "password": "Contrasenya"
+                }
+            },
+            "hardware": {
+                "warning": "ATENCIÓ: El següent hardware ha estat modificat per permisos:",
+                "title": "Hardware",
+                "vcpus": "vCPUS",
+                "memory": "Memoria (GB)",
+                "videos": "Videos",
+                "boot": "Boot",
+                "disk-bus": "Disk Bus",
+                "interfaces": "Xarxes",
+                "disk-size": "Mida del disc (GB)"
+            },
+            "bookables": {
+                "title": "Reservables",
+                "vgpus": "GPU"
+            },
+            "media": {
+                "title": "Media",
+                "isos": "Isos",
+                "floppies": "Floppies"
+            },
+            "image": {
+                "title": "Imatge"
+            }
+        },
+        "direct-link": {
+            "modal": {
+                "title": "Enllaç al visor directe",
+                "enable": "Habilitar l'accés mitjançant el visor directe"
+            }
+        },
+        "filter-placeholder": "Escriu per cercar",
+        "clear": "Neteja",
+        "cancel": "Cancel·la",
+        "submit": "Envia",
+        "create": "Crea",
+        "show-pages": "Veure"
+    },
+    "errors": {
+        "desktop_new_user_quota_exceeded": "Has excedit la teva quota per a crear nous escriptoris. Cal que eliminis algun escriptori per a poder-ne crear de nous.",
+        "desktop_new_group_limit_exceeded": "S'ha excedit el límit per a crear nous escriptoris del grup",
+        "desktop_new_category_limit_exceeded": "S'ha excedit el límit per a crear nous escriptoris de la categoria",
+        "desktop_start_user_quota_exceeded": "Has excedit la teva quota per a arrencar escriptoris. Cal que aturis altres escriptoris per a poder-ne iniciar de nous.",
+        "desktop_start_group_limit_exceeded": "S'ha excedit el límit d'escriptoris arrencats del grup",
+        "desktop_start_category_limit_exceeded": "S'ha excedit el límit d'escriptoris arrencats de la categoria",
+        "desktop_start_vcpu_quota_exceeded": "Has excedit la teva quota de vCPU. Cal que aturis altres escriptoris per a poder-ne iniciar de nous o bé editar aquest escriptori i reduir-ne les CPUs.",
+        "desktop_start_group_vcpu_limit_exceeded": "S'ha excedit el límit de vCPU del grup",
+        "desktop_start_category_vcpu_limit_exceeded": "S'ha excedit el límit de vCPU de la categoria",
+        "desktop_start_memory_quota_exceeded": "Has excedit la teva quota de memòria. Cal que aturis altres escriptoris per a poder-ne iniciar de nous o bé editar aquest escriptori i reduir-ne la memòria.",
+        "desktop_start_group_memory_limit_exceeded": "S'ha excedit el límit de memòria del grup",
+        "desktop_start_category_memory_limit_exceeded": "S'ha excedit el límit de memòria de la categoria",
+        "desktop_start_incorrect_body_data": "Dades incorrectes per arrencar el escriptori",
+        "desktop_incorrect_body_data": "Dades incorrectes per afegir l'escriptori",
+        "user_new_category_cuota_exceeded": "S'ha excedit el límit de creació d'usuaris de la categoria",
+        "user_new_group_cuota_exceeded": "S'ha excedit el límit de creació d'usuaris del grup",
+        "template_new_user_quota_exceeded": "Has excedit la teva quota de plantilles. Cal que deshabilitis o eliminis alguna plantilla per a poder-ne crear o habilitar de noves.",
+        "template_new_group_limit_exceeded": "S'ha excedit el límit de creació de plantilles del grup",
+        "template_new_category_limit_exceeded": "S'ha excedit el límit de creació de plantilles de la categoria",
+        "media_new_user_quota_exceeded": "Has excedit la teva quota de creació de mitjans. Cal que eliminis algun mitjà per a poder-ne pujar de nous.",
+        "media_new_group_limit_exceeded": "S'ha excedit el límit de creació de mitjans del grup",
+        "media_new_category_limit_exceeded": "S'ha excedit la quota de creació de mitjans de la categoria",
+        "media_url_not_found": "L'adreça introduïda no s'ha trobat",
+        "media_url_not_valid": "L'adreça introduïda no és vàlida",
+        "group_total_size_limit_exceeded": "S'ha excedit el límit de mida del disc del grup",
+        "category_total_size_limit_exceeded": "S'ha excedit el límit de mida del disc de la categoria",
+        "total_size_quota_exceeded": "Has excedit la teva quota de mida de disc. Cal que elimins un escriptori, una plantilla o un mitjà per tal d'alliberar espai.",
+        "quota_general_exception": "S'ha produït un error relacionat amb les quotes de usuari",
+        "desktop_new_template_forbidden": "Error de permisos creant l'escriptori",
+        "new_desktop_name_exists": "Ja existeix un escriptori amb el mateix nom per aquest usuari",
+        "new_template_name_exists": "Ja existeix una plantilla amb el mateix nom per aquest usuari",
+        "username_exists": "Ja existeix un usuari amb el mateix nom",
+        "login_failed": "L'inici de sessió ha fallat",
+        "forbidden": "S'ha produït un error relacionat amb els permisos del recurs",
+        "not_found": "No s'ha trobat",
+        "category_generic_exception": "S'ha produït un error recuperant la categoria",
+        "register_generic_exception": "S'ha produït un error durant el procés de registre",
+        "update_generic_exception": "S'ha produït un error durant l'actualització",
+        "desktop_action_failed": "Error al completar l'acció al escriptori",
+        "template_new_not_created": "S'ha produït un error creant la plantilla",
+        "get_generic_exception": "S'ha produït un error recuperant les dades",
+        "user_new_generic_exception": "S'ha produït un error creant l'usuari",
+        "user_delete_generic_exception": "S'ha produït un error esborrant l'usuari",
+        "templates_get_error": "S'ha produït un error recuperant les plantilles",
+        "desktops_get_error": "S'ha produït un error recuperant els escriptoris",
+        "viewer_not_started": "El visor no està engegat",
+        "desktop_start_timeout": "Temps exhaurit engegant l'escriptori",
+        "desktop_stop_timeout": "Temps exhaurit durant l'aturada de l'escriptori",
+        "bad_request": "Els paràmetres de la petició són incorrectes",
+        "bad_request_title": "Error de petició",
+        "undefined_error": "S'ha produït un error",
+        "generic_error": "S'ha produït un error",
+        "booking_new_event_start_error": "L'hora d'inici no és vàlida",
+        "booking_new_event_end_error": "L'hora de finalització no és vàlida",
+        "booking_new_event_overlap_error": "L'esdeveniment es solapa",
+        "booking_does_not_fit_date": "La reserva no pot realitzar a la data assenyalada",
+        "booking_desktop_delete_stop": "Per esborrar la reserva l'escriptori ha d'estar parat",
+        "booking_deployment_delete_stop": "Per esborrar la reserva és necessari que els escriptoris del desplegament estiguin parats",
+        "booking_max_items_exceeded": "S'ha excedit el màxim de reserves de l'usuari",
+        "unable_to_update": "No s'ha pogut actualitzar a la base de dades",
+        "unable_to_insert": "No s'ha pogut introduir a la base de dades",
+        "conflict": "Conflicte",
+        "conflict_title": "Conflicte",
+        "missing_required_data": "Falten camps requerits",
+        "not_enough_rights_media": "Es requereixen més permisos per accedir a aquest mitjà",
+        "not_enough_rights_desktop": "Es requereixen més permisos per accedir a aquest escriptori",
+        "incorrect_viewer_body_data": "Dades incorrectes al visor de l'escriptori",
+        "unable_to_get_viewer_started": "No es possible obtenir el visor d'un escriptori que no està arrencat",
+        "user_disabled": "L'usuari està deshabilitat",
+        "deployment_desktop_new_group_limit_exceeded": "S'ha excedit el límit per a crear nous escriptoris del grup '{group}'",
+        "deployment_desktop_new_category_limit_exceeded": "S'ha excedit el límit per a crear nous escriptoris de la categoria '{category}'",
+        "unable_to_stop_desktop_from": "No és possible aturar un escriptori des d'el seu estat",
+        "unable_to_start_desktop_from": "No és possible engegar un escriptori des d'el seu estat",
+        "deployment_delete_stop": "Per esborrar un desplegament és necessari que els seus escriptoris estiguin parats",
+        "desktop_not_booked": "Per engegar l'escriptori ha d'estar reservat",
+        "desktop_not_booked_until": "No es pot engegar l'escriptori fins a la propera reserva {start}",
+        "only_works_rdp":  "Mode 'Only GPU' només funciona amb visors RDP",
+        "current_plan_doesnt_match": "No hi ha cap GPU disponible amb el perfil de l'escriptori",
+        "needs_deployment_booking": "Ara mateix no es pot arrancar l'escriptori, contacta amb el propietari d'aquest desplegament perque crei una reserva",
+        "not_enough_advanced_time": "No hi ha suficient antel·lació per arrancar l'escriptori"
+    },
+    "messages": {
+        "title": {
+            "delete": "Esborrar"
+        },
+        "confirmation": {
+            "delete-desktop": "'{name}' s'esborrarà, continuar?",
+            "create-nonpersistent": "ATENCIÓ! Aquest escriptori és temporal. Al parar-ho totes les dades seràn esborrades. Crear escriptori?",
+            "visible-deployment": "'{name}' serà visible pels seus usuaris, continuar?",
+            "recreate-deployment": "Els escriptoris esborrats de '{name}' es crearàn de nou, continuar?",
+            "delete-deployment": "'{name}' s'esborrarà, continuar?",
+            "delete-deployment-desktop": "L'escriptori de '{name}' s'esborrarà, continuar?",
+            "start-deployment-desktops": "Els escriptoris de '{name}' s'iniciaran, continuar?",
+            "stop-deployment-desktops": "Els escriptoris de '{name}' es pararan, continuar?",
+            "delete-event": "La reserva '{name}' s'esborrarà, continuar?",
+            "enable-template": "'{name}' serà visible pels seus usuaris, continuar?",
+            "disable-template": "'{name}' serà invisible pels seus usuaris, continuar?",
+            "direct-viewer-reset": "Es descarregarà el fitxer de visors directes. Reestablir les adreces dels visors?",
+            "delete-media": "El mitjà '{name}' s'esborrarà, continuar?",
+            "image-uploaded": "Imatge pujada correctament",
+            "edit-domain": "El hardware de '{name}' es limitarà i les seves dades es modificaran, continuar?",
+            "new-deployment": "Es crearan {quantity} escriptoris, un per cada usuari seleccionat. Continuar?",
+            "go-to-profile": "Veure quota",
+            "go-to-bookings": "Reservar escriptori",
+            "change-desktop-gpu": "Modificar el perfil de l'escriptori"
+        },
+        "ok": "D'acord",
+        "yes": "Si",
+        "no": "No",
+        "cancel": "Cancel·lar",
+        "info": {
+            "deleting-desktop": "Esborrant escriptori",
+            "opening-desktop": "Obrint Escriptori",
+            "creating-desktop": "Creant Escriptori",
+            "file-downloaded": "Fitxer descarregat",
+            "creating-deployment": "Creant desplegament",
+            "recreating-deployment": "Recreant desplegament",
+            "deleting-deployment": "Esborrant desplegament",
+            "making-visible-deployment": "Fent el desplegament visible",
+            "making-invisible-deployment": "Fent el desplegament invisible",
+            "starting-desktops": "Iniciant els escriptoris del desplegament",
+            "stopping-desktops": "Parant els escriptoris del desplegament",
+            "creating-template": "Creant plantilla",
+            "new-template-stop": "Per crear una plantilla és necessari que l'escriptori estigui parat",
+            "no-availability-event": "No hi ha disponibilitat al rang seleccionat",
+            "not-created-event": "No s'ha pogut crear l'esdeveniment",
+            "missing-data": "Falten dades",
+            "deleting-event": "Esborrant esdeveniment",
+            "enable-template": "Fent la plantilla visible",
+            "creating-event": "Creant esdeveniment",
+            "disable-template": "Fent la plantilla invisible",
+            "editing-event": "Editant esdeveniment",
+            "creating-media": "Creant mitjà",
+            "editing": "Editant",
+            "edit-desktop-stop": "Per editar un escriptori és necessari que estigui parat",
+            "deleting-media": "Esborrant mitjà",
+            "downloading-media": "Descarregant mitjà",
+            "stopping-download": "Parant la descàrrega",
+            "counting-desktops": "Comptant quants escriptoris es crearan",
+            "new-template-server": "No es pot crear una plantilla d'un servidor",
+            "edit-desktop-server": "No es pot editar un servidor",
+            "delete-desktop-stop": "Per esborrar un escriptori és necessari que estigui parat",
+            "wireguard-network-added": "S'ha afegit la xarxa wireguard ja que és requerida per tal de fer servir els visors RDP",
+            "wireguard-viewers-removed": "Els visors RDP s'han eliminat ja que requereixen la xarxa wireguard",
+            "wireguard-network-required": "No es poden seleccionar els visors RDP ja que la xarxa wireguard és requerida. Contacta amb l'administrador per fer servir la xarxa wireguard"
+        },
+        "loading": "Carregant"
+    },
+    "router": {
+        "titles": {
+            "desktops": "Escriptoris",
+            "new_desktop": "Nou escriptori",
+            "images": "Imatges",
+            "booking": "Reserves",
+            "planning": "Planificació",
+            "templates": "Plantilles",
+            "new_template": "Nova plantilla",
+            "deployments": "Desplegaments",
+            "new_deployment": "Nou desplegament",
+            "deployment_videowall": "Videowall de desplegaments",
+            "deployment": "Desplegament",
+            "profile": "Perfil",
+            "media": "Mitjans",
+            "new_media": "Nou mitjà",
+            "login": "Iniciar sessió",
+            "register": "Registrar",
+            "error": "Error",
+            "not_found": "No trobat",
+            "maintenance": "Manteniment",
+            "direct_viewer": "Visor directe",
+            "edit-domain": "Editar domini",
+            "storage": "Emmagatzematge"
+        }
+    },
+    "message-modal": {
+        "title": "Informació important",
+        "messages": {
+            "desktop-time-limit": "L'escriptori '{name}' s'apagarà automàticament a les {date}.",
+            "searching-resources": "Estem buscant recursos per l'escriptori. S'iniciarà en breus minuts, si us plau, esperi."
+        }
+    }
+}

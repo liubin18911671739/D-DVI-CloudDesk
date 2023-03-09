@@ -1,0 +1,9 @@
+version: "3.5"
+services:
+  isard-api:
+    build:
+      context: ${BUILD_ROOT_PATH}
+      dockerfile: api/docker/Dockerfile
+      target: production
+      args:
+        SRC_VERSION_ID: $SRC_VERSION_ID

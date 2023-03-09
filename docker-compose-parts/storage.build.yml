@@ -1,0 +1,7 @@
+version: '3.5'
+services:
+  isard-storage:
+    build:
+      context: ${BUILD_ROOT_PATH}
+      dockerfile: docker/storage/Dockerfile
+      target: production

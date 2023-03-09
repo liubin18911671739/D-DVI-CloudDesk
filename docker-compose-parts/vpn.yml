@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+  isard-vpn:
+    container_name: isard-vpn 
+    image: ${DOCKER_IMAGE_PREFIX}vpn:${DOCKER_IMAGE_TAG:-latest}     
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE  
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.23
+    ports:
+      - published: ${WG_USERS_PORT}
+        target: 443
+        protocol: udp
+      - published: ${WG_HYPERS_PORT}
+        target: 4443
+        protocol: udp
+    privileged: true
+    volumes:
+      - /sys:/sys:rw
+      - /opt/isard/wireguard/certs:/certs
+      - /opt/isard/certs/default:/portal-certs:ro
+      - /opt/isard/dnsmasq:/var/lib/misc
+      - /opt/isard/dnsmasq/static_leases:/var/lib/static_leases
+      - /opt/isard-local/conntrack:/conntrack
+      - /proc/sys/net/netfilter/nf_conntrack_acct:/host-proc/sys/net/netfilter/nf_conntrack_acct
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env  
+

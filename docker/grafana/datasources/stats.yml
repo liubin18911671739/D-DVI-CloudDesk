@@ -1,0 +1,22 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: Graphite
+    orgId: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: ${PROMETHEUS_ADDRESS}
+    isDefault: true
+    jsonData:
+      mttpMethod: POST
+
+  - name: Loki
+    type: loki
+    access: proxy
+    url: $LOKI_ADDRESS
+    jsonData:
+      maxLines: 1000
+

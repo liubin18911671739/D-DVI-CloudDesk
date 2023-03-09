@@ -1,0 +1,21 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="x_panel">
+         <div class="container for-about text-center" style="margin-top: 15px;">
+            <img src="/isard-admin/static/img/isard.svg" width="250px" height="250px">
+            <h1>虚拟云桌面</h1>
+         </div>
+     </div>
+   </div>
+</div>
+
+{% endblock %}
+
+{% block pagescript %}
+<script src="/isard-admin/static/js/restful.js"></script>
+<script src="/isard-admin/static/js/version.js"></script>
+{% endblock %}

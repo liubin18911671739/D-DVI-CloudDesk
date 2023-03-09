@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block css %}
+{% endblock %}
+{% block content %}
+
+ <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+       <div class="x_panel">
+          <div class="x_title">
+             <h3><i class="fa fa-star"></i> 优先级定义<small> 用户访问资源的优先级模板</small></h3> 
+             <ul class="nav navbar-right panel_toolbox">
+                <li><a class="add-new"><span style="color: #5499c7; "><i class="fa fa-plus"></i> 添加</span></a></li>
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+             </ul>
+             <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+             <p class="text-muted font-13 m-b-30"></p>
+             <div id="tableDiv"></div>
+             <table id="bookings_priority" class="table">
+                <thead>
+                   <tr>
+                      <th></th>
+                      <th>角色</th>
+                      <th>名称</th>
+                      <th>描述</th>
+                      <th>角色</th>
+                      <th>分类</th>
+                      <th>分组</th>
+                      <th>用户</th>
+                      <th>优先级</th>
+                      <th>禁用时间</th>
+                      <th>最大时间</th>
+                      <th>最大次数</th>
+                      <th></th>
+                   </tr>
+                </thead>
+                <tbody>
+                </tbody>
+             </table>
+          </div>
+       </div>
+    </div>
+ 
+ </div>
+
+ <div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+         <div class="x_title">
+            <h3><i class="fa fa-gears"></i> 计算用户优先级<small></small></h3>
+            <ul class="nav navbar-right panel_toolbox">
+               <li>
+                  优先级策略
+                  <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="priority" name="priority">
+                  </select>
+               </li>
+               <li><a class="btn-compute"><span style="color: #5499c7; "><i class="fa fa-plus"></i> 计算优先级</span></a></li>
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+            <p class="text-muted font-13 m-b-30"></p>
+            <div id="tableDiv"></div>
+            <table id="bookings_priority_computed" class="table">
+               <thead>
+                  <tr>
+                     <th>用户</th>
+                     <th>确认角色</th>
+                     <th>角色</th>
+                     <th>分类</th>
+                     <th>分组</th>
+                     <th>优先级</th>
+                     <th>禁用时间</th>
+                     <th>最大时间</th>
+                     <th>最大次数</th>
+                     <th></th>
+                  </tr>
+               </thead>
+               <tbody>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+ {% include '/snippets/alloweds_form.html' %}
+{% include '/admin/pages/bookables_priority_modals.html' %}
+{% include '/admin/pages/bookables_priority_detail.html' %}
+
+{% endblock %}
+{% block pagescript %}
+   <script src="/isard-admin/static/js/restful.js"></script>
+   <script src="/isard-admin/static/admin/js/bookables_priority.js"></script>
+{% endblock %}

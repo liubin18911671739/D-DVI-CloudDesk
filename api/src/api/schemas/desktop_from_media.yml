@@ -1,0 +1,45 @@
+id:
+  required: yes
+  type: string
+  default_setter: genuuid
+name:
+  required: true
+  type: string
+  minlength: 4
+description: 
+  type: string
+  default: ""
+hardware:
+  schema: hardware
+media_id:
+  type: string
+  required: true
+disk_bus:
+  type: string
+  default: default
+kind:
+  type: string
+  allowed:
+    - iso
+    - floppy
+  default: iso
+xml_id:
+  type: string
+  default: win10Virtio
+forced_hyp:
+  type:
+    - boolean
+    - list
+  default: false
+favourite_hyp:
+  type:
+    - boolean
+    - list
+  default: false
+user_id:
+  type: string
+guest_properties:
+  type: dict
+  schema: guest_properties_update
+image:
+  schema: image_update

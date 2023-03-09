@@ -1,0 +1,24 @@
+    <div class="x_panel">
+      <div class="x_title">
+        {% if nav == "Deployments" %}
+        <h3>Target users <small>Users allowed for this deployment</small></h3>
+        {% else %}
+        <h3>Allows <small>Only these are allowed</small></h3>
+        {% endif %}
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="table-alloweds-d.id" class="table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Items</th>
+            </tr>
+          </thead>
+              <tbody>
+              </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <script src="/isard-admin/static/js/snippets/alloweds.js"></script>  

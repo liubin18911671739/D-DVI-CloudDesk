@@ -1,0 +1,27 @@
+virtualization_nested:
+  type: boolean
+boot_order:
+  type: list
+vcpus:
+  type: integer
+memory:
+  type: float
+graphics:
+  type: list
+videos:
+  type: list
+interfaces:
+  type: list
+disk_bus:
+  type: string
+isos:
+  type: list
+floppies:
+  type: list
+reservables:
+  type: dict
+  schema:
+    vgpus:
+      type: list
+      nullable: true
+

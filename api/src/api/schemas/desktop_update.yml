@@ -1,0 +1,27 @@
+id:
+  required: true
+  type: string
+  empty: false
+name:
+  type: string
+description:
+  type: string
+hardware:
+  schema: hardware_update
+guest_properties:
+  type: dict
+  schema: guest_properties_update
+image:
+  schema: image_update
+server:
+  type: boolean
+forced_hyp:
+  type:
+    - boolean
+    - list
+favourite_hyp:
+  type:
+    - boolean
+    - list
+xml:
+  type: string

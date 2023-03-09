@@ -1,0 +1,138 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block css %}
+<!--
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/epoch/0.6.0/epoch.min.css">
+-->
+{% endblock %} 
+{% block content %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-rocket"></i> 虚拟服务器池</h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="btn-new-hyper"><span style="color: #5499c7; "><i class="fa fa-plus"></i> 添加</span></a></li>
+          <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <!-- <div class="x_title">
+        <i class="fa fa-warning" style="font-size:16px;color:red"> 管理程序现在在启动时会在系统中自行注册。 检查系统中的参数</i>
+        <div class="clearfix"></div>
+      </div> -->
+      <div class="x_content">
+        <table id="hypervisors" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>启用</th>
+              <th>强制</th>
+              <th>状态</th>
+              <th>ID</th>
+              <th>hostname</th>
+              <th>static</th>
+              <th>代理端口</th>
+              <th>启动的</th>
+              <th>mem负载</th>
+              <th>cpu负载</th>
+              <th>gpus</th>
+              <th>最后状态改变</th>
+              <th>vpn</th>
+              <th>Virt</th>
+              <th>嵌入虚拟</th>
+              <th>qemu</th>
+              <th>libvirt</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-object-group"></i> 虚拟化桌面服务器池列表<small> 池分组</small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <!--<li><a class="btn-new-pool"><span style="color: #5499c7; "><i class="fa fa-plus"></i> Add new</span></a></li>-->
+          <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="hypervisors_pools" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>描述</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% include '/admin/pages/hypervisors_modals.html' %}
+  {% include '/admin/pages/hypervisors_detail.html' %}
+  {% include '/admin/pages/hypervisor_pool_detail.html' %}
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+          <div class="x_title">
+              <h3><i class="fa fa-briefcase"></i> GPUS <small></small></h3>
+              <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="btn-new-gpu" data-panel="gpus"><span style="color: #5499c7; "><i class="fa fa-plus"></i> 添加</span></a>
+                  <li><a class="btn-assing-vgpus" data-panel="gpus"><span style="color: #5499c7; "><i class="fa fa-spinner"></i> 重新分配物理设备</span></a>
+              </ul>
+              <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+              <table id="table-gpus" class="table">
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th>名称</th>
+                          <th>说明</th>
+                          <th>物理设备</th>
+                          <th>配置</th>
+                          <th>品牌</th>
+                          <th>模型</th>
+                          <th>架构</th>
+                          <th>内存</th>
+                          <!-- <th></th> -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block pagescript %}
+<!--
+    <script src="/isard-admin/bower_components/d3/d3.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/epoch/0.6.0/epoch.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/polymer/0.5.2/polymer.js"></script>
+-->
+    
+    <script src="/isard-admin/static/js/restful.js"></script>
+    <script src="/isard-admin/static/admin/js/hypervisors.js"></script>  
+    <script src="/isard-admin/static/admin/js/hypervisors_detail.js"></script> 
+    <script src="/isard-admin/static/admin/js/hypervisors_gpus.js"></script>       
+    <script src="/isard-admin/static/admin/js/hypervisors_pools.js"></script>           
+{% endblock %}

@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  isard-hypervisor:
+    container_name: isard-hypervisor
+    image: ${DOCKER_IMAGE_PREFIX}hypervisor:${DOCKER_IMAGE_TAG-latest}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.17
+    privileged: true
+    volumes:
+      - /opt/isard:/isard:rw
+      - /opt/isard-local/sockets/:/var/run/libvirt/
+      - /opt/isard-local/environment:/usr/local/etc/environment
+      - /dev/vfio:/dev/vfio
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    environment:
+      ENV: /usr/local/etc/environment
+      HYPER_ID:
+      HYPER_ENABLED:
+      DOMAIN:
+      VIDEO_DOMAIN:
+      VIEWER_SPICE:
+      VIEWER_BROWSER:

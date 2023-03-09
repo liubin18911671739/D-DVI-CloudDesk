@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  isard-stats-go:
+    restart: unless-stopped
+  isard-stats-node-exporter:
+    restart: unless-stopped
+  isard-grafana:
+    restart: unless-stopped
+  isard-loki:
+    restart: unless-stopped
+  isard-grafana-agent:
+    restart: unless-stopped

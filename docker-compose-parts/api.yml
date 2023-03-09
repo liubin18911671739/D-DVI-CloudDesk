@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+  isard-api:
+    container_name: isard-api
+    image: ${DOCKER_IMAGE_PREFIX}api:${DOCKER_IMAGE_TAG:-latest}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.10
+    volumes:
+      - /opt/isard/sshkeys/:/sshkeys:rw
+      - /opt/isard/certs/viewers:/viewers:ro
+      - /opt/isard/assets/img/desktops:/api/api/static/assets/img/desktops:rw
+      - /opt/isard/config:/usr/local/etc/isardvdi
+      - /opt/isard/backups:/api/backups:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      DOMAIN:
+      LOG_LEVEL:
+      RETHINKDB_HOST:
+      RETHINKDB_PORT:
+      RETHINKDB_DB:
+      API_ISARDVDI_SECRET:
+      API_HYPERVISORS_SECRET:
+      WG_HYPERS_NET:
+      WG_GUESTS_NETS:
+      WG_GUESTS_DHCP_MASK:
+      VPN_MTU:
+      USAGE:
+      VIEWER_RDPGW:
+      FRONTEND_SHOW_BOOKINGS:
+      FRONTEND_DOCS_URI:
+      FRONTEND_SHOW_TEMPORAL:
+      DIRECTVIEWER_MODE:

@@ -1,0 +1,59 @@
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="checkbox">
+            <label class="">
+               <div class="icheckbox_flat-green" style="position: relative;">
+                  <input type="checkbox" id="hardware-virtualization_nested" name="hardware-virtualization_nested" style="position: absolute; opacity: 0;">
+                  <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                  </ins>
+               </div>
+               <b>Nested virtualization</b>
+            </label>
+      </div> 
+   </div>
+</div>
+<br/>
+<div class="row">
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>vCPUs</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-vcpus" name="hardware-vcpus">           
+      </select>
+   </div>
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>Memory (GB)</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-memory" name="hardware-memory">  
+      </select>
+   </div>
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>Video:</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-videos" name="hardware-videos">
+      </select>
+   </div>
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>Disk Bus:</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-disk_bus" name="hardware-disk_bus">
+      </select>
+   </div>
+</div>
+<div class="row">
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>Boot:</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-boot_order" name="hardware-boot_order">
+      </select>
+   </div>
+   <!-- <div class="col-md-3 col-sm-3 col-xs-12">
+      <label>Disk Qos:</label>
+      <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="hardware-qos_id" name="hardware-qos_id">
+      </select>
+   </div> -->
+</div>
+<div class="row">
+   <div class="col-md-12 col-sm-12 col-xs-12">
+      <label class="control-label" for="hardware-interfaces">Networks: (select multiple networks holding Control key and clicking them)
+      </label>
+      <select id="hardware-interfaces" name="hardware-interfaces[]" class="tags-select roundbox" multiple="multiple" size="9" style="width: 100%;" disabled>
+      </select>
+   </div>
+</div>    
+   
+    <script src="/isard-admin/static/js/snippets/domain_hardware.js"></script> 

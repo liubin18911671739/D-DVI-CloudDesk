@@ -1,0 +1,66 @@
+id:
+  required: true
+  empty: false
+  default_setter: genuuid
+accessed:
+  type: float
+active:
+  type: boolean
+email:
+  required: false
+  type: string
+group:
+  required: true
+  empty: false
+  type: string
+secondary_groups:
+  required: false
+  type: list
+  default: []
+name:
+  required: true
+  type: string
+  empty: false
+  minlength: 1
+category:
+  required: true
+  empty: false
+  type: string
+description: 
+  required: false
+  type: string
+password:
+  required: true
+  type: string
+photo:
+  required: false
+provider:
+  required: true
+  type: string
+role:
+  required: true
+  type: string
+  allowed:
+    - manager
+    - user
+    - admin
+    - advanced
+username:
+  required: true
+  type: string
+uid:
+  required: true
+  empty: false
+  type: string
+  default_setter: genuuid
+quota:
+  type: 
+    - dict
+    - boolean
+  default: false
+  schema: quotas
+active:
+  default: true
+default_templates:
+  type: list
+  required: false

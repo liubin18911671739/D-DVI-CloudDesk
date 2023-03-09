@@ -1,0 +1,367 @@
+{
+    "components": {
+        "navbar": {
+            "admin": "Administrazioa",
+            "help": "Laguntza",
+            "vpn": {
+                "downloaded": {
+                    "title": "Deskargatuta",
+                    "description": "VPN konfiguratzeko fitxategia ondo deskargatu da"
+                },
+                "download": "VPN",
+                "downloadvpn-error": {
+                    "title": "Akats",
+                    "description": "Ezin izan genuen VPN konfigurazio fitxategia deskargatu akats baten ondorioz"
+                }
+            },
+            "deployments": "Hedapenak"
+        },
+        "help": {
+            "close-guide": "Gida itxi",
+            "local-client": "Tokiko bezeroa erabiltzea (gomendatua)",
+            "best-performance": "Errendimendu onena duen aukera da",
+            "install": "Instalatu",
+            "other-windows-versions": "Windowsen beste bertsio batzuk",
+            "once-installed": "Instalatu ondoren, 'Tokiko bezeroa' botoian klik egin behar duzu, eta mahaigain birtualeko fitxategia deskargatuko da",
+            "use-browser": "Nabigatzailea erabiltzea",
+            "no-install": "Ez da beharrezkoa kanpoko aplikaziorik instalatzea, {worse-performance}. Botoian klik egin besterik ez duzu egin behar, eta mahaigain birtuala beste erlaitz batean irekiko da",
+            "worse-performance": "Baina errendimendua okerragoa izango da",
+            "spice-client-required": "Beharrezkoa da kanpoko aplikazio bat instalatzea.",
+            "text": {
+                "macos": "MacOS euskarririk gabeko plataforma bat da, nabigatzailea erabili behar da",
+                "ios": "iOS sistema eragilearekin honako aplikazio hau instalatu behar da:",
+                "windows": "Windows sistema eragilearekin honako instalatzaile hauek deskargatu eta exekutatu behar dira:",
+                "android": "Android sistema eragilearekin honako aplikazio hau instalatu behar da:",
+                "linux": "Linux sistema eragilearekin honako agindu hauek exekutatu behar dira:"
+            }
+        },
+        "not-found": {
+            "title": "Eskatutako helbidea ez dugu aurkitu",
+            "home": "Hasierara itzuli"
+        },
+        "title": {
+            "logo-alt": "Logotipoa"
+        },
+        "desktop-cards": {
+            "table-header": {
+                "viewers": "Bisoreak",
+                "action": "Ekintza",
+                "description": "Deskribapena",
+                "state": "Egoera",
+                "name": "Izena"
+            },
+            "open-with": "Irekia",
+            "actions": {
+                "delete": "Ezabatu"
+            },
+            "no-info-default": "Ez dago deskribapen erabilgarririk",
+            "filter-label": "Iragazi"
+        },
+        "rdp-modal": {
+            "message": {
+                "disconnected": "Deskonektatu egin zaituzte",
+                "connecting": "Zerbitzarira konektatutzen…",
+                "error": "Konexio-errorea",
+                "unstable": "Sareko konexio-zerbitzariak ezegonkorra dirudi"
+            },
+            "title": {
+                "disconnected": "lineaz kanpo",
+                "connecting": "Konektatzen",
+                "error": "Bezeroaren errorea",
+                "unstable": "ezegonkor"
+            },
+            "button-refresh": "Eguneratu"
+        },
+        "statusbar": {
+            "desktops-started": "Abiarazitako idazmahaiak",
+            "new-desktop": "Mahaigain berria",
+            "checkbox-text": "Abiatuak soilik",
+            "checkbox-text-short": "Abiarazita",
+            "cancel": "Ezeztatu",
+            "select": "Aukeratu",
+            "upload-file": "Fitxategia igo"
+        }
+    },
+    "views": {
+        "error": {
+            "title": "Akatsa",
+            "codes": {
+                "401": "Zure taldeak ez du baimenik orrialde honetan sartzeko",
+                "403": "Ez duzu baimenik orri honetan sartzeko",
+                "500": "Ustekabeko errorea"
+            },
+            "go-home": "Hasiera"
+        },
+        "login": {
+            "title": "Saioa hasi",
+            "form": {
+                "select-category": "Mesedez, aukeratu bat",
+                "usr": "Erabiltzailearen izena",
+                "pwd": "Pasahitza",
+                "login": "Saioa hasi"
+            },
+            "other-logins": "edo honako hauek erabiliz hasi",
+            "isard-logo-alt": "IsardVDIren logotipoa sarrio baten burua da.",
+            "powered-by": "Egilea {isardvdi}",
+            "errors": {
+                "500": "Zerbitzariaren errorea",
+                "401": "Erabiltzailea edo pasahitza ez dira zuzenak",
+                "generic": "Akats bat gertatu da"
+            }
+        },
+        "maintenance": {
+            "title": "Momentu honetan, Isard zerbitzua mantentze-lanetan dago",
+            "the-service": "Zerbitzua berehala egongo da erabilgarri",
+            "sorry": "barkatu eragozpenak",
+            "go-login": "Joan saioa hastera"
+        },
+        "not-found": {
+            "title": "Eskatutako helbidea ez dugu aurkitu",
+            "back": "Hasierara itzuli"
+        },
+        "register": {
+            "title": "Erregistroa",
+            "code": "Erregistro-kodea",
+            "register": "Izena eman",
+            "errors": {
+                "500": "Zerbitzariaren errorea",
+                "401": "Amaitutako saioa",
+                "404": "Kodea ez da aurkitu"
+            }
+        },
+        "select-template": {
+            "no-templates": {
+                "title": "Erabiltzaile honentzat ez dago txantiloirik",
+                "subtitle": "Jarri harremanetan administratzailearekin akatsa dela uste baduzu"
+            },
+            "which-template": "Zein idazmahai erabili nahi duzu?",
+            "notification": {
+                "downloaded": {
+                    "description": "Mahaigana arrakataz deskargatua izan da",
+                    "title": "Deskargatua"
+                },
+                "loading": {
+                    "description": "Zerbitzariaren erantzunaren zain",
+                    "title": "Abiarazten"
+                }
+            },
+            "loading": "Txantiloiak kargatzen",
+            "status": {
+                "stopped": {
+                    "action": "Hasi",
+                    "text": "Gelditua"
+                },
+                "started": {
+                    "action": "Geldi",
+                    "text": "Hasia"
+                },
+                "failed": {
+                    "text": "Hutsegitea",
+                    "action": "Berrabiarazi"
+                },
+                "notCreated": {
+                    "action": "Sortu"
+                },
+                "shutting-down": {
+                    "action": "Gelditu",
+                    "text": "Gelditu"
+                },
+                "waitingip": {
+                    "action": "Gelditu",
+                    "text": "IPa itxaroten"
+                },
+                "working": {
+                    "text": "Itxaroten",
+                    "action": "Lanean"
+                },
+                "readyCreation": {
+                    "text": "Sorkuntzarako prest"
+                },
+                "downloading": {
+                    "text": "Deskargatzen"
+                }
+            },
+            "error": {
+                "open-error": {
+                    "title": "Errorea",
+                    "description": "Ezin izan genuen mahai birtuala ireki akats baten ondorioz"
+                },
+                "start-timeout": {
+                    "description": "Mahaigaina abiatzen, minutuak behar izan ditzake",
+                    "title": "Denbora-mugaz kanpo"
+                },
+                "start-quota": {
+                    "description": "Une beran mahaigain gehiegi exekutatzen ari zara",
+                    "title": "Errorea"
+                },
+                "start-error": {
+                    "title": "Errorea",
+                    "description": "Akats baten ondorioz, ezin izan dugu mahaigain birtuala sortu"
+                },
+                "create-quota": {
+                    "description": "Mahaigain gehiegi dituzu",
+                    "title": "Errorea"
+                },
+                "create-error": {
+                    "description": "Akats baten ondorioz, ezin izan dugu mahaigain birtuala sortu",
+                    "title": "Errorea"
+                },
+                "delete-error": {
+                    "description": "Ezin izan genuen mahai birtuala ezabatu akats baten ondorioz",
+                    "title": "Akats"
+                },
+                "stop-timeout": {
+                    "title": "Denboraz kanpo",
+                    "description": "Mahaigaina gelditzen ari da, honek minutu batzuk iraun ditzake"
+                },
+                "stop-error": {
+                    "title": "Akats",
+                    "description": "Ezin izan genuen mahai birtuala ireki akats baten ondorioz"
+                },
+                "create-timeout": {
+                    "title": "Denbora-mugaz kanpo",
+                    "description": "Mahaigaina sortzen ari da, eta horrek minutu batzuk iraun dezake"
+                }
+            },
+            "remove": "Ezabatu",
+            "viewer-name": {
+                "browser-vnc": "Nabigatzailea",
+                "file-spice": "SPICE",
+                "file-rdpvpn": "RDP VPN",
+                "browser-rdp": "RDP nabigatzaile",
+                "file-rdpgw": "RDP"
+            },
+            "viewer": "{name} bisorea",
+            "viewers": "Bisoreak",
+            "volatile": "Aldi baterako mahaigainak",
+            "persistent": "Mahaigain iraunkorrak",
+            "template": "Txantiloia",
+            "volatile-compact": "Ez-iraunkorra",
+            "persistent-compact": "Iraunkor",
+            "no-desktops-filtered": {
+                "subtitle": "Mahaigain berri bat sor dezakezu goiko eskuineko botoiarekin",
+                "title": "Ez dago erakusteko mahaigainik oraingo iragazkiekin"
+            },
+            "no-desktops": {
+                "subtitle": "Mahaigain berri bat sor dezakezu goiko eskuineko botoiarekin",
+                "title": "Erakusteko mahaigainik ez dago oraingo iragazkiekin"
+            }
+        },
+        "cancel": "itxi",
+        "deployment": {
+            "no-started-desktops": {
+                "title": "Ez dago inplementazio honetan hasitako mahaigainik"
+            },
+            "desktop": {
+                "not-available": "Mahaigaina ez dago eskuragarri"
+            }
+        },
+        "deployments": {
+            "no-deployments": {
+                "subtitle": "Akats bat dela uste baduzu, jar zaitez administratzailearekin harremanetan",
+                "title": "Erabiltzaile honentzat ez dago hedapenik"
+            }
+        },
+        "direct-viewer": {
+            "button": {
+                "browser": "Nabigatzailea"
+            }
+        }
+    },
+    "forms": {
+        "new-desktop": {
+            "template-table-column-headers": {
+                "group": "Taldea",
+                "selected": "Aukeratuak",
+                "name": "Izena",
+                "description": "Deskribapena",
+                "category": "Kategoria",
+                "user": "Erabiltzailea",
+                "image": "Irudia"
+            },
+            "title": "Mahaigain berria sortu:",
+            "section-title-template": "Txantilloi bat aukeratu:",
+            "desktop-name": "Mahaigainaren Izena",
+            "desktop-description": "Mahaigainaren deskribapena",
+            "desktop-template": "Txantiloia",
+            "filter": "Iragazkia",
+            "filter-placeholder": "Idatzi bilaketarako"
+        },
+        "domain": {
+            "info": {
+                "name": "Izena",
+                "description": "Deskribapena"
+            }
+        },
+        "clear": "Garbitu",
+        "cancel": "Baliogabetu",
+        "submit": "Bidali",
+        "create": "Sortu",
+        "registration": {
+            "code": "Erregistro kodea"
+        }
+    },
+    "validations": {
+        "required": "{property} derrigorrezkoa da.",
+        "minLengthValue": "{property} eremuak {model} hizki ditu, baina gutxienez {min} izan beharko lituzke.",
+        "maxLengthValue": "{property} eremuak {model} hizki dauzka, baina gehienez {max} hizki izan ditzake.",
+        "inputFormat": "Onartutako karaktereak dira hizkiak, zenbakiak, koma, puntua, -,_"
+    },
+    "messages": {
+        "confirmation": {
+            "delete-desktop": "'{name}' ezabatu egingo da, jarraituko duzu?"
+        },
+        "title": {
+            "delete": "Ezabatu"
+        },
+        "yes": "Bai",
+        "no": "Ez",
+        "info": {
+            "creating-desktop": "Mahaigaina sortzen",
+            "file-downloaded": "Fitxategia deskargatzen",
+            "deleting-desktop": "Mahaigaina ezabatzen",
+            "opening-desktop": "Mahaigaina zabaltzen"
+        },
+        "loading": "Kargatzen"
+    },
+    "errors": {
+        "generic_error": "Errore bat gertatu da",
+        "desktop_start_category_vcpu_quota_exceeded": "Kategoria honentzako vCPU muga gainditua",
+        "desktop_start_category_memory_quota_exceeded": "Kategoria honentzako memoria muga gainditua",
+        "user_new_group_cuota_exceeded": "Talde honentzako erabiltzaile sorrera muga gainditua",
+        "template_new_group_quota_exceeded": "Taldearen txantiloi sorrera muga gainditua",
+        "template_new_user_quota_exceeded": "Erabiltzailearen txantilioi sorrera muga gainditua",
+        "desktop_start_memory_quota_exceeded": "Erabiltzaile honentzako memoria muga gainditua",
+        "desktop_start_vcpu_quota_exceeded": "Erabiltzaile honentzako vCPU muga gainditua",
+        "desktop_start_group_memory_quota_exceeded": "Talde honentzako memoria muga gainditua",
+        "desktop_start_category_quota_exceeded": "Kategoria honentzako hasieratutako mahaigain kopurua gainditua",
+        "user_new_category_cuota_exceeded": "Kategoria honentzako erabiltzaile sorrera muga gainditua",
+        "desktop_start_user_quota_exceeded": "Erabiltzaile honentzako hasieratutako mahaigain muga gainditua",
+        "desktop_new_user_quota_exceeded": "Mahaigaina sortzerakoan erabiltzaile-kuota gainditu da",
+        "desktop_new_group_quota_exceeded": "Mahaigaina sortzerakoan talde-kuota gaindituta",
+        "desktop_new_category_quota_exceeded": "Mahaigaina sortzerakoan kategoria-kuota gaindituta",
+        "user_disabled": "Erabiltzailea desgaituta dago",
+        "category_generic_exception": "Kategoria berreskuratzerakoan errore bat gertatu da",
+        "username_exists": "Jada badago erabiltzaile izen hori",
+        "login_failed": "Saioan sartzean akatsa",
+        "template_new_category_quota_exceeded": "Kategoriako txantiloi sorrera-muga gaindituta",
+        "desktop_new_template_forbidden": "Baimen inguruko akats bat mahaigaina sortzerakoan",
+        "update_generic_exception": "Eguneratzerakoan errore bat gertatu da",
+        "desktop_action_failed": "Mahaigaineko ekintza gauzatzerakoan errore bat gertatu da",
+        "template_new_not_created": "Txantiloia sortzean errore bat gertatu da",
+        "get_generic_exception": "Datuak berreskuratzean errore bat gertatu da",
+        "user_new_generic_exception": "Erabiltzailea sortzean errore bat gertatu da",
+        "user_delete_generic_exception": "Erabiltzailea ezabatzerakoan errore bat gertatu da",
+        "templates_get_error": "Txantiloiak berreskuratzean errore bat gertatu da",
+        "quota_general_exception": "Erabiltzaile-kuotei lotutako akats bat gertatu da",
+        "bad_request": "Eskaerako parametroak okerra dira",
+        "bad_request_title": "Errorea eskaeran",
+        "undefined_error": "Errore bat gertatu da",
+        "desktops_get_error": "Mahaigainak berreskuratzean errore bat gertatu da",
+        "desktop_stop_timeout": "Mahaigaina gelditzerakoan denbora-muga igaro da",
+        "viewer_not_started": "Ikuslea ez dago abiarazita",
+        "forbidden": "Baliabideen baimenen inguruan errore bat gertatu da",
+        "register_generic_exception": "Erregistro-prozesuan errore bat gertatu da",
+        "desktop_start_timeout": "Mahaigaina abiarazterakoan denbora-muga igaro da"
+    }
+}

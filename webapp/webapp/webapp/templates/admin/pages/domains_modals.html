@@ -1,0 +1,754 @@
+<style>
+     [id^=modal_add_] .selected {
+        background-color: #e0f1af !important;
+    }
+
+    [id^=modal_add_] tr {
+        cursor: pointer;
+    } 
+
+    .my-error{
+        margin-top: 5px;
+        color: #B94A48 !important;
+        background-color: #F2DEDE !important;
+        border: 1px solid #EED3D7 !important;
+        padding: 10px;
+    }
+</style>
+
+<div class="modal fade" id="modalAddDesktop" tabindex="-1" role="dialog" 
+   aria-labelledby="modalAddDesktop" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <button type="button" class="close"
+               data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-desktop"> </i> 创建多个虚拟桌面
+            </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalAdd" class="form-inline form-label-left">
+               <div class="x_panel">
+                  <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 桌面名称和说明</h4>
+                  <div class="x_content" style="padding: 0px;">
+                     <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                           <label class="control-label" for="name">名称 <span class="required">*</span>
+                           </label>
+                           <input id="name" class="roundbox" maxlength="40" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                           <label class="control-label" for="description">说明 
+                           </label>
+                           <input id="description" class="roundbox" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="x_panel">
+                  <h4><i class="fa fa-cubes" aria-hidden="true"></i>选择模板</h4>
+                  <input  id="template" name="template" type="hidden" required>
+                  <table id="modal_add_desktops" class="table" cellspacing="0" width="100%"  style="margin-top: 0px;">
+                     <thead>
+                        <tr>
+                              <th>名称</th>
+                              <th>用户组</th>
+                              <th>用户</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                  </table>
+                  <div id="datatables-error-status"></div>
+               </div>
+               <div class="x_panel" id="hardware-block" style="display: none;">
+                  <h4><i class="fa fa-gear" aria-hidden="true"></i> 硬件</h4>
+                  {% include '/snippets/domain_hardware_edit.html' %}
+               </div>
+               <div class="x_panel" style="display: block;">
+                  <p style="font-size: 18px;margin-bottom:0px;">创建此桌面的用户</p>
+                  <div id="alloweds-block">
+                     {% include '/snippets/alloweds_add.html' %}
+                  </div>
+               </div>
+            </form>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+               <ul class="nav navbar-left panel_toolbox">
+                  <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                  </li>
+               </ul>
+               <ul class="nav navbar-right panel_toolbox">
+                  <li><button id="send-block" type="button" class="btn btn-success">创建桌面</button></li>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalAddFromBuilder" tabindex="-1" role="dialog" 
+   aria-labelledby="modalAddBuilder" aria-hidden="true">
+    <div class="modal-dialog">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header"  style="padding: 5px;">
+               <button type="button" class="close" 
+                  data-dismiss="modal">
+               <span aria-hidden="true">&times;</span>
+               <span class="sr-only">关闭</span>
+               </button>
+               <h4 class="modal-title" id="myModalLabel">
+                  <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-gears"> </i>    从自动化构建器创建桌面
+               </h4>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body" style="padding: 7px;">
+               <form id="modalAdd" class="form-inline form-label-left">
+                  <div id="modalData" class="x_panel" style="padding: 5px;">
+                     <p style="font-size: 18px;margin-bottom:0px;">桌面名称和说明</p>
+                     <div class="x_content" style="padding: 0px;">
+                           
+                        <div class="row">
+                           <div class="col-md-4 col-xs-12">
+                              <label class="control-label" for="name">名称 <span class="required">*</span>
+                              </label>
+                              <input id="name" maxlength="40" pattern="[_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text">
+                           </div>
+                           <div class="col-md-8 col-xs-12">
+                              <label class="control-label" for="description">说明 
+                              </label>
+                              <input id="description" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div id="modalBuilder" class="x_panel" style="padding: 5px;">
+                     <p style="font-size: 18px;margin-bottom:0px;">选择自动映像生成器</p>
+                     <input  id="builder-id" name="builder-id" type="hidden"  required>
+                     <input  id="install-id" name="install-id" type="hidden" required>
+                     <input  id="icon" name="icon" type="hidden" required>
+                     <table id="modal_add_builder" class="table" cellspacing="0" width="100%"  style="margin-top: 0px;">
+                        <thead>
+                           <tr>
+                              <th>名称</th>
+      <!--
+                              <th>Arch</th>
+                              <th>Rev</th>
+                              <th>Size</th>
+                              <th>SizeCompress</th>
+      -->
+                           </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                     </table>
+                     <div id="datatables-error-status"></div>
+                              <label class="">创建选项<span class="required">*</span>
+                              </label>
+
+                              <textarea id="builder-options" name="builder-options" class="form-control" rows="5" placeholder="Options" style="width:100%"></textarea>
+                  </div>
+
+
+                           
+                  <div class="x_panel" id="builder-hardware-block" style="padding: 5px;">
+                     <p style="font-size: 18px;margin-bottom:0px;">硬件</p>
+                     {% include '/snippets/domain_hardware_disksize_edit.html' %}
+                  </div>
+                  <!-- Modal Footer -->
+                  <div class="modal-footer" style="padding: 5px;">
+                     <ul class="nav navbar-left panel_toolbox">
+                        <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                     </ul>
+                     <ul class="nav navbar-right panel_toolbox">
+                        <li><button id="send" type="button" class="btn btn-success">创建桌面</button></li>
+                     </ul>
+                  </div>
+               </form>
+            </div>
+         </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalAddFromMedia" tabindex="-1" role="dialog" 
+   aria-labelledby="modalAddMedia" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+           <button type="button" class="close" 
+              data-dismiss="modal">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+           </button>
+           <h4 class="modal-title" id="myModalLabel">
+              <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-circle-o"> </i>   从媒体创建桌面
+           </h4>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+               <form id="modalAdd" class="" data-parsley-validate>
+                   
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                          <div id="modalData" class="x_panel" >
+                             <p style="font-size: 18px;margin-bottom:0px;">桌面名称和说明</p>
+                             <div class="x_content">
+                                <label for="name">名称<span class="required"> *</span></label>
+                                <input type="text" id="name" class="form-control" name="name" pattern="[_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required />
+                      
+                                  <label for="message">说明</label>
+                                  <textarea id="description" class="form-control" name="description"></textarea>                              
+                             </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                          <div id="modalMedia" class="x_panel" style="background-color:#f5f5f0;">
+                             <p style="font-size: 18px;margin-bottom:0px;"><i class="fa fa-circle-o"></i> 选择要从中引导的 ISO/软盘</p>
+                             <div id="datatables-media-error-status"></div>
+                             <input  id="media" name="media" type="hidden" required>
+                             <table id="modal_add_media" class="table" cellspacing="0" width="100%"  style="margin-top: 0px;">
+                                <thead>
+                                   <tr>
+                                      <th>名称</th>
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                             </table>
+                        
+                          </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">                   
+                            <div class="row">
+                                  <div id="modalInstall" class="x_panel" style="background-color:#efeff5;">
+                                     <p style="font-size: 18px;margin-bottom:0px;"> 选择操作系统硬件模板</p>
+                                     <div id="datatables-install-error-status"></div>
+                                     <input  id="install" name="install" type="hidden" required>
+                                     <table id="modal_add_install" class="table" cellspacing="0" width="100%"  style="margin-top: 0px;">
+                                        <thead>
+                                           <tr>
+                                              <th>名称</th>
+                                              <th>版本</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">    
+                          <div class="x_panel" id="media-hardware-block"  style="background-color:#efeff5;">
+                             <p style="font-size: 18px;margin-bottom:0px;"><i class="fa fa-wrench"></i> 调整操作系统模板硬件</p>
+                             {% include '/snippets/domain_hardware_disksize_edit.html' %}
+                          </div>
+                        </div>
+                    </div>
+
+               </form>
+              <!-- Modal Footer -->
+              <div class="modal-footer">
+             <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+             </ul>
+             <ul class="nav navbar-right panel_toolbox">
+                <!--
+                   <li><button id="btn-hardware" type="button" class="btn btn-info" style="display: none;">Set hardware</button></li>
+                   -->
+                <li><button id="send" type="button" class="btn btn-success">创建桌面</button></li>
+             </ul>
+          </div>
+       
+          </div>
+          </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalServer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">   
+               <button type="button" class="close" 
+                  data-dismiss="modal">
+                     <span aria-hidden="true">&times;</span>
+                     <span class="sr-only">关闭</span>
+               </button>
+               <h4 class="modal-title" id="myModalLabel">
+                  <i class="fa fa-plug fa-1x"> </i> 服务器
+               </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalServerForm" class="form-horizontal form-label-left">
+               <input  id="id" name="id" type="hidden" required>
+               <div class="item form-group">
+                  </label>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                     <div class="checkbox">
+                        <label class="">
+                        <div class="icheckbox_flat-green" style="position: relative;">
+                            <input type="checkbox" id="server" name="server" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                            </ins>
+                        </div> 设置为服务器（将始终启动）
+                        </label>
+                    </div> 
+                  </div>
+               </div>
+            </form>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+               <button id="send" type="button" class="btn btn-success">更新服务器</button>
+            </ul>
+        </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalEditXml" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">   
+               <button type="button" class="close" 
+                  data-dismiss="modal">
+                     <span aria-hidden="true">&times;</span>
+                     <span class="sr-only">关闭</span>
+               </button>
+               <h4 class="modal-title" id="myModalLabel">
+                  <i class="fa fa-file-code-o fa-1x"> </i> 编辑 XML
+               </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalEditXmlForm" class="form-horizontal form-label-left">
+               <input  id="id" name="id" type="hidden" required>
+               <div class="item form-group">
+                  </label>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                     <textarea class="form-control" rows="30" id="xml"></textarea>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+               <button id="send" type="button" class="btn btn-success">更新 XML</button>
+            </ul>
+        </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalJumperurl" tabindex="-1" role="dialog" aria-labelledby="modalJumperurl" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal">
+                 <span aria-hidden="true">&times;</span>
+                 <span class="sr-only">关闭</span>
+             </button>
+             <h4 class="modal-title" id="myModalLabel">
+                 <i class="fa fa-plus fa-1x"></i> 直接访问链接 <i class="fa fa-key"></i>
+             </h4>
+         </div>
+
+         <!-- Modal Body -->
+         <div class="modal-body">
+             <form id="modalJumperurlForm" class="form-horizontal">
+                 <div class="x_panel">
+                     <div class="x_content">
+                         <input id="id" name="id" hidden ></input>
+                         <div class="item form-group">
+                             <label class="control-label col-md-6 col-sm-6 col-xs-12" for="jumperurl-check">
+                              启用直接访问
+                             </label>
+                             <div class="col-md-6 col-sm-6 col-xs-12">
+                                 <div class="checkbox">
+                                     <label class="">
+                                         <div class="icheckbox_flat-green">
+                                             <input type="checkbox" id="jumperurl-check" name="jumperurl-check" class="flat"  style="position: absolute; opacity: 0;">
+                                             <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                             </ins>
+                                         </div>
+                                     </label>
+                                 </div>                               
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-md-8 col-sm-8 col-xs-12">
+                                 <input id="jumperurl" class="form-control roundbox" name="jumperurl" style="width:100%; " placeholder="Viewer url" disabled />
+                             </div>
+                             <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <button class="btn btn-info pull-right btn-copy-jumperurl" type="button"  data-placement="top"><i class="fa fa-clipboard" ></i> Copy to clipboard</button>
+                             </div>                                                                        
+                         </div>
+                     </div>
+                 </div>
+             </form>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+             <ul class="nav navbar-left panel_toolbox">
+                 <li>
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                 </li>
+             </ul>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalForcedhyp" tabindex="-1" role="dialog" aria-labelledby="modalForcedHyp" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header" style="padding: 5px;">
+            <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+                  <i class="fa fa-plus fa-1x"></i><i class="fa fa-rocket"> </i> 强制虚拟管理服务器
+            </h4>
+         </div>
+
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalForcedhypForm" class="form-horizontal">
+               <div class="x_panel">
+                  <div class="x_content">
+                     <input hidden id="id" name="id"/>
+                     <div class="item form-group">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12">自定义域的虚拟服务器</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="checkbox">
+                              <label class="">
+                                 <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="forcedhyp-check" name="forcedhyp-check" class="flat"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                 </div>
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                           <select id="forced_hyp" name="forced_hyp" class="form-control" required>
+                           </select> 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+               <li><button id="send" type="button" class="btn btn-success">更新</button></li>
+            </ul>
+        </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalFavouriteHyp" tabindex="-1" role="dialog" aria-labelledby="modalFavouriteHyp" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header" style="padding: 5px;">
+            <button type="button" class="close" data-dismiss="modal">
+               <span aria-hidden="true">&times;</span>
+               <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <i class="fa fa-plus fa-1x"></i><i class="fa fa-rocket"> </i> 喜欢虚拟管理程序
+            </h4>
+         </div>
+
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalFavouriteHypForm" class="form-horizontal">
+               <div class="x_panel">
+                  <div class="x_content">
+                     <input hidden id="id" name="id"/>
+                     <div class="item form-group">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12">域将优先在定义的虚拟管理程序启动. <br/>   </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                           <div class="checkbox">
+                              <label class="">
+                                 <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="favouritehyp-check" name="favouritehyp-check" class="flat"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                 </div>
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                           <select id="favourite_hyp" name="favourite_hyp" class="form-control" required>
+                           </select> 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+               <li><button id="send" type="button" class="btn btn-success">更新</button></li>
+            </ul>
+        </div>
+      </div>
+   </div>
+</div>
+
+<div class="modal fade" id="modalBulkEdit" tabindex="-1" role="dialog" 
+     aria-labelledby="modalBulkEdit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header"  style="padding: 5px;">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-desktop"> </i>  编辑多个桌面
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body" style="padding: 7px;">
+                
+              <form id="modalBulkEditForm" class="form-inline form-label-left"> 
+			  <div class="x_panel" style="padding: 5px;">
+                  <p style="font-size: 18px;margin-bottom:0px;">桌面名称和说明</p>
+					<div class="x_content" style="padding: 0px;">
+<!--
+                         <input type="hidden" id="id" name="id"/>
+                         <input type="hidden" id="name" name="name"/>
+-->
+                        <div class="row">
+<!--
+                            <div class="col-md-4 col-xs-12">
+                                <label class="control-label" for="name">Name <span class="required">*</span>
+                                </label>
+                                  <input id="name_hidden" disabled maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text">
+                            </div>
+-->
+
+                            <div class="col-md-8 col-xs-12">
+                                <label class="control-label" for="description">受影响的域
+                                </label>
+                                  <select id="ids" name="ids[]" class="select2_multiple form-control" multiple="multiple">
+                                  </select>                                
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <button class="btn btn-success btn-xs pull-right btn-select-all" type="button"  data-placement="top" ><i class="fa fa-cubes m-right-xs"></i>全部选择</button>
+                                <button class="btn btn-success btn-xs pull-right btn-unselect-all" type="button"  data-placement="top" ><i class="fa fa-cubes m-right-xs"></i>全部不选</button>
+                            </div>                            
+                        </div>
+				</div>
+			  </div>
+
+            
+			  <div class="x_panel" id="hardware-block" style="padding: 5px;">
+					 <p style="font-size: 18px;margin-bottom:0px;">硬件</p>
+					{% include '/snippets/domain_hardware_edit.html' %}
+              </div>
+
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer" style="padding: 5px;">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                   </li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+<!--
+                    <li><button id="btn-hardware" type="button" class="btn btn-info" style="display: none;">Edit hardware</button></li>
+-->
+                    <li><button id="send" type="button" class="btn btn-success">编辑桌面</button></li>
+                   </li>
+                </ul>
+            </div>                       
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalDeleteTemplate" tabindex="-1" role="dialog" aria-labelledby="modalDeleteTemplate" aria-hidden="true" >
+   <div class="modal-dialog modal-lg" >
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <i class="fa fa-warning" style="color:red"></i>   删除模板和派生
+            </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <div class="row">
+               <div class="x_panel">
+                  <div class="x_title">
+                     <h4>List of domains to be deleted<small></small></h4>
+                     <div class="clearfix"></div>
+               </div>
+               <input  id="id" name="id" type="hidden" required>
+                  {% include '/snippets/template_tree.html' %}
+
+               </div>
+            </div>
+            <div class="row">
+               <div class="x_panel">
+                     <div class="x_content">
+                        <p style="font-size: 18px;margin-bottom:0px; color: red"> 所有这些桌面和模板都将被删除!</p><br>
+                        所有这些都取决于您要删除的模板，因此也必须删除它们.<br>
+                        此操作无法撤消！
+                     </div>
+               </div>
+            </div>
+         </div>
+         <!-- Modal Footer -->
+         <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+               <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>                
+            <ul class="nav navbar-right panel_toolbox">
+               <li><button id="send" type="button" class="btn btn-danger">停止并全部删除!</button></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div class="modal fade" id="modalDuplicateTemplate" tabindex="-1" role="dialog" aria-labelledby="modalTemplateDesktop" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+           <!-- Modal Header -->
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">
+                   <span aria-hidden="true">&times;</span>
+                   <span class="sr-only">关闭</span>
+               </button>
+               <h4 class="modal-title" id="myModalLabel">
+                   <i class="fa fa-desktop"> </i> <i class="fa fa-long-arrow-right fa-1x"> </i> <i class="fa fa-cube"> </i> 仅在数据库中复制模板
+               </h4>
+           </div>
+
+           <!-- Modal Body -->
+           <div class="modal-body">
+               <form id="modalDuplicateTemplateForm" class="form-horizontal form-label-left" novalidate>
+                   <div class="x_panel">
+                       <div class="x_title">
+                           <h4><i class="fa fa-cubes"></i> 模板属性</h4>
+                           <div class="clearfix"></div>
+                       </div>
+                       <div class="x_content">
+                           <input id="id" name="id" class="template-id" hidden ></input>
+                           <div class="row">
+                               <div class="col-md-12 col-xs-12">
+                                   <label class="control-label" for="name">模板名称 <span class="required">*</span>
+                                   </label>
+                                   <input id="template-name" class="form-control template-name" maxlength="60" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 60]" name="name" placeholder="New template name" data-parsley-trigger="change" required type="text">
+                               </div>
+                               <input id="kind" name="kind" class="template-kind" hidden value="template" ></input>
+                           </div>
+                           <div class="row">
+                               <div class="col-md-12 col-xs-12">
+                                   <label class="control-label" for="description">模板说明
+                                   </label>
+                                   <textarea id="description" name="description" class="form-control col-md-7 col-xs-12 template-description"></textarea>
+                               </div>
+                           </div>
+                           <div class="col-md-4 col-xs-12">
+                              <label class="control-label" for="user_id">新用户所有者 <small>（空以保留您的）</small>
+                              </label>
+                              <select class="form-control roundbox" style="font-size:12px; padding:1px; width:100%; overflow: hidden; text-overflow: ellipsis;" id="user_id" name="user_id">
+                              </select>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="x_panel">
+                       <div class="x_title">
+                           <h4>选项</h4>
+                           <div class="clearfix"></div>
+                       </div>
+                       <div class="x_content">
+                           <div class="row">
+                               <div class="col-md-2 col-xs-2">
+                                   <label class="control-label" for="enabled-template">
+                                       启用
+                                       <div class="icheckbox_flat-green" style="position: relative;">
+                                           <input type="checkbox" id="enabled" name="enabled" class="flat" style="position: absolute; opacity: 0;">
+                                           <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                           </ins>
+                                       </div>
+                                   </label>
+                               </div>
+                               <input id="kind" name="kind" class="template-kind" hidden value="template" ></input>
+                           </div>
+                       </div>
+                   </div>
+                   <div id="alloweds-add">
+                   {% include '/snippets/alloweds_add.html' %}
+                   </div>
+               </form>
+           </div>
+           <!-- Modal Footer -->
+           <div class="modal-footer">
+               <ul class="nav navbar-left panel_toolbox">
+                   <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+               </ul>
+               <ul class="nav navbar-right panel_toolbox">
+                   <li><button id="send" type="button" class="btn btn-success">数据库中的重复模板</button></li>
+               </ul>
+           </div>
+       </div>
+   </div>
+</div>

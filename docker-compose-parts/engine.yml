@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  isard-engine:
+    container_name: isard-engine
+    image: ${DOCKER_IMAGE_PREFIX}engine:${DOCKER_IMAGE_TAG-latest}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.14
+    volumes:
+      - /opt/isard/certs/viewers:/certs:rw
+      - /opt/isard/sshkeys:/root/.ssh:rw
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - isard-db
+    env_file:
+      - .env

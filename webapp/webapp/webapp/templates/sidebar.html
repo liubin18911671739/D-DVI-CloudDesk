@@ -1,0 +1,180 @@
+<div class="navbar nav_title" style="border: 0;">
+  <a href="/isard-admin/about" class="site_title">
+    <img src="/isard-admin/static/img/isard.svg" class="sidebar_logo" alt="isard">
+    <span>虚拟云桌面</span>
+  </a>
+</div>
+
+<div class="clearfix"></div>
+<!-- sidebar menu -->
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">        
+  <div class="menu_section">
+    {% if current_user.role == 'manager' %}
+    <h3>管理员</h3>
+    <div class="clearfix"></div>
+    <ul class="nav side-menu">
+      <li><a href="/Desktops"><i class="fa fa-home"></i> 主页</a></li>
+      <li>
+        <a><i class="fa fa-user"></i> 用户<span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="/isard-admin/admin/users/Management"><i class="fa fa-book"></i> 管理</a></li>
+          <li><a href="/isard-admin/admin/users/QuotasLimits"><i class="fa fa-minus-circle"></i> 配额 / 限制</a></li>
+        </ul>
+      </li>
+      <li><a href="/isard-admin/admin/domains/render/Desktops"><i class="fa fa-desktop"></i> 桌面</a></li>
+      <li><a href="/isard-admin/admin/domains/render/Templates"><i class="fa fa-cubes"></i> 模板</a></li>
+      <li><a href="/isard-admin/admin/domains/render/Deployments"><i class="fa fa-tv"></i> 部署</a></li>
+      <li><a href="/isard-admin/admin/domains/render/Storage"><i class="fa fa-folder-open"></i> 存储</a></li>
+      <li><a href="/isard-admin/admin/isard-admin/media"><i class="fa fa-circle-o"></i> 媒介</a></li>
+      <li><a href="/monitor/" target="_blank"><i class="fa fa-bar-chart-o"></i> 监控</a></li>
+    </ul>
+    {% endif %}
+
+    {% if current_user.role == 'manager' %}
+    <div class="panel-body admin-status" style="display:none">
+      <div class="alert alert-success">
+        <div class="container">
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">桌面</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-desktops-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">并发</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-concurrent-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>   
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">模板</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-templates-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">ISO</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-isos-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">vCPUs</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-vcpus-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">内存</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-memory-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>  
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">用户</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="limits-users-bar progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>                                                                                                                                                                
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if current_user.role == 'admin'  and current_user.role != 'manager' %}
+    <h3>Administrator</h3>
+    <div class="clearfix"></div>
+      <ul class="nav side-menu">
+        <li><a href="/Desktops"><i class="fa fa-home"></i> 主页</a>
+        </li>
+        <li>
+          <a><i class="fa fa-user"></i> 用户<span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="/isard-admin/admin/users/Management"><i class="fa fa-book"></i> 管理</a></li>
+            <li><a href="/isard-admin/admin/users/QuotasLimits"><i class="fa fa-minus-circle"></i> 配额/限制</a></li>
+          </ul>
+        </li>
+        <li>
+          <a><i class="fa fa-desktop"></i> 域 <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="/isard-admin/admin/domains/render/Desktops"><i cl域ass="fa fa-desktop"></i> 桌面</a></li>
+            <li><a href="/isard-admin/admin/domains/render/Templates"><i class="fa fa-cubes"></i> 模板</a></li>
+            <li><a href="/isard-admin/admin/domains/render/Deployments"><i class="fa fa-tv"></i> 部署</a></li>
+            <li><a href="/isard-admin/admin/domains/render/Storage"><i class="fa fa-folder-open"></i> 存储</a></li>
+            <li><a href="/isard-admin/admin/isard-admin/media"><i class="fa fa-circle-o"></i>媒介</a></li>
+            <li><a href="/isard-admin/admin/domains/render/Resources"><i class="fa fa-gears"></i>资源</a></li>
+          </ul>
+          <li>
+            <a><i class="fa fa-briefcase"></i> 预订 <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="/isard-admin/admin/domains/render/Priority"><i class="fa fa-star"></i>优先级</a></li>
+              <li><a href="/isard-admin/admin/domains/render/Bookables"><i class="fa fa-gears"></i>资源</a></li>
+              <li><a href="/isard-admin/admin/domains/render/BookablesEvents"><i class="fa fa-history"></i>事件</a></li>
+            </ul>
+          </li>
+        </li>
+        <li>
+          <a><i class="fa fa-server"></i> 系统基础设施<span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="/isard-admin/admin/hypervisors"><i class="fa fa-rocket"></i> 虚拟服务器</a></li>
+            <li><a href="/isard-admin/admin/storage_nodes"><i class="fa fa-hdd-o"></i> 存储节点</a></li>
+          </ul>
+        </li>
+        <li><a href="/monitor/" target="_blank"><i class="fa fa-bar-chart-o"></i> 监控</a></li>
+        <li><a href="/isard-admin/admin/updates"><i class="fa fa-cloud-download"></i> 下载</a></li>
+        <li><a href="/isard-admin/admin/config"><i class="fa fa-gear"></i> 配置</span></a></li>
+      </ul>
+    {% endif %}
+
+    {% if current_user.role == 'admin' %}
+    <div class="panel-body admin-status" style="display:none">
+      <div class="alert alert-success">
+        <div class="container">
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">桌面</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-desktops progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">并发</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-concurrent progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>   
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">模板</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-templates progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">ISO镜像</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-isos progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">vCPUs</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-vcpus progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p> 
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">内存</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-memory progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>   
+          <p>
+            <span style="float: left; margin-right: 1em; width:65px;">用户</span>
+            <div class="progress" style="background-color: #9da8a3;margin-top:0px; margin-bottom:0px;">
+              <div class="system-users progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            </div>
+          </p>                                                                                                                                                              
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>

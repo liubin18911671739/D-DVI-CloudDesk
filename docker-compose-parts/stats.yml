@@ -1,0 +1,109 @@
+version: "3.5"
+services:
+  isard-stats-go:
+    image: ${DOCKER_IMAGE_PREFIX}stats-go:${DOCKER_IMAGE_TAG-latest}
+    volumes:
+      - /opt/isard-local/conntrack:/conntrack
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    container_name: isard-stats-go
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    restart: "no"
+    networks:
+      isard-network: {}
+    env_file:
+      - .env
+    environment:
+      - FLAVOUR=${FLAVOUR:-all-in-one}
+
+  isard-stats-node-exporter:
+    image: prom/node-exporter
+    container_name: isard-stats-node-exporter
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    restart: "no"
+    command:
+      - '--path.rootfs=/host'
+      - '--collector.disable-defaults'
+      - '--collector.cpu'
+      - '--collector.diskstats'
+      - '--collector.filesystem'
+      - '--collector.loadavg'
+      - '--collector.meminfo'
+      - '--collector.netclass'
+      - '--collector.netdev'
+      - '--collector.netstat'
+      - '--collector.nfs'
+      - '--collector.nfsd'
+      - '--collector.os'
+      - '--collector.schedstat'
+      - '--collector.stat'
+    network_mode: host
+    pid: host
+    volumes:
+      - '/:/host:ro,rslave'
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+
+  isard-stats-cadvisor:
+    image: google/cadvisor
+    container_name: isard-stats-cadvisor
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    restart: "no"
+    command:
+      - '--docker_only=true'
+      - '--disable_metrics=accelerator,cpu_topology,percpu,sched,process,hugetlb,referenced_memory,resctrl,cpuset,advtcp,memory_numa'
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.74
+
+  isard-grafana-agent:
+    container_name: isard-grafana-agent
+    image: grafana/agent:v0.24.2
+    volumes:
+      - ${BUILD_ROOT_PATH}/docker/grafana-agent/config.yml:/etc/agent/config.yml
+      - ${BUILD_ROOT_PATH}/docker/grafana-agent/db.yml:/etc/agent/db.yml
+      - ${BUILD_ROOT_PATH}/docker/grafana-agent/run.sh:/run.sh
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/lib/docker/containers
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      isard-network:
+        ipv4_address: ${DOCKER_NET:-172.31.255}.69
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+    restart: "no"
+    entrypoint: /run.sh
+    env_file:
+      - .env
+    environment:
+      - PROMETHEUS_ADDRESS=${PROMETHEUS_ADDRESS:-http://isard-prometheus:9090}
+      - LOKI_ADDRESS=${LOKI_ADDRESS:-http://isard-loki:3100}

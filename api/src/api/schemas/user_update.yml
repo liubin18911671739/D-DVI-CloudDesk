@@ -1,0 +1,23 @@
+id:
+  type: string
+name:
+  type: string
+  empty: false
+email:
+  type: string
+role:
+  type: string
+  allowed:
+    - manager
+    - user
+    - admin
+    - advanced
+secondary_groups:
+  required: false
+  type: list
+  default: []
+password:
+  type: string
+  empty: false
+active:
+  type: boolean

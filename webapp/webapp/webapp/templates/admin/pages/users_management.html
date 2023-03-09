@@ -1,0 +1,263 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+     <div class="x_panel">
+        <div class="page-title">
+           <div class="title_left">
+              <h3><i class="fa fa-book"></i> 管理 <small>添加、编辑和删除用户</small></h3>
+           </div>
+           <div class="clearfix"></div>
+        </div>
+     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-user"></i> 用户 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="btn-bulkdelete"><span style="color: #5499c7; "><i class="fa fa-trash"></i> 删除</span></a>
+          </li>
+          <li><a class="btn-new-bulkusers"><span style="color: #5499c7; "><i class="fa fa-users"></i> 批量创建</span></a>
+          </li>
+          <li><a class="btn-new-user"><span style="color: #5499c7; "><i class="fa fa-user"></i> 添加</span></a>
+          </li>
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="users" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>活跃</th>
+              <th>名称</th>
+              <th>提供者</th>
+              <th>分类</th>
+              <th>Uid</th>
+              <th>用户名</th>
+              <th>角色</th>
+              <th>组</th>
+              <th>第二组</th>
+              <th>Vpn</th>
+              <th>最后访问</th>
+              <th>选择</th>
+              <th>Id</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>活跃</th>
+              <th>名称</th>
+              <th>提供者</th>
+              <th>分类</th>
+              <th>Uid</th>
+              <th>用户名</th>
+              <th>角色</th>
+              <th>组</th>
+              <th>第二组</th>
+              <th>Vpn</th>
+              <th>最后访问</th>
+              <th>选择</th>
+              <th>Id</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-leaf"></i> 分类 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          {% if current_user.role != 'manager' %}
+          <li><a class="btn-new-category"><span style="color: #5499c7; "><i class="fa fa-plus"></i> 添加</span></a>
+          </li>
+          {% endif %}
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="categories" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>说明</th>
+              <th>前端下拉展示</th>
+              <th>允许域</th>
+              <th>临时桌面</th>
+              <th>Id</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>说明</th>
+              <th>前端下拉展示</th>
+              <th>允许域</th>
+              <th>临时桌面</th>
+              <th>Id</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-group"></i> 组 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="btn-new-group"><span style="color: #5499c7; "><i class="fa fa-plus"></i>添加</span></a>
+          </li>
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="groups" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>分类</th>
+              <th>说明</th>
+              <th>关联组</th>
+              <th>临时桌面</th>
+              <th>Id</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>分类</th>
+              <th>说明</th>
+              <th>关联组</th>
+              <th>临时桌面</th>
+              <th>Id</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% if current_user.role != 'manager' %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-external-link"></i>外部应用 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="btn-new-secret">
+              <span style="color: #5499c7; "><i class="fa fa-plus"></i> 添加</span></a>
+          </li>
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="externalapps" class="table">
+          <thead>
+            <tr>
+              <th>密钥 id</th>
+              <th>密码</th>
+              <th>说明</th>
+              <th>角色</th>
+              <th>分类</th>
+              <th>域</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3><i class="fa fa-key"></i> 角色 <small></small></h3>
+        <ul class="nav navbar-right panel_toolbox">
+          <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+          <li><a class="close-link"><i class="fa fa-close"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table id="roles" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>名称</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% include '/admin/pages/users_modals_management.html' %}
+{% include '/admin/pages/users_detail_management.html' %}
+{% include '/admin/pages/categories_detail_management.html' %}
+{% include '/admin/pages/groups_detail_management.html' %}
+{% endblock %}
+
+{% block pagescript %}
+<script src="/isard-admin/static/js/restful.js"></script>
+<script src="/isard-admin/static/admin/js/users_management.js"></script>
+<script src="/isard-admin/static/admin/js/categories_management.js"></script>
+<script src="/isard-admin/static/admin/js/groups_management.js"></script>
+<script src="/isard-admin/static/admin/js/external_apps.js"></script>
+<script src="/isard-admin/static/admin/js/roles.js"></script>
+<script src="/isard-admin/static/js/snippets/quota.js"></script>
+{% endblock %}

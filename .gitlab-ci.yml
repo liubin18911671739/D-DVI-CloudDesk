@@ -1,0 +1,260 @@
+# https://docs.gitlab.com/ee/ci/yaml/index.html#switch-between-branch-pipelines-and-merge-request-pipelines
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_OPEN_MERGE_REQUESTS || $CI_COMMIT_TAG
+      when: never
+    - when: always
+
+stages:
+ - lint
+ - version
+ - docker-compose
+ - docker-image-codegen
+ - docker-images
+ - test
+ - docker-registry
+ - release
+
+commit-lint:
+  stage: lint
+  image: node
+  script:
+    - npm i --save @commitlint/config-conventional
+    - git fetch https://gitlab.com/isard/isardvdi.git main
+    - npx commitlint -x "@commitlint/config-conventional" --from=$(git merge-base HEAD FETCH_HEAD)
+
+check-python:
+  stage: lint
+  image: python:3.10-bullseye
+  script:
+    - pip install isort black
+    - isort --check .
+    - black --check .
+
+check-frontend:
+  stage: lint
+  image: node
+  script:
+    - cd frontend
+    - yarn
+    - yarn lint --no-fix --max-warnings 0
+
+check-protobuf:
+  stage: lint
+  image: bufbuild/buf:1.15.0
+  script:
+    - buf lint
+    # TODO: Add the breaking check
+    # - buf breaking --against "${CI_PROJECT_URL}.git"
+
+version:
+  stage: version
+  image: node
+  rules:
+    # semantic-release checks repository write access and we cannot use
+    # GITLAB_TOKEN in unprotected branches due to security reasons.
+    # https://github.com/semantic-release/semantic-release/issues/2207
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - npm install -g semantic-release @semantic-release/exec conventional-changelog-conventionalcommits
+    - cp releaserc.version.yml .releaserc.yml
+    - semantic-release --dry-run --branches $CI_COMMIT_REF_NAME
+  artifacts:
+    paths:
+      - .VERSION
+
+changelog-preview:
+  # This is a workarround to show changelog preview without semantic-release
+  # see comment in job "version".
+  stage: version
+  image: node
+  script:
+    - npm install -g conventional-changelog-cli conventional-changelog-conventionalcommits
+    - conventional-changelog -p conventionalcommits -o CHANGELOG.md
+    - cat CHANGELOG.md
+  artifacts:
+    paths:
+      - CHANGELOG.md
+
+docker-compose-demo:
+  stage: docker-compose
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - test "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" -a ! -e ".VERSION" && exit 0
+    - apk add bash git
+    # Use docker compose < 1.27 to avoid depends_on issue
+    # https://github.com/isard-vdi/isard/issues/390
+    - apk info -q --depends docker-compose | xargs apk add
+    - apk add py3-pip
+    - pip install docker-compose~=1.26.0
+    - cp isardvdi.cfg.example isardvdi.cfg
+    - echo "DOCKER_IMAGE_PREFIX=${CI_REGISTRY_IMAGE}/" >> isardvdi.cfg
+    - echo "DOCKER_IMAGE_TAG=$CI_COMMIT_REF_SLUG" >> isardvdi.cfg
+    - SKIP_CHECK_DOCKER_COMPOSE_VERSION=true CODEGEN=false ./build.sh
+  artifacts:
+    paths:
+      - docker-compose*.yml
+
+docker-compose-build:
+  stage: docker-compose
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - apk add bash git docker-compose
+    - cp isardvdi.cfg.example isardvdi.build.cfg
+    - echo "DOCKER_IMAGE_PREFIX=${CI_REGISTRY_IMAGE}/" >> isardvdi.build.cfg
+    - echo "DOCKER_IMAGE_TAG=$CI_COMMIT_REF_SLUG" >> isardvdi.build.cfg
+    - echo "USAGE=build" >> isardvdi.build.cfg
+    - cp isardvdi.build.cfg isardvdi.video-standalone.build.cfg
+    - echo "FLAVOUR=video-standalone" >> isardvdi.video-standalone.build.cfg
+    - cp isardvdi.build.cfg isardvdi.monitor.build.cfg
+    - echo "FLAVOUR=monitor" >> isardvdi.monitor.build.cfg
+    - BACKUP_DB_ENABLED=true CODEGEN=false ./build.sh
+  artifacts:
+    paths:
+      - docker-compose*.yml
+
+docker-image-codegen:
+  image: docker:latest
+  stage: docker-image-codegen
+  services:
+    - docker:dind
+  parallel:
+    matrix:
+      - DOCKERFILE: docker/codegen/Dockerfile
+        IMAGE: codegen
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -f $DOCKERFILE -t $CI_REGISTRY_IMAGE/$IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker tag $CI_REGISTRY_IMAGE/$IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+
+docker-image-autonomous:
+  image: docker:latest
+  stage: docker-images
+  services:
+    - docker:dind
+  parallel:
+    matrix:
+      - DOCKERFILE: testing/check-isardvdi/Dockerfile
+        IMAGE: check
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build -f $DOCKERFILE -t $CI_REGISTRY_IMAGE/$IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker tag $CI_REGISTRY_IMAGE/$IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+
+docker-image:
+  image: docker:latest
+  stage: docker-images
+  services:
+    - docker:dind
+  parallel:
+    matrix:
+      - DOCKER_COMPOSE: build
+        IMAGE: &containers
+          - api
+          - scheduler
+          - authentication
+          - backupninja
+          - db
+          - engine
+          - grafana
+          - guac
+          - rdpgw
+          - hypervisor
+          - portal
+          - squid
+          - static
+          - stats-go
+          - stats-rethinkdb
+          - storage
+          - webapp
+          - websockify
+      - DOCKER_COMPOSE: build
+        IMAGE_DEPENDENCY: isard-rdpgw
+        IMAGE: vpn
+      - DOCKER_COMPOSE: video-standalone.build
+        IMAGE: video
+      - DOCKER_COMPOSE: monitor.build
+        IMAGE: monitor-proxy
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - apk add git docker-compose
+    - git submodule update --init --recursive --remote
+    - docker run -u $(id -u) -v "$(pwd):/build" "$CI_REGISTRY_IMAGE/codegen:git-$CI_COMMIT_SHORT_SHA"
+    - echo $IMAGE_DEPENDENCY isard-$IMAGE | xargs -n1 docker-compose -f docker-compose.$DOCKER_COMPOSE.yml build
+    - docker tag $CI_REGISTRY_IMAGE/$IMAGE:$CI_COMMIT_REF_SLUG $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+    - docker push $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA
+
+# test-selenium:
+#   stage: test
+#   image: docker:latest
+#   services:
+#     - docker:dind
+#   script:
+#     - apk add bash git docker-compose
+#     - cp isardvdi.cfg.example isardvdi.cfg
+#     - echo "DOCKER_IMAGE_PREFIX=${CI_REGISTRY_IMAGE}/" >> isardvdi.cfg
+#     - echo "DOCKER_IMAGE_TAG=git-$CI_COMMIT_SHORT_SHA" >> isardvdi.cfg
+#     - ./build.sh
+#     - docker-compose -f docker-compose.yml -f testing/docker-compose.yml up -d
+#     - docker-compose -f docker-compose.yml -f testing/docker-compose.yml exec -T isard-testing pytest testing
+# 
+# test-cypress:
+#   stage: test
+#   image: docker:latest
+#   services:
+#     - docker:dind
+#   script:
+#     - apk add bash git docker-compose
+#     - cp isardvdi.cfg.example isardvdi.cfg
+#     - echo "DOCKER_IMAGE_PREFIX=${CI_REGISTRY_IMAGE}/" >> isardvdi.cfg
+#     - echo "DOCKER_IMAGE_TAG=git-$CI_COMMIT_SHORT_SHA" >> isardvdi.cfg
+#     - echo "USAGE=test" >> isardvdi.cfg
+#     - ./build.sh
+#     - docker-compose --profile test pull
+#     - docker-compose up -d
+#     - docker-compose run -v $(pwd)/captures:/usr/local/src/isard-frontend/tests/e2e/captures isard-cypress
+#   artifacts:
+#     when: always
+#     paths:
+#       - captures/videos/**/*.mp4
+#       - captures/screenshots/**/*.png
+
+docker-tag:
+  stage: docker-registry
+  image:
+    name: gcr.io/go-containerregistry/crane:debug
+    entrypoint: [""]
+  parallel:
+    matrix:
+      - IMAGE:
+          *containers
+      - IMAGE:
+          - codegen
+          - check
+          - vpn
+          - video
+          - monitor-proxy
+  script:
+    - test "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" -a ! -e ".VERSION" && exit 0
+    - crane auth login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - crane tag $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA $CI_COMMIT_REF_SLUG
+    - test ! -e ".VERSION" && exit 0
+    - crane tag $CI_REGISTRY_IMAGE/$IMAGE:git-$CI_COMMIT_SHORT_SHA v$(cat .VERSION | tr '.' '-')
+
+release:
+  stage: release
+  image: node
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - test ! -e ".VERSION" && exit 0
+    - 'sed -i "s/^\(\s*DOCKER_IMAGE_TAG: \)$CI_DEFAULT_BRANCH$/\1v$(cat .VERSION | tr "." "-")/" docker-compose*.yml'
+    - npm install -g semantic-release @semantic-release/gitlab conventional-changelog-conventionalcommits
+    - cp releaserc.release.yml .releaserc.yml
+    - semantic-release --branches $CI_DEFAULT_BRANCH

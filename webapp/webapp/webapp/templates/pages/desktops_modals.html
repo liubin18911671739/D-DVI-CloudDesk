@@ -1,0 +1,511 @@
+<style>
+     [id^=modal_add_] .selected {
+        background-color: #e0f1af !important;
+    }
+
+    [id^=modal_add_] tr {
+        cursor: pointer;
+    } 
+
+    .my-error{
+        margin-top: 5px;
+        color: #B94A48 !important;
+        background-color: #F2DEDE !important;
+        border: 1px solid #EED3D7 !important;
+        padding: 10px;
+    }    
+</style>
+
+
+<div class="modal fade" id="modalAddDesktop" tabindex="-1" role="dialog" aria-labelledby="modalAddDesktop" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-desktop"> </i>创建新桌面
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAdd" class="form-horizontal"> 
+                    <div class="row">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 桌面名称和说明</h4>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span></label>
+                                <input id="desktop-name"  maxlength="40" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text">
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <label class="control-label" for="description">说明 </label>
+                                <input id="description" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h4><i class="fa fa-cubes" aria-hidden="true"></i> Select a template as base for your new desktop</h4>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <input  id="template" name="template" type="hidden" required>
+                                <table id="modal_add_desktops" class="table table-hover" cellspacing="0" style="margin-top: 0px;" width="100%" >
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>说明</th>
+                                            <th>组</th>
+                                            <th>用户</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <div id="datatables-error-status"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel"  id="hardware-block" style="display: none;">
+                                <div class="x_title">
+                                    <h4><i class="fa fa-gear" aria-hidden="true"></i> 硬件</h4>
+                                    <div class="clearfix"></div>
+                                </div>
+                                {% include '/snippets/domain_hardware_edit.html' %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="btn-hardware" type="button" class="btn btn-info" style="display: none;">设置硬件</button></li>
+                    <li><button id="send" type="button" class="btn btn-success">创建桌面</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalEditDesktop" tabindex="-1" role="dialog" aria-labelledby="modalEditDesktop" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-edit fa-1x"> </i> <i class="fa fa-desktop"> </i>编辑虚拟机域
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body" style="padding: 7px;">
+                
+                <form id="modalEdit" class="form-inline form-label-left"> 
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 桌面名称和说明</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <input id="id" name="id" hidden/>
+                            <input type="hidden" id="name" name="name"/>
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12">
+                                    <label class="control-label" for="name">名称 <span class="required">*</span>
+                                    </label>
+                                    <input id="name_hidden" maxlength="40" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text" style="width:100%">
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <label class="control-label" for="description">说明 
+                                    </label>
+                                    <input id="description" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+  
+  
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h4><i class="fa fa-eye" aria-hidden="true"></i> 桌面虚拟机查看器</h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-6 col-sm-6 col-xs-12" for="guest_properties-fullscreen">选项
+                        </label>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="checkbox">
+                            <label class="">
+                            <div class="icheckbox_flat-green" style="position: relative;">
+                                <input type="checkbox" id="guest_properties-fullscreen" name="guest_properties-fullscreen" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                </ins>
+                            </div>
+                            以全屏模式启动查看器
+                            </label>
+                        </div> 
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="guest_properties-fullscreen">可用虚拟机查看器
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox">
+                                <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="viewers-file_spice" name="viewers-file_spice" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>
+                                    Spice (Client)
+                                </label>
+                            </div> 
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox">
+                                <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="viewers-browser_vnc" name="viewers-browser_vnc" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>
+                                    VNC (browser)
+                                </label>
+                            </div> 
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox">
+                                <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="viewers-file_rdpgw" name="viewers-file_rdpgw" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>
+                                    RDP (Client)
+                                </label>
+                            </div> 
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox">
+                                <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="viewers-file_rdpvpn" name="viewers-file_rdpvpn" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>
+                                    RDP (Client over VPN)
+                                </label>
+                            </div> 
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <div class="checkbox">
+                                <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;">
+                                    <input type="checkbox" id="viewers-browser_rdp" name="viewers-browser_rdp" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>
+                                    RDP (Browser)
+                                </label>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="col-md-6 col-sm-6 col-xs-12 my-error">警告：访客密码将以纯文本形式存储！！
+                        </label>
+                        <div class="col-md-4 col-xs-12">
+                            <label class="control-label" for="name">访客用户名
+                            </label>
+                            <input id="guest_properties-credentials-username" maxlength="40" data-parsley-length="[0, 40]" name="guest_properties-credentials-username" placeholder="Guest username" data-parsley-trigger="change" type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-4 col-xs-12">
+                            <label class="control-label" for="name">访客密码
+                            </label>
+                            <input id="guest_properties-credentials-password" maxlength="40" data-parsley-length="[1, 40]" name="guest_properties-credentials-password" placeholder="Guest password" data-parsley-trigger="change" type="text" style="width:100%">
+                        </div>
+                    </div>
+                </div> 
+  
+              
+                <div class="x_panel" id="hardware-block">
+                    <div class="x_content">
+                        <div class="x_title">
+                            <h4><i class="fa fa-gear" aria-hidden="true"></i> 硬件</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        {% include '/snippets/domain_hardware_edit.html' %}
+                    </div>
+                </div>
+
+                <div class="x_panel" id="reservables-block">
+                    <div class="x_content">
+                        <div class="x_title">
+                            <h4><i class="fa fa-case" aria-hidden="true"></i> 可预留资源</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>可预留资源</p>
+                        {% include '/snippets/domain_reservables_edit.html' %}
+                    </div>
+                </div>
+
+                <div id="media-block">
+                      {% include '/snippets/media.html' %}
+                </div>
+                </form>
+                
+              </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">修改桌面</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalJumperurl" tabindex="-1" role="dialog" aria-labelledby="modalJumperurl" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-plus fa-1x"></i> 直接访问链接 <i class="fa fa-key"></i>
+                </h4>
+            </div>
+ 
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalJumperurlForm" class="form-horizontal">
+                    <div class="x_panel">
+                        <div class="x_content">
+                            <input id="id" name="id" hidden ></input>
+                            <div class="item form-group">
+                                <label class="control-label col-md-6 col-sm-6 col-xs-12" for="jumperurl-check">
+                                    启用直接查看者访问权限
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="checkbox">
+                                        <label class="">
+                                            <div class="icheckbox_flat-green">
+                                                <input type="checkbox" id="jumperurl-check" name="jumperurl-check" class="flat"  style="position: absolute; opacity: 0;">
+                                                <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                                </ins>
+                                            </div>
+                                        </label>
+                                    </div>                               
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                    <input id="jumperurl" class="form-control roundbox" name="jumperurl" style="width:100%; " placeholder="Viewer url" disabled />
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <button class="btn btn-info pull-right btn-copy-jumperurl" type="button"  data-placement="top"><i class="fa fa-clipboard" ></i> 复制到剪贴板</button>
+                                </div>                                                                        
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalTemplateDesktop" tabindex="-1" role="dialog" aria-labelledby="modalTemplateDesktop" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-desktop"> </i> <i class="fa fa-long-arrow-right fa-1x"> </i> <i class="fa fa-cubes"> </i> 将桌面转换为模板
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalTemplateDesktopForm" class="form-horizontal form-label-left" novalidate>
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4><i class="fa fa-cubes"></i> 模板参数</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <input id="id" name="id" class="template-id" hidden ></input>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <label class="control-label" for="name">模板名称 <span class="required">*</span>
+                                    </label>
+                                    <input id="template-name" class="form-control template-name" maxlength="60" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 60]" name="name" placeholder="New template name" data-parsley-trigger="change" required type="text">
+                                </div>
+                                <input id="kind" name="kind" class="template-kind" hidden value="template" ></input>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <label class="control-label" for="description">模板说明
+                                    </label>
+                                    <textarea id="description" name="description" class="form-control col-md-7 col-xs-12 template-description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h4>选项</h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-2">
+                                    <label class="control-label" for="enabled-template">
+                                        启用
+                                        <div class="icheckbox_flat-green" style="position: relative;">
+                                            <input type="checkbox" id="enabled" name="enabled" class="flat" style="position: absolute; opacity: 0;">
+                                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                            </ins>
+                                        </div>
+                                    </label>
+                                </div>
+                                <input id="kind" name="kind" class="template-kind" hidden value="template" ></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="alloweds-add">
+                    {% include '/snippets/alloweds_add.html' %}
+                    </div>             
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="send" type="button" class="btn btn-success">将当前桌面转换为模板并创建新桌面</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalServer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+       <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                      <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                   <i class="fa fa-plug fa-1x"> </i> 服务器
+                </h4>
+          </div>
+          <!-- Modal Body -->
+          <div class="modal-body">
+             <form id="modalServerForm" class="form-horizontal form-label-left">
+                <input  id="id" name="id" type="hidden" required>
+                <div class="item form-group">
+                   </label>
+                   <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="checkbox">
+                         <label class="">
+                         <div class="icheckbox_flat-green" style="position: relative;">
+                             <input type="checkbox" id="server" name="server" class="flat capabilities_hypervisor"  style="position: absolute; opacity: 0;">
+                             <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                             </ins>
+                         </div> 设置为服务器（将始终启动）
+                         </label>
+                     </div> 
+                   </div>
+                </div>
+             </form>
+          </div>
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+             <ul class="nav navbar-left panel_toolbox">
+                 <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+             </ul>
+             <ul class="nav navbar-right panel_toolbox">
+                <button id="send" type="button" class="btn btn-success">更新服务器</button>
+             </ul>
+         </div>
+       </div>
+    </div>
+ </div>
+
+<div class="modal fade" id="modalShowInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <i class="fa fa-file-code-o fa-1x"> </i> 信息
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <form id="modalShowInfoForm" class="form-horizontal form-label-left">
+                    <input  id="id" name="id" type="hidden" required>
+                     <div class="item form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                           <textarea class="form-control" rows="30" id="xml"></textarea>
+                        </div>
+                     </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,472 @@
+<div class="modal fade" id="modalVideos" tabindex="-1" role="dialog" 
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-rss"> </i> 添加新显卡
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="modalAddVideos" class="form-horizontal form-label-left">
+                    <div class="x_panel" style="padding: 5px;">
+                        <p style="font-size: 18px;margin-bottom:0px;">设置显卡参数</p>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-12">
+                                    <label class="control-label" for="name">名称 <span class="required">*</span>
+                                    </label>
+                                    <input id="name" class="roundbox" maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New video name" data-parsley-trigger="change" required type="text">
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <label class="control-label" for="description">说明 
+                                    </label>
+                                    <input id="description" class="roundbox" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="name">模型 <span class="required">*</span>
+                                    </label>
+                                    <select id="model" name="model" class="form-control" required>
+                                        <option value="">选择..</option>
+                                        <option value="vga">VGA</option>
+                                        <option value="cirrus">Cirrus</option>
+                                        <option value="vmvga">VMVGA</option>
+                                        <option value="xen">XEN</option>
+                                        <option value="vbox">VBOX</option>
+                                        <option value="qxl">QXL</option>
+                                     </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-4 col-xs-12">
+                                    <label>显卡类型</label>
+                                    <input id="videos-heads" name="heads"/>
+                                </div>
+                            <div class="col-md-4 col-xs-12">
+                                    <label>显卡内存 (KB)</label>
+                                    <input id="videos-ram" name="ram"/>
+                                </div>
+                            <div class="col-md-4 col-xs-12">
+                                    <label>显卡虚拟内存 (KB)</label>
+                                    <input id="videos-vram" name="vram"/>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div id="alloweds-videos-add">
+                        {% include '/snippets/alloweds_add.html' %}
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><button id="btn-hardware" type="button" class="btn btn-info" style="display: none;">硬件设置</button></li>
+                    <button id="send" type="button" class="btn btn-success">添加显卡</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalInterfaces" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-rss"> </i> 添加网络接口
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form id="modalInterfacesForm" class="form-horizontal form-label-left">
+                        
+                    <div class="x_panel" style="padding: 5px;">
+                        <p style="font-size: 18px;margin-bottom:0px;">设置网络接口参数</p>
+                        <div class="x_content" style="padding: 0px;">
+                            <div class="row">
+                                <input id="id" name="id" value="" hidden/>
+                                <div class="col-md-4 col-xs-12">
+                                    <label class="control-label" for="name">名称 <span class="required">*</span>
+                                    </label>
+                                        <input id="name" class="roundbox" maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New interface name" data-parsley-trigger="change" required type="text">
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    <label class="control-label" for="description">说明 
+                                    </label>
+                                    <input id="description" class="roundbox" name="description" placeholder="Interface description"  type="text" style="width:100%">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <label class="control-label" for="kind">类型: <span class="required">*</span></label>
+                                        <select id="kind" name="kind" class="form-control roundbox" required>
+                                            <option value="">选择..</option>
+                                            <option value="bridge">桥接</option>
+                                            <option value="network">网络</option>
+                                            <option value="ovs">OpenVSwitch</option>
+                                            <option value="personal">个人网络</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <label id='ifname_label' class="control-label" for="ifname">(第一选择类型)<span class="required">*</span>
+                                    </label>
+                                    <input id="ifname" class="roundbox" maxlength="40" data-parsley-length="[1, 40]" name="ifname" placeholder="Select Type first" data-parsley-trigger="change" required>
+                                </div>
+                                <!-- <div class="col-md-8 col-xs-12">
+                                    <label class="control-label" for="net">Network
+                                    </label>
+                                    <input id="net"  class="roundbox" name="net" placeholder="Network (Ex.: 192.168.1.0/24)"  type="text" style="width:100%" data-parsley-cidr="">
+                                </div> -->
+                            </div>
+                            
+                            <div class="row">
+
+                                    <div class="col-md-6 col-xs-12">
+                                        <label class="control-label" for="model">类型: <span class="required">*</span></label>
+                                            <select id="model" name="model" class="form-control roundbox" required>
+                                                <option value="">选择..</option>
+                                                <option value="rtl8931">rtl8931</option>
+                                                <option value="virtio">virtio</option>
+                                                <option value="e1000">e1000</option>
+                                            </select>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12">
+                                    <label class="control-label" for="model">QoS: <span class="required">*</span></label>
+                                        <select id="qos_id" name="qos_id" class="form-control roundbox" required>
+                                        </select>
+                                </div>                              
+                            </div>
+                        
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <button id="send" type="button" class="btn btn-success">添加接口</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalQosNet" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-road"> </i> 添加网络 QoS
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+              <form id="modalQosNetForm" class="form-horizontal form-label-left">
+                <div class="row">
+                    <input id="id" name="id" value="" hidden/>
+                    <div class="col-md-4 col-xs-12">
+                        <label class="control-label" for="name">名称 <span class="required">*</span>
+                        </label>
+                          <input id="name" class="roundbox" maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text">
+                    </div>
+                    <div class="col-md-8 col-xs-12">
+                        <label class="control-label" for="description">说明 
+                        </label>
+                        <input id="description" class="roundbox" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                    </div>
+                </div>                     
+                <div class="row">
+                    
+                    <div class="x_panel">
+                        <p style="font-size: 16px;margin-bottom:0px;">入网流量 (KBytes/s)</p>
+                        <div class="col-xs-3 form-group">
+                            <label>平均</label>
+                            <input id="qos-bandwidth-inbound-average" name="qos-bandwidth-inbound-average" class="form-control"  value="10000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <label>峰值</label>
+                            <input id="qos-bandwidth-inbound-peak" name="qos-bandwidth-inbound-peak" class="form-control" value="15000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <label>峰谷</label>
+                            <input id="qos-bandwidth-inbound-floor" name="qos-bandwidth-inbound-floor" class="form-control col-md-7 col-xs-12" value="5000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <label>突发</label>
+                            <input id="qos-bandwidth-inbound-burst" name="qos-bandwidth-inbound-burst" class="form-control col-md-7 col-xs-12" value="20000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>                  
+                    </div>
+       
+                    <div class="x_panel">
+                        <p style="font-size: 16px;margin-bottom:0px;">出网流量 (KBytes/s)</p>
+                        <div class="col-xs-3 form-group">
+                            <label>平均</label>
+                            <input id="qos-bandwidth-outbound-average" name="qos-bandwidth-outbound-average" class="form-control" value="10000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <label>峰值</label>
+                            <input id="qos-bandwidth-outbound-peak" name="qos-bandwidth-outbound-peak" class="form-control" value="15000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>
+                        <div class="col-xs-3 form-group">
+                            <label>突发</label>
+                            <input id="qos-bandwidth-outbound-burst" name="qos-bandwidth-outbound-burst" class="form-control col-md-7 col-xs-12" value="20000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                        </div>                
+                    </div>    
+                </div>   
+
+            </form>
+        </div>
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <ul class="nav navbar-left panel_toolbox">
+                <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+            </ul>
+            <ul class="nav navbar-right panel_toolbox">
+                <button id="send" type="button" class="btn btn-success">添加网络 QoS</button></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalQosDisk" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-road"> </i> 添加磁盘 QoS
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+              <form id="modalQosDiskForm" class="form-horizontal form-label-left">
+                <div class="row">
+                    <input id="id" name="id" value="" hidden/>
+                    <div class="col-md-4 col-xs-12">
+                        <label class="control-label" for="name">名称 <span class="required">*</span>
+                        </label>
+                          <input id="name" class="roundbox" maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text" style="width: 100%;">
+                    </div>
+                    <div class="col-md-8 col-xs-12">
+                        <label class="control-label" for="description">说明 
+                        </label>
+                        <input id="description" class="roundbox" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                    </div>
+                </div>                         
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <p style="font-size: 20px;margin-bottom:0px;">吞吐量</p>
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">最大限制（每秒字节数）</p>
+                            <div class="col-xs-6 form-group">
+                                <label>read_bytes_sec</label>
+                                <input id="iotune-read_bytes_sec" name="iotune-read_bytes_sec" class="form-control" value="50000000" min="0" max="9999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_bytes_sec</label>
+                                <input id="iotune-write_bytes_sec" name="iotune-write_bytes_sec" class="form-control" value="10000000" min="0" max="9999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>                 
+                        </div>
+                        
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">每秒最大写入突发</p> 
+                            <div class="col-xs-6 form-group">
+                                <label>read_bytes_sec_max</label>
+                                <input id="iotune-read_bytes_sec_max" name="iotune-read_bytes_sec_max" class="form-control" value="90000000" min="0" max="999999999" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_bytes_sec_max</label>
+                                <input id="iotune-write_bytes_sec_max" name="iotune-write_bytes_sec_max" class="form-control" value="50000000" min="0" max="999999999" class="roundbox"pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>             
+                        </div> 
+
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">每秒最大写入突发</p>
+                            <div class="col-xs-6 form-group">
+                                <label>read_bytes_sec_max_length</label>
+                                <input id="iotune-read_bytes_sec_max_length" name="iotune-read_bytes_sec_max_length" class="form-control" value="1" min="0" max="120" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_bytes_sec_max_length</label>
+                                <input id="iotune-write_bytes_sec_max_length" name="iotune-write_bytes_sec_max_length" class="form-control" value="1" min="0" max="120" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div> 
+                            <p style="font-size: 12px;margin-bottom:0px;">
+                                Maximum duration for write_bytes_sec_max burst period (seconds)                     
+                            </p>
+                            <p style="font-size: 12px;margin-bottom:0px;">
+                                [Only valid when the bytes_sec_max is set]                        
+                            </p>                                      
+                        </div> 
+
+                        
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <p style="font-size: 20px;margin-bottom:0px;">IOPS</p>
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">每秒 I/O 操作数.</p>
+                            <div class="col-xs-6 form-group">
+                                <label>read_iops_sec</label>
+                                <input id="iotune-read_iops_sec" name="iotune-read_iops_sec" class="form-control" value="20000" min="0" max="500000" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_iops_sec</label>
+                                <input id="iotune-write_iops_sec" name="iotune-write_iops_sec" class="form-control" value="10000" min="0" max="500000" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>              
+                        </div> 
+
+                            
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">每秒最大读取 I/O 操作.</p> 
+                            <div class="col-xs-6 form-group">
+                                <label>read_iops_sec_max</label>
+                                <input id="iotune-read_iops_sec_max" name="iotune-read_iops_sec_max" class="form-control" value="15000" min="0" max="500000" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_iops_sec_max</label>
+                                <input id="iotune-write_iops_sec_max" name="iotune-write_iops_sec_max" class="form-control" value="25000" min="0" max="500000" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>size_iops_sec</label>
+                                <input id="iotune-size_iops_sec" name="iotune-size_iops_sec" class="form-control" value="15000" min="0" max="500000" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>               
+                        </div> 
+
+                        
+                        <div class="x_panel">
+                            <p style="font-size: 16px;margin-bottom:0px;">读取突发周期的最长持续时间.</p>
+                            <div class="col-xs-6 form-group">
+                                <label>read_iops_sec_max_length</label>
+                                <input id="iotune-read_iops_sec_max_length" name="iotune-read_iops_sec_max_length" class="form-control" value="1" min="0" max="120" class="roundbox"pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label>write_iops_sec_max_length</label>
+                                <input id="iotune-write_iops_sec_max_length" name="iotune-write_iops_sec_max_length" class="form-control" value="1" min="0" max="120" class="roundbox" pattern="[0-9@]+$"  placeholder="" data-parsley-trigger="change" required type="number"/>
+                            </div>  
+                            <p style="font-size: 12px;margin-bottom:0px;">
+                                Maximum duration for read_iops_sec_max burst period. (seconds)                   
+                            </p>
+                            <p style="font-size: 12px;margin-bottom:0px;">
+                                [Only valid when the iops_sec_max is set]                        
+                            </p>                                       
+                        </div>                                                                                    
+
+                    </div>   
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <button id="send" type="button" class="btn btn-success">添加磁盘 QoS</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRemotevpn" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">   
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">关闭</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-picture-o"> </i> 添加新的 VPN 客户端
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+              <form id="modalRemotevpnForm" class="form-horizontal form-label-left">
+                     
+			  <div class="x_panel" style="padding: 5px;">
+                  <p style="font-size: 18px;margin-bottom:0px;">设置客户端参数</p>
+					<div class="x_content">
+                        <div class="row">
+                            <input id="id" name="id" value="" hidden/>
+                            <div class="col-md-4 col-xs-12">
+                                <label class="control-label" for="name">名称 <span class="required">*</span>
+                                </label>
+                                  <input id="name" class="roundbox" maxlength="40" pattern="[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New desktop name" data-parsley-trigger="change" required type="text">
+                            </div>
+                            <div class="col-md-8 col-xs-12">
+                                <label class="control-label" for="description">说明 
+                                </label>
+                                <input id="description" class="roundbox" name="description" placeholder="Desktop description"  type="text" style="width:100%">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-12 col-xs-12">
+                              <label class="control-label" for="type">可选的额外路由主机/网络
+                              </label>
+                              <input id="interfaces" class="roundbox" maxlength="80" pattern="[/.,0-9]+$" data-parsley-length="[4, 40]" name="interfaces" placeholder="Comma-separated nets" data-parsley-trigger="change" type="text">
+                           </div>
+                        </div>
+				</div>
+			  </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+                <ul class="nav navbar-left panel_toolbox">
+                    <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                </ul>
+                <ul class="nav navbar-right panel_toolbox">
+                    <button id="send" type="button" class="btn btn-success">添加 VPN 客户端</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

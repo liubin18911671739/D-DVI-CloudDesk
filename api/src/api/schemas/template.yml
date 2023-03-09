@@ -1,0 +1,26 @@
+template_id:
+  required: true
+  type: string
+  empty: false
+  default_setter: genuuid
+name:
+  required: true
+  type: string
+  empty: false
+desktop_id: 
+  type: string
+description: 
+  required: false
+  type: string
+  default: ""
+enabled:
+  type: boolean
+  default: false
+allowed:
+  type: dict
+  schema: allowed
+user_id:
+  type: string
+id:
+  empty: false
+  default_setter: genuuid

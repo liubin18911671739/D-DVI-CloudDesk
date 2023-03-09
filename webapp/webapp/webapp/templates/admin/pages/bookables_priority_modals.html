@@ -1,0 +1,170 @@
+<!-- ADD PRIORITY -->
+<div class="modal fade" id="modalAddPriority" tabindex="-1" role="dialog" 
+   aria-labelledby="modalAddPriority" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <button type="button" class="close"
+               data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">关闭</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-briefcase"> </i> 添加优先资源
+            </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalAdd" class="form-inline form-label-left">
+               <div class="x_panel">
+                  <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 优先级名称和描述</h4>
+                  <input  id="priority_table" name="priority_table" type="hidden" required>
+                  <input  id="priority_id" name="priority_id" type="hidden" required>
+                  <div class="x_content" style="padding: 0px;">
+                     <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                           <label class="control-label" for="name">名称 <span class="required">*</span>
+                           </label>
+                           <input id="name" class="roundbox" maxlength="40" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New priority name" data-parsley-trigger="change" required type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                           <label class="control-label" for="description">说明
+                           </label>
+                           <input id="description" class="roundbox" name="description" placeholder="Priority description"  type="text" style="width:100%">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                           <label class="control-label" for="rule_id">角色
+                           </label>
+                           <input id="rule_id" class="roundbox" name="rule_id" placeholder="Priority rule" type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="priority">优先级 <span class="required">*</span>
+                           </label>
+                           <input id="priority" class="roundbox" name="priority" placeholder="Priority" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="forbid_time">禁止时间 <span class="required">*</span>
+                           </label>
+                           <input id="forbid_time" class="roundbox" name="forbid_time" placeholder="Priority forbid time" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="max_time">最长时间 <span class="required">*</span>
+                           </label>
+                           <input id="max_time" class="roundbox" name="max_time" placeholder="Priority max time" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="max_items">最大项目 <span class="required">*</span>
+                           </label>
+                           <input id="max_items" class="roundbox" name="max_items" placeholder="Priority max items" required type="number" style="width:100%">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div id="alloweds-priority-add">
+                           {% include '/snippets/alloweds_add.html' %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+               <ul class="nav navbar-left panel_toolbox">
+                  <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                  </li>
+               </ul>
+               <ul class="nav navbar-right panel_toolbox">
+                  <li><button id="send" type="button" class="btn btn-success">添加优先级模板</button></li>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- END -->
+
+<!-- EDIT PRIORITY -->
+<div class="modal fade" id="modalEditPriority" tabindex="-1" role="dialog" 
+   aria-labelledby="modalEditPriority" aria-hidden="true">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <button type="button" class="close"
+               data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                  <span class="sr-only">关闭</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               <i class="fa fa-plus fa-1x"> </i> <i class="fa fa-briefcase"> </i> 编辑优先资源
+            </h4>
+         </div>
+         <!-- Modal Body -->
+         <div class="modal-body">
+            <form id="modalEdit" class="form-inline form-label-left">
+               <div class="x_panel">
+                  <h4><i class="fa fa-info-circle" aria-hidden="true"></i> 优先级名称和描述</h4>
+                  <input  id="priority_table" name="priority_table" type="hidden" required>
+                  <input  id="priority_id" name="priority_id" type="hidden" required>
+                  <div class="x_content" style="padding: 0px;">
+                     <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                           <label class="control-label" for="name">名称 <span class="required">*</span>
+                           </label>
+                           <input id="name" class="roundbox" maxlength="40" pattern="^[-_àèìòùáéíóúñçÀÈÌÒÙÁÉÍÓÚÑÇ .a-zA-Z0-9]+$" data-parsley-length="[4, 40]" name="name" placeholder="New priority name" data-parsley-trigger="change" required type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                           <label class="control-label" for="description">说明
+                           </label>
+                           <input id="description" class="roundbox" name="description" placeholder="Priority description" type="text" style="width:100%">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                           <label class="control-label" for="rule_id">角色
+                           </label>
+                           <input id="rule_id" class="roundbox" name="rule_id" placeholder="Priority rule" type="text" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="priority">优先级 <span class="required">*</span>
+                           </label>
+                           <input id="priority" class="roundbox" name="priority" placeholder="Priority" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="forbid_time">禁止时间 <span class="required">*</span>
+                           </label>
+                           <input id="forbid_time" class="roundbox" name="forbid_time" placeholder="Priority forbid time" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="max_time">最长时间 <span class="required">*</span>
+                           </label>
+                           <input id="max_time" class="roundbox" name="max_time" placeholder="Priority max time" required type="number" style="width:100%">
+                        </div>
+                        <div class="col-md-2 col-xs-12">
+                           <label class="control-label" for="max_items">最大项目 <span class="required">*</span>
+                           </label>
+                           <input id="max_items" class="roundbox" name="max_items" placeholder="Priority max items" required type="number" style="width:100%">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+               <ul class="nav navbar-left panel_toolbox">
+                  <li><button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button></li>
+                  </li>
+               </ul>
+               <ul class="nav navbar-right panel_toolbox">
+                  <li><button id="send" type="button" class="btn btn-success">更新优先级</button></li>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- END -->

@@ -1,0 +1,6 @@
+version: "3.5"
+services:
+  isard-grafana:
+    build:
+      context: ${BUILD_ROOT_PATH}
+      dockerfile: docker/grafana/Dockerfile
