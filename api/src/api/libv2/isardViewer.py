@@ -293,7 +293,7 @@ class isardViewer:
         )
 
     def get_rdp_file(self, ip):
-        ## This are the default values dumped from a windows rdp client connection to IsardVDI
+        ## This are the default values dumped from a windows rdp client connection to CECD
         # connection type:i:7
         # networkautodetect:i:1
         # bandwidthautodetect:i:1

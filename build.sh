@@ -48,6 +48,7 @@ ALLINONE_PARTS="
 	monitor
 	api
 	scheduler
+	hypervisor
 	authentication
 	vpn
 	guac

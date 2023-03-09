@@ -40,7 +40,7 @@ COPY --from=build /build/check-isardvdi /usr/local/bin
 RUN echo "#!/bin/sh\nsleep infinity" > /startapp.sh && chmod +x /startapp.sh
 
 # Set the name of the application.
-ENV APP_NAME="IsardVDI Testing"
+ENV APP_NAME="CECD Testing"
 ENV S6_LOGGING="1"
 ENV USER_ID=0
 ENV GROUP_ID=0

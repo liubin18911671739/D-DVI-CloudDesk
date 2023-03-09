@@ -10,7 +10,7 @@ import (
 	r "gopkg.in/rethinkdb/rethinkdb-go.v6"
 )
 
-// User is an user of IsardVDI
+// User is an user of CECD
 type User struct {
 	ID       string `rethinkdb:"id"`
 	UID      string `rethinkdb:"uid"`

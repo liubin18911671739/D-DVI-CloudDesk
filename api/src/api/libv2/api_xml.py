@@ -1,10 +1,4 @@
-#!/usr/bin/env python
-# coding=utf-8
-#
-# Copyright 2017-2020 the Isard-vdi project authors:
-#      Josep Maria Viñolas Auquer
-#      Alberto Larraz Dalmases
-# License: AGPLv3
+
 
 from rethinkdb import RethinkDB
 

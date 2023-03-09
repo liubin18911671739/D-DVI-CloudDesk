@@ -14,13 +14,13 @@ class IsardSelenium:
         self,
         url="https://isard-portal",
         username="admin",
-        password="IsardVDI",
+        password="admin@cecd",
         launch=True,
         browser="firefox",
         hostname=False,
         ssh=True,
         ssh_username="admin",
-        ssh_passwd="IsardVDI",
+        ssh_passwd="admin@cecd",
         ssh_port=22,
     ):
 
@@ -309,7 +309,7 @@ class IsardSelenium:
             self.wd.find_element(
                 "xpath", "//div[@id='top_bar']//div[@id='status']"
             ).text
-            == "IsardVDI.com"
+            == "cecd.com"
         )
 
     def stopDomain(self, domain_name):

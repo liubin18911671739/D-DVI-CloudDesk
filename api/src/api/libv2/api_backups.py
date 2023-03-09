@@ -130,7 +130,7 @@ def restore_db(id):
                 pass
             if not r.table_list().contains(k).run(db.conn):
                 log.error(
-                    "Table {} not found, should have been created on IsardVDI startup.".format(
+                    "Table {} not found, should have been created on CECD startup.".format(
                         k
                     )
                 )

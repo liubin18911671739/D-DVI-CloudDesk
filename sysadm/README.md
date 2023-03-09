@@ -1,6 +1,6 @@
-# IsardVDI System administration
+# CECD System administration
 
-By default IsardVDI will open some container ports to the public world:
+By default CECD will open some container ports to the public world:
 
 *   80 TCP: Redirect to 443 https and used by spice video protocol TLS tunnel
 *  443 TCP: Web and HTML5 video protocols

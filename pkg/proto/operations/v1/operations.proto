@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package operations.v1;
 
-// OperationsService is a service responsible for executing operations in the IsardVDI infrastructure
+// OperationsService is a service responsible for executing operations in the CECD infrastructure
 service OperationsService {
     // ListHypervisors returns a list with all the hypervisors and their resources
     rpc ListHypervisors(ListHypervisorsRequest) returns (ListHypervisorsResponse) {}

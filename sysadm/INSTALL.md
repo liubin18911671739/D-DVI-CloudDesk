@@ -1,20 +1,4 @@
-# IsardVDI
-## All in one
 
-### Debian 10 (buster)
-
-#### Install
-
-##### Sources
-```
-cd /root
-apt install git -y
-git clone --depth 1 --branch develop https://github.com/isard-vdi/isard
-```
-
-##### Config & Personalization
-
-Edit contents to fit your server installation.
 
 ```
 cd isard

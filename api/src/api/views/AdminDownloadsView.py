@@ -43,7 +43,7 @@ def admin_updates_register():
         )
     registered = downloads.is_registered()
     if not registered:
-        raise Error("precondition_required", "IsardVDI hasn't been registered yet.")
+        raise Error("precondition_required", "CECD hasn't been registered yet.")
     return json.dumps({}), 200, {"Content-Type": "application/json"}
 
 
@@ -59,7 +59,7 @@ def admin_updates_reload():
         )
     registered = downloads.is_registered()
     if not registered:
-        raise Error("precondition_required", "IsardVDI hasn't been registered yet.")
+        raise Error("precondition_required", "CECD hasn't been registered yet.")
     return json.dumps({}), 200, {"Content-Type": "application/json"}
 
 

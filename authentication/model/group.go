@@ -46,7 +46,6 @@ func (g *Group) LoadExternal(ctx context.Context, sess r.QueryExecutor) error {
 }
 
 func (g *Group) Exists(ctx context.Context, sess r.QueryExecutor) (bool, error) {
-	// Check if the group is original of IsardVDI or is a group mapped from elsewhere
 	if g.ExternalAppID != "" && g.ExternalGID != "" {
 		res, err := r.Table("groups").Filter(r.And(
 			r.Eq(r.Row.Field("external_app_id"), g.ExternalAppID),

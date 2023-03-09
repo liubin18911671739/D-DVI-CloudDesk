@@ -1,14 +1,5 @@
 #!/bin/sh -e
 
-# In pacemaker environments you can set up compose resource with the same name as
-# the IsardVDI config. For example:
-# - Resource:     isard (ocf::heartbeat:compose):	Started cluster1-cs
-# - Config:       isardvdi.isard.cfg
-# The script will pull all the images coming from all *.cfg and will restart
-# only the one's running in this pacemaker cluster.
-# By default Hypervisor is excluded from restart. You can disable this by setting
-# in environment EXCLUDE_HYPER=0
-
 EXCLUDE_HYPER=${EXCLUDE_HYPER-1}
 
 script_path=$(readlink -f "$0")

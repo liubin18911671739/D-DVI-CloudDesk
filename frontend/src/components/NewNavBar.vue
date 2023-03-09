@@ -235,12 +235,10 @@ export default {
       this.$store.dispatch('navigate', 'Planning')
     },
     goToViewersGuide () {
-      if (localStorage.language === 'es') {
-        return 'https://isard.gitlab.io/isardvdi-docs/user/viewers.es/#visor-para-el-protocolo-spice'
-      } else if (localStorage.language === 'ca') {
-        return 'https://isard.gitlab.io/isardvdi-docs/user/viewers.ca/#visor-per-al-protocol-spice'
+      if (localStorage.language === 'ch') {
+        return 'http://cycloud.link'
       } else {
-        return 'https://isard.gitlab.io/isardvdi-docs/user/viewers/#viewer-for-the-spice-protocol'
+        return 'http://cycloud.link/en'
       }
     }
   }

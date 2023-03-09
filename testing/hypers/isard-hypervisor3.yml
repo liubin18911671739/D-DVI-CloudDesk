@@ -29,7 +29,7 @@ services:
       VIDEO_DOMAIN: null
       VIEWER_BROWSER: "8443"
       VIEWER_SPICE: "8081"
-      WEBAPP_ADMIN_PWD: IsardVDI
+      WEBAPP_ADMIN_PWD: admin@cecd
       WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
       WG_GUESTS_DHCP_MASK: "23"
       WG_GUESTS_NETS: 10.2.0.0/16

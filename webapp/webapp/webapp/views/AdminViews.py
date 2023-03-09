@@ -270,7 +270,7 @@ def admin_updates():
         )
     registered = u.is_registered()
     if not registered:
-        flash("IsardVDI hasn't been registered yet.", "error")
+        flash("CECD hasn't been registered yet.", "error")
     return render_template(
         "admin/pages/updates.html",
         title="Downloads",
@@ -304,7 +304,7 @@ def admin_updates_register():
         )
     registered = u.is_registered()
     if not registered:
-        flash("IsardVDI hasn't been registered yet.", "error")
+        flash("CECD hasn't been registered yet.", "error")
     return render_template(
         "admin/pages/updates.html",
         title="Downloads",
@@ -334,7 +334,7 @@ def admin_updates_reload():
         )
     registered = u.is_registered()
     if not registered:
-        flash("IsardVDI hasn't been registered yet.", "error")
+        flash("CECD hasn't been registered yet.", "error")
     return render_template(
         "admin/pages/updates.html",
         title="Downloads",

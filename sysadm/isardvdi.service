@@ -1,5 +1,5 @@
 [Unit]
-Description=IsardVDI manager service
+Description=CECD manager service
 After=docker.service
 Requires=docker.service
 

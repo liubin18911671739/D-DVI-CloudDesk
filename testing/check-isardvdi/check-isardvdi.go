@@ -32,7 +32,7 @@ const (
 var (
 	host                = "https://localhost"
 	usr                 = "admin"
-	pwd                 = "IsardVDI"
+	pwd                 = "@123.com"
 	dskt                = "_local-default-admin-admin_downloaded_slax93"
 	failSelfSigned      = false
 	failMaintenanceMode = false
@@ -58,12 +58,12 @@ func main() {
 	ctx := context.Background()
 	version, err := cli.Version(ctx)
 	if err != nil {
-		log.Fatalf("get IsardVDI version: %v", err)
+		log.Fatalf("get CECD version: %v", err)
 	}
 
 	maintenance, err := cli.Maintenance(ctx)
 	if err != nil {
-		log.Fatalf("get IsardVDI maintenance mode: %v", err)
+		log.Fatalf("get CECD maintenance mode: %v", err)
 	}
 
 	if maintenance && failMaintenanceMode {
@@ -72,14 +72,9 @@ func main() {
 
 	// print info
 	fmt.Println(`
-██╗███████╗ █████╗ ██████╗ ██████╗ ██╗   ██╗██████╗ ██╗    ████████╗███████╗███████╗████████╗███████╗██████╗ 
-██║██╔════╝██╔══██╗██╔══██╗██╔══██╗██║   ██║██╔══██╗██║    ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-██║███████╗███████║██████╔╝██║  ██║██║   ██║██║  ██║██║       ██║   █████╗  ███████╗   ██║   █████╗  ██████╔╝
-██║╚════██║██╔══██║██╔══██╗██║  ██║╚██╗ ██╔╝██║  ██║██║       ██║   ██╔══╝  ╚════██║   ██║   ██╔══╝  ██╔══██╗
-██║███████║██║  ██║██║  ██║██████╔╝ ╚████╔╝ ██████╔╝██║       ██║   ███████╗███████║   ██║   ███████╗██║  ██║
-╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝   ╚═══╝  ╚═════╝ ╚═╝       ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝`)
+CECD TEST
 	info, err := exec.Command("cowsay", "-W", "80", "-f", "/isard.cow", fmt.Sprintf(`
-IsardVDI Client: %s
+CECD Client: %s
 
 Remmina: %s
 
@@ -91,9 +86,9 @@ Wireguard: %s
 
 Host: %s
 
-IsardVDI Version: %s
+CECD Version: %s
 
-IsardVDI Maintenance mode: %t
+CECD Maintenance mode: %t
 
 Date: %s`, client.Version, deps["remmina"], deps["remote-viewer"], deps["wg-quick"], host, version, maintenance, time.Now().Format(time.RFC3339))).CombinedOutput()
 	if err != nil {
@@ -210,7 +205,7 @@ Date: %s`, client.Version, deps["remmina"], deps["remote-viewer"], deps["wg-quic
 		stopVPN()
 	}
 
-	fmt.Println("\nAll tests passed successfully! IsardVDI works! :)")
+	fmt.Println("\nAll tests passed successfully! CECD works! :)")
 }
 
 func onError(tmp string, err error) {

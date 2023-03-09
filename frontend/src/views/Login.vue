@@ -110,11 +110,11 @@
               </b-button>
             </b-form>
             <div v-if="show_login_providers">
-              <hr
+              <!-- <hr
                 class="m-4"
                 style="border-bottom: 1px solid #ececec;"
-              >
-              <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
+              > -->
+              <!-- <div class="d-flex flex-row flex-wrap justify-content-center align-items-center">
                 <p class="w-100 text-center">
                   {{ $t('views.login.other-logins') }}
                 </p>
@@ -130,7 +130,7 @@
                   />
                   {{ provider }}
                 </b-button>
-              </div>
+              </div> -->
             </div>
             <!-- Powered By-->
             <b-row

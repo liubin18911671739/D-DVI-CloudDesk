@@ -52,7 +52,7 @@ def draw_multiple_line_text(image, text, font, text_color):
         y_text += line_height
 
 
-def overlay_text(bgr_img, text="IsardVDI"):
+def overlay_text(bgr_img, text="CECD"):
     font = ImageFont.truetype(
         "/usr/share/fonts/ttf-liberation/LiberationMono-Bold.ttf", 33, encoding="utf-8"
     )
