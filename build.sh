@@ -48,8 +48,8 @@ ALLINONE_PARTS="
 	monitor
 	api
 	scheduler
-	hypervisor
 	authentication
+	hypervisor
 	vpn
 	guac
 	backupninja
