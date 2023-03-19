@@ -48,13 +48,12 @@ ALLINONE_PARTS="
 	monitor
 	api
 	scheduler
-	authentication
 	hypervisor
+	authentication
 	vpn
 	guac
 	backupninja
 "
-
 HYPERVISOR_KEY="hypervisor"
 HYPERVISOR_PARTS="
 	network
@@ -112,15 +111,6 @@ MONITOR_STANDALONE_PARTS="
 	stats
 	monitor
 	monitor-proxy
-"
-
-WEBAPP_KEY="webapp"
-WEBAPP_PARTS="
-	webapp
-	network
-	api
-	engine
-	db
 "
 BACKUPNINJA_STANDALONE_KEY="backupninja"
 BACKUPNINJA_STANDALONE_PARTS="
@@ -345,9 +335,6 @@ create_docker_compose_file(){
 			;;
 		$MONITOR_STANDALONE_KEY)
 			parts=$MONITOR_STANDALONE_PARTS
-			;;
-		$WEBAPP_KEY)
-			parts=$WEBAPP_PARTS
 			;;
 		$BACKUPNINJA_STANDALONE_KEY)
 			parts=$BACKUPNINJA_STANDALONE_PARTS
