@@ -33,4 +33,10 @@ CECD 是先进的桌面虚拟化软件，其特点为:
 
 它将像现在一样从该桌面创建一个模板。您可以创建任意数量的与该模板相同的桌面.
 
+<<<<<<< HEAD
 <img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
+=======
+<img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
+
+ /usr/bin/rethinkdb-dump -c "isard-db:28015" -f "/dbdump/isard-db-$(date +%Y-%m-%d_%H:%M:%S).tar.gz"
+>>>>>>> 0a086dbf871d6ddc233992a2169d8c8ea61efc1f
