@@ -8,3 +8,4 @@ rethinkdb==2.3.0.post6
 python-jose==3.3.0
 Werkzeug~=2.0.0
 dnspython==2.2.1
+licensing==0.39
