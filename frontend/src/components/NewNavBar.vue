@@ -238,7 +238,7 @@ export default {
       if (localStorage.language === 'ch') {
         return 'http://cycloud.link'
       } else {
-        return 'http://cycloud.link/en'
+        return 'http://cycloud.link/cecdvdi'
       }
     }
   }

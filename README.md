@@ -32,3 +32,5 @@ CECD 是先进的桌面虚拟化软件，其特点为:
 2. 填写表格，然后点击“创建”。
 
 它将像现在一样从该桌面创建一个模板。您可以创建任意数量的与该模板相同的桌面.
+
+<img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
