@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 
 import json
@@ -5,7 +6,6 @@ import time
 
 import requests
 
-#!/usr/bin/env python
 # coding=utf-8
 import rethinkdb as r
 from flask import request
@@ -22,13 +22,10 @@ import traceback
 
 from ..lib.log import *
 
-<<<<<<< HEAD
 from licensing import * 
-=======
+
 from licensing.models import *
 from licensing.methods import Key, Helpers
-
->>>>>>> 0a086dbf871d6ddc233992a2169d8c8ea61efc1f
 
 
 login_manager = LoginManager()
