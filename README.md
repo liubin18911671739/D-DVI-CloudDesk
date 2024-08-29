@@ -1,4 +1,4 @@
-# 虚拟云桌面
+# Docker虚拟云桌面
 
 <img align="right" src="frontend/src/assets/logo.svg" alt="CECD Logo" width="150px;">
 
@@ -14,14 +14,20 @@ CECD 是先进的桌面虚拟化软件，其特点为:
   + *RDP*
   + *Guacamole RDP* (web)
 
-示例ISO的百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfOPGcWy1Es7T5FQ?pwd=vxs6 提取码: vxs6 
+Docker虚拟云桌面示例ISO，百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfOPGcWy1Es7T5FQ?pwd=vxs6 提取码: vxs6 
 
 用户名：admin
 
 密码：admin@cecd
 
+需要使用的docker镜像环境，百度网盘链接: https://pan.baidu.com/s/1MC5nCBXHCo2FwZc_RDka7A?pwd=3qiq 提取码: 3qiq 
+
+具体的部署文档，
+
+前端界面：
+
 <img align="right" src="frontend/src/assets/CECD-VDI-1.png" alt="CECD-VDI" >
 
-==============================
+后端界面：
 
 <img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
