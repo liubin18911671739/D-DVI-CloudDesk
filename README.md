@@ -22,4 +22,6 @@ CECD 是先进的桌面虚拟化软件，其特点为:
 
 <img align="right" src="frontend/src/assets/CECD-VDI-1.png" alt="CECD-VDI" >
 
+==============================
+
 <img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
