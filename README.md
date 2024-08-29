@@ -20,24 +20,6 @@ CECD 是先进的桌面虚拟化软件，其特点为:
 
 密码：admin@cecd
 
-## 快速开始
-## 使用
-### 桌面
-
-要下载预定义和经过测试的桌面，您可以转到“管理”前端的“下载”部分。
-
-
-下载完成后，它将显示一个桌面图标，您可以在其中创建桌面。
-
-### 模板
-
-从桌面创建模板（在“管理”前端）：
-
-1. 打开桌面详细信息，然后单击“模板化”按钮。
-2. 填写表格，然后点击“创建”。
-
-它将像现在一样从该桌面创建一个模板。您可以创建任意数量的与该模板相同的桌面.
-
 <img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
 =======
 <img align="right" src="frontend/src/assets/CECD-VDI.png" alt="CECD-VDI" >
