@@ -22,7 +22,7 @@ Docker虚拟云桌面示例ISO，百度网盘链接: https://pan.baidu.com/s/1RB
 
 需要使用的docker镜像环境，百度网盘链接: https://pan.baidu.com/s/1MC5nCBXHCo2FwZc_RDka7A?pwd=3qiq 提取码: 3qiq 
 
-具体的部署文档，
+使用文档，百度网盘链接:  https://pan.baidu.com/s/1rB-kcnYVxiZkqih1JXRu5w?pwd=c7t3 提取码: c7t3 
 
 前端界面：
 
