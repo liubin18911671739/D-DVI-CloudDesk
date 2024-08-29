@@ -1,0 +1,1222 @@
+name: docker-compose-parts
+services:
+  isard-api:
+    container_name: isard-api
+    depends_on:
+      isard-engine:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      DIRECTVIEWER_MODE: browser
+      DOMAIN: localhost
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      LOG_LEVEL: INFO
+      RETHINKDB_DB: null
+      RETHINKDB_HOST: null
+      RETHINKDB_PORT: null
+      USAGE: production
+      VIEWER_RDPGW: null
+      VPN_MTU: null
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_HYPERS_NET: 10.1.0.0/24
+    image: cecd/api:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.10
+    volumes:
+    - type: bind
+      source: /opt/isard/assets/img/desktops
+      target: /api/api/static/assets/img/desktops
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/backups
+      target: /api/backups
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/sshkeys/
+      target: /sshkeys
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/config
+      target: /usr/local/etc/isardvdi
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/certs/viewers
+      target: /viewers
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-authentication:
+    container_name: isard-authentication
+    depends_on:
+      isard-api:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/authentication:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.11
+    volumes:
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/authentication/keys
+      target: /keys
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/authentication/metadata
+      target: /metadata
+      bind:
+        create_host_path: true
+  isard-db:
+    container_name: isard-db
+    entrypoint:
+    - rethinkdb
+    - --cores
+    - "64"
+    - --bind
+    - all
+    image: cecd/db:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.13
+    volumes:
+    - type: bind
+      source: /opt/isard/database
+      target: /data
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-engine:
+    container_name: isard-engine
+    depends_on:
+      isard-db:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/engine:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.14
+    volumes:
+    - type: bind
+      source: /opt/isard/certs/viewers
+      target: /certs
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/sshkeys
+      target: /root/.ssh
+      bind:
+        create_host_path: true
+  isard-grafana:
+    container_name: isard-grafana
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      LOKI_ADDRESS: http://isard-loki:3100
+      PROMETHEUS_ADDRESS: http://isard-prometheus:9090
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/grafana:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.15
+    restart: unless-stopped
+    volumes:
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/monitor/grafana/custom
+      target: /custom
+      bind:
+        create_host_path: true
+  isard-grafana-agent:
+    container_name: isard-grafana-agent
+    entrypoint:
+    - /run.sh
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      LOKI_ADDRESS: http://isard-loki:3100
+      PROMETHEUS_ADDRESS: http://isard-prometheus:9090
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    extra_hosts:
+    - host.docker.internal:host-gateway
+    image: grafana/agent:v0.24.2
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.69
+    restart: "no"
+    volumes:
+    - type: bind
+      source: ./docker/grafana-agent/config.yml
+      target: /etc/agent/config.yml
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ./docker/grafana-agent/db.yml
+      target: /etc/agent/db.yml
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ./docker/grafana-agent/run.sh
+      target: /run.sh
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /var/log
+      target: /var/log
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /var/lib/docker/containers
+      target: /var/lib/docker/containers
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-guac:
+    container_name: isard-guac
+    environment:
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      GUACD_ADDR: isard-vpn:4822
+    image: cecd/guac:main
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.16
+    volumes:
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-hypervisor:
+    container_name: isard-hypervisor
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      ENV: /usr/local/etc/environment
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      HYPER_ENABLED: null
+      HYPER_ID: null
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      VIDEO_DOMAIN: null
+      VIEWER_BROWSER: null
+      VIEWER_SPICE: null
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/hypervisor:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.17
+    privileged: true
+    volumes:
+    - type: bind
+      source: /opt/isard
+      target: /isard
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard-local/sockets/
+      target: /var/run/libvirt
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard-local/environment
+      target: /usr/local/etc/environment
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /dev/vfio
+      target: /dev/vfio
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-loki:
+    container_name: isard-loki
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: grafana/loki:2.6.1
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.67
+    restart: unless-stopped
+    user: root
+    volumes:
+    - type: bind
+      source: /opt/isard/stats/loki
+      target: /data
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ./docker/loki/config.yaml
+      target: /etc/loki/local-config.yaml
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-portal:
+    cap_add:
+    - NET_ADMIN
+    container_name: isard-portal
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/portal:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.18
+    ports:
+    - mode: host
+      target: 80
+      published: "80"
+    - mode: host
+      target: 443
+      published: "443"
+    - mode: host
+      target: 9999
+      published: "9999"
+    volumes:
+    - type: bind
+      source: /opt/isard/certs/letsencrypt
+      target: /etc/letsencrypt
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/certs/default
+      target: /certs
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-prometheus:
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --storage.tsdb.path=/prometheus
+    - --storage.tsdb.retention.time=40d
+    - --web.console.libraries=/usr/share/prometheus/console_libraries
+    - --web.console.templates=/usr/share/prometheus/consoles
+    - --web.enable-remote-write-receiver
+    container_name: isard-prometheus
+    image: prom/prometheus
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.68
+    restart: unless-stopped
+    user: root
+    volumes:
+    - type: bind
+      source: /opt/isard/stats/prometheus
+      target: /prometheus
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-scheduler:
+    container_name: isard-scheduler
+    depends_on:
+      isard-engine:
+        condition: service_healthy
+    environment:
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      LOG_LEVEL: INFO
+      RETHINKDB_DB: isard
+      RETHINKDB_HOST: isard-db
+      RETHINKDB_PORT: "28015"
+      USAGE: production
+    image: cecd/scheduler:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.24
+    volumes:
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/backups
+      target: /src/backups
+      bind:
+        create_host_path: true
+    - type: bind
+      source: ./frontend/src/locales
+      target: /src/scheduler/locales
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-squid:
+    container_name: isard-squid
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/squid:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.19
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: "1"
+    volumes:
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-static:
+    container_name: isard-static
+    image: cecd/static:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.20
+    volumes:
+    - type: bind
+      source: /opt/isard/frontend/custom
+      target: /usr/share/nginx/html/custom
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/assets/img/desktops
+      target: /usr/share/nginx/html/assets/img/desktops
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-stats-cadvisor:
+    command:
+    - --docker_only=true
+    - --disable_metrics=accelerator,cpu_topology,percpu,sched,process,hugetlb,referenced_memory,resctrl,cpuset,advtcp,memory_numa
+    container_name: isard-stats-cadvisor
+    devices:
+    - /dev/kmsg:/dev/kmsg
+    image: google/cadvisor
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.74
+    privileged: true
+    restart: "no"
+    volumes:
+    - type: bind
+      source: /
+      target: /rootfs
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /var/run
+      target: /var/run
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /sys
+      target: /sys
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /var/lib/docker/
+      target: /var/lib/docker
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /dev/disk/
+      target: /dev/disk
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-stats-go:
+    container_name: isard-stats-go
+    depends_on:
+      isard-api:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/stats-go:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network: {}
+    restart: "no"
+    volumes:
+    - type: bind
+      source: /opt/isard-local/conntrack
+      target: /conntrack
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-stats-node-exporter:
+    command:
+    - --path.rootfs=/host
+    - --collector.disable-defaults
+    - --collector.cpu
+    - --collector.diskstats
+    - --collector.filesystem
+    - --collector.loadavg
+    - --collector.meminfo
+    - --collector.netclass
+    - --collector.netdev
+    - --collector.netstat
+    - --collector.nfs
+    - --collector.nfsd
+    - --collector.os
+    - --collector.schedstat
+    - --collector.stat
+    container_name: isard-stats-node-exporter
+    image: prom/node-exporter
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    network_mode: host
+    pid: host
+    restart: "no"
+    volumes:
+    - type: bind
+      source: /
+      target: /host
+      read_only: true
+      bind:
+        propagation: rslave
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-stats-rethinkdb:
+    command:
+    - --db.address
+    - isard-db:28015
+    container_name: isard-stats-rethinkdb
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/stats-rethinkdb:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.28
+  isard-vpn:
+    cap_add:
+    - NET_ADMIN
+    - SYS_MODULE
+    container_name: isard-vpn
+    depends_on:
+      isard-api:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/vpn:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.23
+    ports:
+    - target: 443
+      published: "443"
+      protocol: udp
+    - target: 4443
+      published: "4443"
+      protocol: udp
+    privileged: true
+    volumes:
+    - type: bind
+      source: /opt/isard/wireguard/certs
+      target: /certs
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard-local/conntrack
+      target: /conntrack
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /proc/sys/net/netfilter/nf_conntrack_acct
+      target: /host-proc/sys/net/netfilter/nf_conntrack_acct
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/certs/default
+      target: /portal-certs
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /sys
+      target: /sys
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/dnsmasq
+      target: /var/lib/misc
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /opt/isard/dnsmasq/static_leases
+      target: /var/lib/static_leases
+      bind:
+        create_host_path: true
+  isard-webapp:
+    container_name: isard-webapp
+    depends_on:
+      isard-api:
+        condition: service_healthy
+      isard-engine:
+        condition: service_healthy
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/webapp:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.26
+    volumes:
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+  isard-websockify:
+    container_name: isard-websockify
+    environment:
+      API_HYPERVISORS_SECRET: B5/bUEUzIC+AjNQRmFh3vxR3VeIKirwdeL/xuHPVO+E=
+      API_ISARDVDI_SECRET: kpWpdF0NtI2XCEfzMp36hdSV9S42E7axS8D5TvP9c0A=
+      BUILD_ROOT_PATH: .
+      DIRECTVIEWER_MODE: browser
+      DOCKER_IMAGE_PREFIX: cecd/
+      DOCKER_IMAGE_TAG: main
+      DOMAIN: localhost
+      ENABLE_STATS: "true"
+      FLAVOUR: all-in-one
+      FRONTEND_DOCS_URI: http://cycloud.link/
+      FRONTEND_SHOW_BOOKINGS: "False"
+      FRONTEND_SHOW_TEMPORAL: "False"
+      INFLUXDB_ADMIN_TOKEN_SECRET: 9eFW/Qi29hL3hFGUP8wIGH89XKCH8s1k0il44GCRF2g=
+      LOG_LEVEL: INFO
+      SRC_VERSION_ID: main-dirty
+      SRC_VERSION_LINK: ""
+      USAGE: production
+      WEBAPP_ADMIN_PWD: admin@cecd
+      WEBAPP_SESSION_SECRET: xq0Z3MP5ujxrQxtMGxgPiijH9xpuxkyP04R6At/V+g4=
+      WG_GUESTS_DHCP_MASK: "23"
+      WG_GUESTS_NETS: 10.2.0.0/16
+      WG_GUESTS_RESERVED_HOSTS: "20"
+      WG_HYPERS_NET: 10.1.0.0/24
+      WG_HYPERS_PORT: "4443"
+      WG_MAIN_NET: 10.0.0.0/14
+      WG_USERS_NET: 10.0.0.0/16
+      WG_USERS_PORT: "443"
+    image: cecd/websockify:main
+    logging:
+      driver: json-file
+      options:
+        max-size: 100m
+        tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+    networks:
+      isard-network:
+        ipv4_address: 172.31.255.27
+    volumes:
+    - type: bind
+      source: /etc/timezone
+      target: /etc/timezone
+      read_only: true
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /etc/localtime
+      target: /etc/localtime
+      read_only: true
+      bind:
+        create_host_path: true
+networks:
+  isard-network:
+    name: isard-network
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.31.255.0/24
