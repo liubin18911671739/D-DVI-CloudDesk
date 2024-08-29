@@ -14,7 +14,7 @@
   + *RDP*
   + *Guacamole RDP* (web)
 
-D-DVI云桌面示例ISO，百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfOPGcWy1Es7T5FQ?pwd=vxs6 提取码: vxs6 
+D-VDI云桌面示例ISO，百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfOPGcWy1Es7T5FQ?pwd=vxs6 提取码: vxs6 
 
 用户名：admin
 
