@@ -22,7 +22,7 @@ D-DVI云桌面示例ISO，百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfO
 
 D-VDI云桌面开发时使用的docker镜像环境，百度网盘链接: https://pan.baidu.com/s/1MC5nCBXHCo2FwZc_RDka7A?pwd=3qiq 提取码: 3qiq 
 
-D-VDI云桌面使用文档，百度网盘链接:  https://pan.baidu.com/s/1rB-kcnYVxiZkqih1JXRu5w?pwd=c7t3 提取码: c7t3 
+D-VDI云桌面使用文档，链接: https://pan.baidu.com/s/1ZsZemaCwz1TOf6hDj893ew?pwd=xmtx 提取码: xmtx 
 
 前端界面：
 
