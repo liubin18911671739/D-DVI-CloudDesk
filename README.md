@@ -15,7 +15,9 @@ CECD 是先进的桌面虚拟化软件，其特点为:
   + *Guacamole RDP* (web)
 
 示例ISO的百度网盘链接: https://pan.baidu.com/s/1RB5vnFpfOPGcWy1Es7T5FQ?pwd=vxs6 提取码: vxs6 
+
 用户名：admin
+
 密码：admin@cecd
 
 ## 快速开始
